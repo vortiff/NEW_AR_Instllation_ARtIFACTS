@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Metaball.unity
+- path: Assets/Scenes/1IstallationFisch.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
