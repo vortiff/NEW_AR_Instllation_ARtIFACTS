@@ -40,11 +40,55 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/2022.3.5f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets/UnityMovementAI/Scripts/Camera/CameraMovement.cs" />
+     <Compile Include="Assets/Script/FlokingTutorial/FlockingManager.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/PursueUnit.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Separation.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/WallAvoidanceUnit.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/ScreenBoundary3D.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/ThirdPersonUnit.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/LinePath.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/WallAvoidance.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/SeekUnit.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Cohesion.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Wander2Unit.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/MovementAIRigidbody.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/SteeringBasics.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/ColAvoidUnit.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Wander2.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Pursue.cs" />
      <Compile Include="Assets/Script/FloatingObject.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Spawner.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/EvadeUnit.cs" />
      <Compile Include="Assets/Script/RandomDeformation.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Wander1Unit.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/InterposeUnit.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/WanderAvoidUnit.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Flee.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/ArriveUnit.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Evade.cs" />
      <Compile Include="Assets/TutorialInfo/Scripts/Readme.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/ScreenBoundary2D.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Camera/InfiniteGrid.cs" />
+     <Compile Include="Assets/Script/FlockingBehavior.cs" />
      <Compile Include="Assets/Script/RandomDeformationColor.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Camera/FirstPersonCamera.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Wander1.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Hide.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/FleeUnit.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/VelocityMatch.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/CollisionAvoidance.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/HideUnit.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/OffsetPursuit.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/OffsetPursuitUnit.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/GoDirectionUnit.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/FollowPathUnit.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/FlockingUnit.cs" />
      <Compile Include="Assets/Script/MetaballController.cs" />
+     <Compile Include="Assets/Script/FlokingTutorial/Floking.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/FollowPath.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/NearSensor.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Camera/ThirdPersonCamera.cs" />
     <Reference Include="UnityEngine">
         <HintPath>/Applications/Unity/Hub/Editor/2022.3.5f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
