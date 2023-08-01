@@ -8,6 +8,13 @@ public class Floking : MonoBehaviour
     float speed; 
     bool turnig = false;
 
+     public float Speed
+    {
+        get { return speed; }
+        set { speed = value; }
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
