@@ -365,6 +365,7 @@
 "Assets/Script/FlockingBehavior.cs"
 "Assets/Script/FlokingTutorial/FlockingManager.cs"
 "Assets/Script/FlokingTutorial/Floking.cs"
+"Assets/Script/GenerativeMusic/GenerativeSoundManager.cs"
 "Assets/Script/MetaballController.cs"
 "Assets/Script/RandomDeformation.cs"
 "Assets/Script/RandomDeformationColor.cs"

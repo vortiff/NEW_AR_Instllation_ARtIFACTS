@@ -53,6 +53,7 @@
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Cohesion.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Wander2Unit.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/MovementAIRigidbody.cs" />
+     <Compile Include="Assets/Script/GenerativeMusic/GenerativeSoundManager.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/SteeringBasics.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/ColAvoidUnit.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Wander2.cs" />
