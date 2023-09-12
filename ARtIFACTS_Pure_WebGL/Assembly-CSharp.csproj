@@ -89,7 +89,6 @@
      <Compile Include="Assets/ARLocation/Mapbox Routes/Scripts/DefaultOnScreenTargetIndicator.cs" />
      <Compile Include="Assets/ARLocation/Scripts/Utils/Logger.cs" />
      <Compile Include="Assets/ARLocation/Scripts/ARLocation.cs" />
-     <Compile Include="Assets/CarMaterialChange.cs" />
      <Compile Include="Assets/Joystick Pack/Scripts/Joysticks/VariableJoystick.cs" />
      <Compile Include="Assets/ARLocation/Scripts/Utils/Singleton.cs" />
      <Compile Include="Assets/ARLocation/Mapbox Routes/Scripts/PathRouteRenderer.cs" />
@@ -100,6 +99,7 @@
      <Compile Include="Assets/ARLocation/Mapbox Routes/Scripts/Examples/MenuController.cs" />
      <Compile Include="Assets/ARLocation/Scripts/Components/PlaceAlongPath.cs" />
      <Compile Include="Assets/Joystick Pack/Examples/JoystickSetterExample.cs" />
+     <Compile Include="Assets/Scripts/CarMaterialChange.cs" />
      <Compile Include="Assets/ARLocation/Mapbox Routes/Scripts/Examples/ArMenuController.cs" />
      <Compile Include="Assets/ARLocation/Scripts/ScriptableObjects/LocationData.cs" />
      <Compile Include="Assets/ARLocation/Scripts/Location/Location.cs" />

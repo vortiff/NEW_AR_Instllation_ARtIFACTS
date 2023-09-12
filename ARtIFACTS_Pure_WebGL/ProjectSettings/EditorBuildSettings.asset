@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Samples/WebXR Interactions/0.18.0/Sample Scene/Scenes/Desert.unity
     guid: 85380d4847db7b74a850284461349c36
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/WebAR.unity
     guid: 6448518e3aadf4e47adaa5534a059529
+  - enabled: 1
+    path: Assets/Scenes/ArtifactsFlokingIcaro.unity
+    guid: 118705ffcfde64b88898408018bd46af
   m_configObjects:
     WebXR.Settings: {fileID: 11400000, guid: 24a53239343354f0eab7684797ac76b4, type: 2}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 8205ec5d6915045308c276539529b3c4, type: 2}
