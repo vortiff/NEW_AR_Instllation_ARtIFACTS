@@ -100,6 +100,7 @@
      <Compile Include="Assets/ARLocation/Scripts/Components/PlaceAlongPath.cs" />
      <Compile Include="Assets/Joystick Pack/Examples/JoystickSetterExample.cs" />
      <Compile Include="Assets/Scripts/CarMaterialChange.cs" />
+     <Compile Include="Assets/Scripts/OpenWebsite.cs" />
      <Compile Include="Assets/ARLocation/Mapbox Routes/Scripts/Examples/ArMenuController.cs" />
      <Compile Include="Assets/ARLocation/Scripts/ScriptableObjects/LocationData.cs" />
      <Compile Include="Assets/ARLocation/Scripts/Location/Location.cs" />

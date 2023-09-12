@@ -1,5 +1,6 @@
 using UnityEngine;
-using Google.XR.ARCore;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 
 public class ARPrefabPlacement : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class ARPrefabPlacement : MonoBehaviour
             ARPlane detectedPlane = args.added[0];
 
             // Calcola la posizione in cui posizionare il prefab, ad esempio sopra il piano.
-            Vector3 prefabPosition = detectedPlane.CenterPose.position;
+            Vector3 prefabPosition = detectedPlane.center;
 
             // Crea il prefab e posizionalo.
             Instantiate(prefabToPlace, prefabPosition, Quaternion.identity);

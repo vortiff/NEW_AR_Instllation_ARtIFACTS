@@ -1,0 +1,368 @@
+{
+    "totalVariantsIn": 44,
+    "totalVariantsOut": 44,
+    "shaders": [
+        {
+            "inputVariants": 7,
+            "outputVariants": 7,
+            "name": "VFXCopyBuffer",
+            "pipelines": [
+                {
+                    "inputVariants": 7,
+                    "outputVariants": 7,
+                    "pipeline": "",
+                    "variants": [
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: CSVFXCopyBuffer",
+                            "stripTimeMs": 0.0023
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: CSVFXCopyStructBuffer",
+                            "stripTimeMs": 0.0
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: CSVFXInitDeadListBuffer",
+                            "stripTimeMs": 0.0
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: CSVFXZeroInitBuffer",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: CSVFXBatchCopyCountUint",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: CSVFXBatchCopyCountKvp",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: CSVFXInitBoundsBuffer",
+                            "stripTimeMs": 0.0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "inputVariants": 21,
+            "outputVariants": 21,
+            "name": "GenSdfRayMap",
+            "pipelines": [
+                {
+                    "inputVariants": 21,
+                    "outputVariants": 21,
+                    "pipeline": "",
+                    "variants": [
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: InBucketSum",
+                            "stripTimeMs": 0.0002
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: BlockSums",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: FinalSum",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: ToTextureNormalized",
+                            "stripTimeMs": 0.0
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: CopyTextures",
+                            "stripTimeMs": 0.0
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: JFA",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: DistanceTransform",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: CopyBuffers",
+                            "stripTimeMs": 0.0
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: GenerateRayMapLocal",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: RayMapScanX",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: RayMapScanY",
+                            "stripTimeMs": 0.0
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: RayMapScanZ",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: SignPass6Rays",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: SignPassNeighbors",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: ToBlockSumBuffer",
+                            "stripTimeMs": 0.0
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: ClearTexturesAndBuffers",
+                            "stripTimeMs": 0.0
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: CopyToBuffer",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: GenerateTrianglesUV",
+                            "stripTimeMs": 0.0
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: ConservativeRasterization",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: ChooseDirectionTriangleOnly",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: SurfaceClosing",
+                            "stripTimeMs": 0.0001
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "inputVariants": 1,
+            "outputVariants": 1,
+            "name": "VFXFillIndirectArgs",
+            "pipelines": [
+                {
+                    "inputVariants": 1,
+                    "outputVariants": 1,
+                    "pipeline": "",
+                    "variants": [
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: CSVFXIndirectArgs",
+                            "stripTimeMs": 0.0004
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "inputVariants": 1,
+            "outputVariants": 1,
+            "name": "UpdateStrips",
+            "pipelines": [
+                {
+                    "inputVariants": 1,
+                    "outputVariants": 1,
+                    "pipeline": "",
+                    "variants": [
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: UpdateParticleStrip",
+                            "stripTimeMs": 0.0001
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "inputVariants": 12,
+            "outputVariants": 12,
+            "name": "Sort",
+            "pipelines": [
+                {
+                    "inputVariants": 12,
+                    "outputVariants": 12,
+                    "pipeline": "",
+                    "variants": [
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: BitonicSort128",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: BitonicSort1024",
+                            "stripTimeMs": 0.0
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: BitonicSort1024_128",
+                            "stripTimeMs": 0.0
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: BitonicSort2048",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: BitonicSort2048_128",
+                            "stripTimeMs": 0.0
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: BitonicSort4096",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: BitonicSort4096_128",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: BitonicPrePass",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: BitonicPrePass4096_128",
+                            "stripTimeMs": 0.0
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: BitonicPrePass2048_128",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: MergePass",
+                            "stripTimeMs": 0.0001
+                        },
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: MergeFinalPass",
+                            "stripTimeMs": 0.0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "inputVariants": 1,
+            "outputVariants": 1,
+            "name": "[FlokingTest] [Swarm] Initialize Particle",
+            "pipelines": [
+                {
+                    "inputVariants": 1,
+                    "outputVariants": 1,
+                    "pipeline": "",
+                    "variants": [
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: CSMain",
+                            "stripTimeMs": 0.0002
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "inputVariants": 1,
+            "outputVariants": 1,
+            "name": "[FlokingTest] [Swarm] Update Particle",
+            "pipelines": [
+                {
+                    "inputVariants": 1,
+                    "outputVariants": 1,
+                    "pipeline": "",
+                    "variants": [
+                        {
+                            "inputVariants": 1,
+                            "outputVariants": 1,
+                            "variantName": "Kernel: CSMain",
+                            "stripTimeMs": 0.0002
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
