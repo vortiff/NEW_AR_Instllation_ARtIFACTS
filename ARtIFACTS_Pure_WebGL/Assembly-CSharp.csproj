@@ -108,6 +108,7 @@
      <Compile Include="Assets/ARLocation/Scripts/Math/MathUtils.cs" />
      <Compile Include="Assets/ARLocation/Scripts/Math/Spline.cs" />
      <Compile Include="Assets/Scripts/InputManager.cs" />
+     <Compile Include="Assets/Scripts/ActivationManager.cs" />
      <Compile Include="Assets/ARLocation/Mapbox Routes/Scripts/RouteLoader.cs" />
      <Compile Include="Assets/ARLocation/Experimental/World Voxel Craft/WorldVoxelController.cs" />
      <Compile Include="Assets/ARLocation/Mapbox Routes/Scripts/MapboxApi/RouteResponse.cs" />
@@ -116,9 +117,11 @@
      <Compile Include="Assets/ARLocation/Scripts/Math/LinearSpline.cs" />
      <Compile Include="Assets/ARLocation/Scripts/Utils/ShowHideSelfOnPointerClick.cs" />
      <Compile Include="Assets/ARLocation/Scripts/Location/ILocationProvider.cs" />
+     <Compile Include="Assets/Scripts/Floking.cs" />
      <Compile Include="Assets/ARLocation/Mapbox Routes/Scripts/Vendor/SimpleJson.cs" />
      <Compile Include="Assets/ARLocation/Scripts/Components/UI/DebugDistance.cs" />
      <Compile Include="Assets/ARLocation/Scripts/Components/GroundHeight.cs" />
+     <Compile Include="Assets/Scripts/FlockingManager.cs" />
      <Compile Include="Assets/ARLocation/Scripts/Components/ARLocationProvider.cs" />
      <Compile Include="Assets/ARLocation/Experimental/NewPathLineRenderer.cs" />
      <Compile Include="Assets/ARLocation/Mapbox Routes/Scripts/MapboxApi/MapboxApiLanguage.cs" />

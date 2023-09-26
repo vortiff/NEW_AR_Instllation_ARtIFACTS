@@ -8,11 +8,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Metaball.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FlokingScriptingAR.unity
     guid: b124c7741677740bdacbb08d720a995f
+  - enabled: 1
+    path: Assets/Scenes/IntroAR.unity
+    guid: b374239b2f5de4e7498508533b3e0f24
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 85446e93bd72c405aacc4e7a87255f13,
       type: 2}
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: ecac6d0b7ebc045b0a648627a549bd10,
+      type: 2}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 4c1fdee10444046048492283bb0903e1,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 21226d5969d7a4c3e9d57ac9374a637e,
       type: 2}

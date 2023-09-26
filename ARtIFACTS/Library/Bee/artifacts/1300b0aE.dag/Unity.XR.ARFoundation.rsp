@@ -122,6 +122,7 @@
 -define:ENABLE_INPUT_SYSTEM
 -define:ENABLE_LEGACY_INPUT_MANAGER
 -define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
+-define:ARCORE_INTERNAL_GEOSPATIAL_CREATOR_ENABLED
 -define:MODULE_URP_ENABLED
 -define:USE_LEGACY_INPUT_HELPERS
 -define:CSHARP_7_OR_LATER
@@ -338,6 +339,12 @@
 -r:"/Applications/Unity/Hub/Editor/2022.3.5f1/Unity.app/Contents/NetStandard/Extensions/2.0.0/System.Runtime.InteropServices.WindowsRuntime.dll"
 -r:"/Applications/Unity/Hub/Editor/2022.3.5f1/Unity.app/Contents/NetStandard/ref/2.1.0/netstandard.dll"
 -r:"/Applications/Unity/Hub/Editor/2022.3.5f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll"
+-r:"Library/PackageCache/com.google.ar.core.arfoundation.extensions@92e1dbfdb6/Editor/ExternalDependencyManager/Editor/Google.IOSResolver.dll"
+-r:"Library/PackageCache/com.google.ar.core.arfoundation.extensions@92e1dbfdb6/Editor/ExternalDependencyManager/Editor/Google.JarResolver.dll"
+-r:"Library/PackageCache/com.google.ar.core.arfoundation.extensions@92e1dbfdb6/Editor/ExternalDependencyManager/Editor/Google.PackageManagerResolver.dll"
+-r:"Library/PackageCache/com.google.ar.core.arfoundation.extensions@92e1dbfdb6/Editor/ExternalDependencyManager/Editor/Google.VersionHandler.dll"
+-r:"Library/PackageCache/com.google.ar.core.arfoundation.extensions@92e1dbfdb6/Editor/ExternalDependencyManager/Editor/Google.VersionHandlerImpl.dll"
+-r:"Library/PackageCache/com.google.ar.core.arfoundation.extensions@92e1dbfdb6/Editor/Scripts/Internal/Analytics/Google.Protobuf.dll"
 -r:"Library/PackageCache/com.unity.collab-proxy@2.0.5/Lib/Editor/PlasticSCM/log4netPlastic.dll"
 -r:"Library/PackageCache/com.unity.collab-proxy@2.0.5/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll"
 -r:"Library/PackageCache/com.unity.collab-proxy@2.0.5/Lib/Editor/PlasticSCM/Unity.Plastic.Newtonsoft.Json.dll"
