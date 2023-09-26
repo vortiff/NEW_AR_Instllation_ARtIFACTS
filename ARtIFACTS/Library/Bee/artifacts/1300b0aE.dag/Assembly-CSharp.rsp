@@ -417,6 +417,7 @@
 "Assets/Script/IntroScene/ColliderManagerStartClone.cs"
 "Assets/Script/IntroScene/Duplicator.cs"
 "Assets/Script/IntroScene/GlitchEffect.cs"
+"Assets/Script/IntroScene/RandomTextureAssigner.cs"
 "Assets/Script/MetaballController.cs"
 "Assets/Script/RandomDeformation.cs"
 "Assets/Script/RandomDeformationColor.cs"

@@ -6,16 +6,19 @@ public class Duplicator : MonoBehaviour
 {
     public GameObject objectToDuplicate; // Il GameObject da duplicare
     public float duplicationRadius = 1f; // Raggio in cui duplicare l'oggetto
-    public float minDuplicationInterval = 2f; // Intervallo minimo tra le duplicazioni
-    public float maxDuplicationInterval = 5f; // Intervallo massimo tra le duplicazioni
+    public float minDuplicationInterval = 0.1f; // Intervallo minimo tra le duplicazioni
+    public float maxDuplicationInterval = 2f; // Intervallo massimo tra le duplicazioni
+    public AudioClip[] duplicationSounds; // Array di suoni per le duplicazioni
 
     private Transform player; // Il trasform del giocatore
     private bool isPlayerInsideCollider = false;
     private float nextDuplicationTime;
+    private AudioSource audioSource;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform; // Trova il giocatore per tag "Player"
+        audioSource = GetComponent<AudioSource>(); // Ottieni il componente AudioSource se presente
         SetNextDuplicationTime();
     }
 
@@ -63,9 +66,14 @@ public class Duplicator : MonoBehaviour
 
         // Ruota il nuovo oggetto su tutti e tre gli assi in modo casuale
         newObject.transform.localRotation = Quaternion.Euler(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
+
+        // Riproduci un suono casuale dalle duplicazioni se presente
+        if (audioSource != null && duplicationSounds.Length > 0)
+        {
+            int randomSoundIndex = Random.Range(0, duplicationSounds.Length);
+            audioSource.PlayOneShot(duplicationSounds[randomSoundIndex]);
+        }
     }
-
-
 
     void SetNextDuplicationTime()
     {

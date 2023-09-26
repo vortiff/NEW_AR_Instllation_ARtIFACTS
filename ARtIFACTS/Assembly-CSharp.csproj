@@ -85,6 +85,7 @@
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Pursue.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/EvadeUnit.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/InterposeUnit.cs" />
+     <Compile Include="Assets/Script/IntroScene/RandomTextureAssigner.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/ArriveUnit.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Evade.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/ScreenBoundary2D.cs" />
