@@ -12851,3 +12851,27 @@ Received Import Request.
 Start importing Assets/Scenes/UI/UI.unity using Guid(e804e3c6b8df54d4b92293ec864c9102) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd6fc1658bc8a252525faa2c8a99af0b2') in 0.005729 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 2304.027296 seconds.
+  path: Assets/Texture/IMG/UI
+  artifactKey: Guid(4c36360fe9c7b4348952a3e599b7bf5d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Texture/IMG/UI using Guid(4c36360fe9c7b4348952a3e599b7bf5d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f15e432d762652fd4f163bac43dc08a0') in 0.001973 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 15.818128 seconds.
+  path: Assets/Texture/IMG/UI/Screenshot 2023-09-27 at 13.10.28.jpg
+  artifactKey: Guid(a1262c878ba244fc983e975884d170a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Texture/IMG/UI/Screenshot 2023-09-27 at 13.10.28.jpg using Guid(a1262c878ba244fc983e975884d170a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '99b60538be0719925d4159e341b0383d') in 0.007578 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 1.873766 seconds.
+  path: Assets/UnityMovementAI/Images/whiteSquare.psd
+  artifactKey: Guid(299b4a6010c580248835775ba08c419e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UnityMovementAI/Images/whiteSquare.psd using Guid(299b4a6010c580248835775ba08c419e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5aed17ed2291dbcf96aadfb5237919ad') in 0.003595 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
