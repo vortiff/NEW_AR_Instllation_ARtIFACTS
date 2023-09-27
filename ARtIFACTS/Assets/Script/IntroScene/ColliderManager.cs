@@ -39,6 +39,20 @@ public class ColliderManager : MonoBehaviour
 
             // Imposta hasCollided su true per evitare collisioni multiple
             hasCollided = true;
+
+            // Avvia la funzione per distruggere i cloni dopo 2 secondi
+            Invoke("DestroyClones", 2f);
+        }
+    }
+
+    // Funzione per distruggere i cloni con il tag "cloni"
+    private void DestroyClones()
+    {
+        GameObject[] clones = GameObject.FindGameObjectsWithTag("cloni");
+
+        foreach (GameObject clone in clones)
+        {
+            Destroy(clone);
         }
     }
 }

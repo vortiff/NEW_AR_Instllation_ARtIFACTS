@@ -5,7 +5,9 @@ using UnityEngine;
 public class Duplicator : MonoBehaviour
 {
     public GameObject objectToDuplicate; // Il GameObject da duplicare
-    public float duplicationRadius = 1f; // Raggio in cui duplicare l'oggetto
+    public float duplicationWidth = 1f; // Larghezza della zona di duplicazione
+    public float duplicationHeight = 1f; // Altezza della zona di duplicazione
+    public float duplicationDepth = 1f; // Profondità della zona di duplicazione
     public float minDuplicationInterval = 0.1f; // Intervallo minimo tra le duplicazioni
     public float maxDuplicationInterval = 2f; // Intervallo massimo tra le duplicazioni
     public AudioClip[] duplicationSounds; // Array di suoni per le duplicazioni
@@ -52,8 +54,12 @@ public class Duplicator : MonoBehaviour
 
     void DuplicateObject()
     {
-        // Genera una posizione casuale entro il raggio specificato
-        Vector3 randomOffset = Random.insideUnitSphere * duplicationRadius;
+        // Genera una posizione casuale entro le dimensioni specificate
+        Vector3 randomOffset = new Vector3(
+            Random.Range(-duplicationWidth / 2, duplicationWidth / 2),
+            Random.Range(-duplicationHeight / 2, duplicationHeight / 2),
+            Random.Range(-duplicationDepth / 2, duplicationDepth / 2)
+        );
 
         // Calcola la posizione del nuovo oggetto
         Vector3 newPosition = transform.position + randomOffset;
