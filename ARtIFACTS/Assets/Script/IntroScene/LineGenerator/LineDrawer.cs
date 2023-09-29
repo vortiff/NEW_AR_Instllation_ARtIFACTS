@@ -1,38 +1,54 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LineDrawer : MonoBehaviour
 {
     public float drawSpeed = 1f; // Velocità di disegno della linea
+    public float maxLineLength = 10f; // Lunghezza massima della linea
+    public LayerMask collisionLayer; // Layer per la collisione
 
     private LineRenderer lineRenderer;
     private Vector3 targetPosition;
+    private bool isDrawing = false;
 
     private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        targetPosition = GetRandomTargetPosition();
+        lineRenderer.positionCount = 2;
+        lineRenderer.enabled = false;
     }
 
     private void Update()
     {
-        // Sposta gradualmente la posizione finale del LineRenderer verso la destinazione
-        lineRenderer.SetPosition(1, Vector3.MoveTowards(lineRenderer.GetPosition(1), targetPosition, drawSpeed * Time.deltaTime));
-
-        // Quando il LineRenderer raggiunge la destinazione, calcola una nuova destinazione casuale
-        if (Vector3.Distance(lineRenderer.GetPosition(1), targetPosition) < 0.1f)
+        if (isDrawing)
         {
-            targetPosition = GetRandomTargetPosition();
+            Vector3 currentPosition = lineRenderer.GetPosition(1);
+            float step = drawSpeed * Time.deltaTime;
+
+            // Sposta gradualmente la posizione finale del LineRenderer verso la destinazione
+            lineRenderer.SetPosition(1, Vector3.MoveTowards(currentPosition, targetPosition, step));
+
+            // Controlla la collisione
+            if (Physics.Raycast(currentPosition, (targetPosition - currentPosition).normalized, out RaycastHit hit, step, collisionLayer))
+            {
+                // Imposta la nuova destinazione come punto di collisione
+                targetPosition = hit.point;
+            }
+
+            // Controlla se la linea ha raggiunto la lunghezza massima
+            if (Vector3.Distance(lineRenderer.GetPosition(0), currentPosition) >= maxLineLength)
+            {
+                isDrawing = false;
+                lineRenderer.enabled = false;
+            }
         }
     }
 
-    private Vector3 GetRandomTargetPosition()
+    public void StartDrawing(Vector3 startPoint, Vector3 initialDirection)
     {
-        // Genera una nuova posizione casuale nell'area desiderata (ad esempio, lungo gli assi X e Z)
-        float randomX = Random.Range(-10f, 10f); // Sostituisci questi valori con i tuoi limiti desiderati
-        float randomZ = Random.Range(-10f, 10f); // Sostituisci questi valori con i tuoi limiti desiderati
-
-        return new Vector3(randomX, 0f, randomZ);
+        lineRenderer.enabled = true;
+        lineRenderer.SetPosition(0, startPoint);
+        lineRenderer.SetPosition(1, startPoint + initialDirection * maxLineLength);
+        targetPosition = startPoint + initialDirection * maxLineLength;
+        isDrawing = true;
     }
 }

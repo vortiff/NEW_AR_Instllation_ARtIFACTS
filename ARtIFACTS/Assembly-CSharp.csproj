@@ -46,6 +46,7 @@
      <Compile Include="Assets/UnityMovementAI/Scripts/ScreenBoundary3D.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/LinePath.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/WallAvoidance.cs" />
+     <Compile Include="Assets/Script/IntroScene/LineGenerator/LineManager.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/SteeringBasics.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/ColAvoidUnit.cs" />
      <Compile Include="Assets/Script/IntroScene/Duplicator.cs" />
@@ -66,6 +67,7 @@
      <Compile Include="Assets/ModularFirstPersonController/FirstPersonController/FirstPersonController.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/GoDirectionUnit.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/OffsetPursuitUnit.cs" />
+     <Compile Include="Assets/Script/IntroScene/FollowPlayer.cs" />
      <Compile Include="Assets/Script/FlokingTutorial/Floking.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/FollowPath.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/NearSensor.cs" />
@@ -73,6 +75,7 @@
      <Compile Include="Assets/Script/FlokingTutorial/FlockingManager.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Separation.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/ThirdPersonUnit.cs" />
+     <Compile Include="Assets/Script/IntroScene/LineGenerator/LineController.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/SeekUnit.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Cohesion.cs" />
      <Compile Include="Assets/Script/IntroScene/ColliderManagerStartClone.cs" />
@@ -783,8 +786,8 @@
     <Reference Include="Unity.Mathematics.Editor">
         <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.XR.ARAnalytics.Editor">
-        <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Unity.XR.ARAnalytics.Editor.dll</HintPath>
+    <Reference Include="Unity.XR.ARKit.FaceTracking">
+        <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Unity.XR.ARKit.FaceTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.CoreUtils">
         <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Unity.XR.CoreUtils.dll</HintPath>
@@ -795,8 +798,8 @@
     <Reference Include="Unity.XR.Simulation">
         <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Unity.XR.Simulation.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.XR.ARKit.FaceTracking">
-        <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Unity.XR.ARKit.FaceTracking.dll</HintPath>
+    <Reference Include="Unity.XR.ARAnalytics.Editor">
+        <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Unity.XR.ARAnalytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARSubsystems">
         <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Unity.XR.ARSubsystems.dll</HintPath>
@@ -831,11 +834,11 @@
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
         <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-        <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="Google.XR.ARCoreExtensions.GeospatialCreator.Editor">
         <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Google.XR.ARCoreExtensions.GeospatialCreator.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+        <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.EditorCoroutines.Editor">
         <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Unity.EditorCoroutines.Editor.dll</HintPath>
@@ -864,11 +867,11 @@
     <Reference Include="Unity.VisualScripting.Shared.Editor">
         <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Unity.VisualScripting.Shared.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.ShaderGraph.Editor">
-        <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="CesiumRuntime">
         <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/CesiumRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ShaderGraph.Editor">
+        <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.SpatialTracking">
         <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
