@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Utilities/AR Environment Probe Manager.unity
-    guid: 1531927253f404eb38fe2c0ac4483a32
+    path: Assets/Scenes/UI/InstallationMaps.unity
+    guid: e42b3e78557064b80977673b3b02692c
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 85446e93bd72c405aacc4e7a87255f13,
       type: 2}
