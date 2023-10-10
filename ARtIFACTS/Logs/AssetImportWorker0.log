@@ -2220,3 +2220,35 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 3866.793739 seconds.
+  path: Assets/Scenes/UI/UI.unity
+  artifactKey: Guid(e804e3c6b8df54d4b92293ec864c9102) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/UI/UI.unity using Guid(e804e3c6b8df54d4b92293ec864c9102) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '994a81a053d043ac12ff58da50769c58') in 0.107525 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 6.706396 seconds.
+  path: Assets/Scenes/UI/InstallationMaps.unity
+  artifactKey: Guid(e42b3e78557064b80977673b3b02692c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/UI/InstallationMaps.unity using Guid(e42b3e78557064b80977673b3b02692c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2f4aea0d3e66dcc8070ce04e9e6e89c') in 0.004238 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 8.745581 seconds.
+  path: Assets/Scenes/UI/InstallationMaps 1.unity
+  artifactKey: Guid(663448e52c2c54f6c94c2769578621c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/UI/InstallationMaps 1.unity using Guid(663448e52c2c54f6c94c2769578621c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '884659de50dfab6d3e9f8f493683d3b9') in 0.000911 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 5.277119 seconds.
+  path: Assets/Scenes/UI/InstallationMapsAnimation.unity
+  artifactKey: Guid(663448e52c2c54f6c94c2769578621c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/UI/InstallationMapsAnimation.unity using Guid(663448e52c2c54f6c94c2769578621c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '54931f7080fca4ee7471b70578c850ed') in 0.001018 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
