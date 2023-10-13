@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const particleMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
   // Creare una mesh che utilizza la geometria e il materiale delle particelle
   const particles = new THREE.Mesh(particleGeometry, particleMaterial); */
-  scene.add(particles);
+  //scene.add(particles);
   // Creare una nuova istanza di SimplexNoise
   const simplex = new SimplexNoise();
   function animateMeshes(meshNames) {
