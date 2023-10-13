@@ -90,13 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   const raycaster = new THREE.Raycaster(); // Definisci raycaster
   let originalVertices = {};
-  /* Definisci i vertici, normale, colore, ecc. per la tua geometria...
-  const particleGeometry = new THREE.BufferGeometry();
-  // Imposta le proprietà desiderate per il tuo materiale...
-  const particleMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
-  // Creare una mesh che utilizza la geometria e il materiale delle particelle
-  const particles = new THREE.Mesh(particleGeometry, particleMaterial); */
-  //scene.add(particles);
   // Creare una nuova istanza di SimplexNoise
   const simplex = new SimplexNoise();
   function animateMeshes(meshNames) {
@@ -146,10 +139,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
   function animate() {
-    /*const vertices = particles.geometry.attributes.position.array;
-    for (let i = 0; i < vertices.length; i += 3) {
-      vertices[i + 1] -= 0.01; // muovere ogni vertice leggermente verso il basso
-    }*/
     requestAnimationFrame(animate);
     model.rotation.y += 0.001;
     animateMeshes([
@@ -161,7 +150,6 @@ document.addEventListener("DOMContentLoaded", function () {
       "Icosphere005",
       "Icosphere006",
     ]);
-    //particles.geometry.attributes.position.needsUpdate = true; // informare Three.js che i vertici sono stati modificati
     composer.render();
   }
   window.onresize = function () {
