@@ -1,6 +1,4 @@
-<script type="importmap">{"imports": {"three": "https://unpkg.com/three@0.156.1/build/three.module.js","three/addons/": "https://unpkg.com/three@0.156.1/examples/jsm/"}}</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
-<script type="module">
+
     import * as THREE from 'three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
     import { RoomEnvironment } from 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@80be9a58b20db73cba4ba9f70f8eee9b646a661a/examples/jsm/environments/RoomEnvironment.js';
@@ -176,4 +174,3 @@
 function handleError(err) {
     console.error(err);
 }
-</script>
