@@ -90,13 +90,13 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   const raycaster = new THREE.Raycaster(); // Definisci raycaster
   let originalVertices = {};
-  // Creare una mesh che utilizza la geometria e il materiale delle particelle
-  const particles = new THREE.Mesh(particleGeometry, particleMaterial);
-  scene.add(particles);
   // Definisci i vertici, normale, colore, ecc. per la tua geometria...
   const particleGeometry = new THREE.BufferGeometry();
   // Imposta le proprietà desiderate per il tuo materiale...
   const particleMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+  // Creare una mesh che utilizza la geometria e il materiale delle particelle
+  const particles = new THREE.Mesh(particleGeometry, particleMaterial);
+  scene.add(particles);
   // Creare una nuova istanza di SimplexNoise
   const simplex = new SimplexNoise();
   function animateMeshes(meshNames) {
