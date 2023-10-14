@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         window.addEventListener('resize', onWindowResize);
     }
     function onVideoReady() {
+        video.addEventListener('loadeddata', onVideoReady, false);
         video.removeEventListener('canplaythrough', onVideoReady);
         video.play();
         const texture = new THREE.VideoTexture(video);
