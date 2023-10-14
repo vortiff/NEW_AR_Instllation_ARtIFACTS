@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     video = document.createElement('video');
     video.crossOrigin = "anonymous";
-    video.src = "https://main--tourmaline-bublanina-19d39f.netlify.app/videos/Mapskurz_klein_250.mp4";
+    video.src = "https://main--tourmaline-bublanina-19d39f.netlify.app/videos/New_Mapskurz_klein_250.m4v";
     video.muted = true;
     video.loop = true;
     video.addEventListener('canplaythrough', onVideoReady, false);
@@ -42,6 +42,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 
     function onVideoReady() {
+        if(video.readyState < video.HAVE_FUTURE_DATA) {
+            console.log("Video non ancora pronto");
+            return;
+        }
+    
+        console.log("Video pronto!");
         video.play();
         
         const texture = new THREE.VideoTexture(video);
@@ -51,11 +57,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
         
         let mesh = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshBasicMaterial({ map: texture }));
         scene.add(mesh);
-
+    
         camera.position.z = 5;
         
         animate();
     }
+    
 
     function animate() {
         requestAnimationFrame(animate);

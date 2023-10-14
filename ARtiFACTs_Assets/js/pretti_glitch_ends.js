@@ -26,12 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     0.04
   ).texture;
   // Camera
-  const camera = new THREE.PerspectiveCamera(
-    40,
-    window.innerWidth / window.innerHeight,
-    1,
-    100
-  );
+  const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 100);
   camera.position.set(5, 2, 8);
   // Controlli della camera
   window.controls = new OrbitControls(camera, renderer.domElement);
