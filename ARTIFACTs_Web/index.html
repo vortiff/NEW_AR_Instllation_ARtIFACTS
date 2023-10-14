@@ -35,7 +35,7 @@ import { EffectComposer } from 'https://unpkg.com/three@0.156.1/examples/jsm/pos
 import { RenderPass } from 'https://unpkg.com/three@0.156.1/examples/jsm/postprocessing/RenderPass.js';
 import { GlitchPass } from 'https://unpkg.com/three@0.156.1/examples/jsm/postprocessing/GlitchPass.js';
 
-let scene, camera, renderer, mesh, composer;
+let scene, camera, renderer, mesh, composer, container;
 
 init();
 animate();
@@ -45,8 +45,11 @@ function init() {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     renderer = new THREE.WebGLRenderer();
-    renderer.setSize(container.innerWidth, container.innerHeight);
+    container = document.getElementById("myCanvas");
+    renderer.setPixelRatio(window.devicePixelRatio);
     container.appendChild(renderer.domElement);
+    renderer.setSize(container.clientWidth, container.clientHeight);
+
     
     // Video Element Creation
     const video = document.createElement('video');
