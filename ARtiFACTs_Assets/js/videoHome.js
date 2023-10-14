@@ -33,8 +33,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
         composer.addPass(glitchPass);
 
         // Utilizzo dell'elemento video esistente
-        const video = document.getElementById('d6067381-cf3a-cfcd-c651-356d8f88fdc6-video');
-       
+        const videoURL = 'https://main--tourmaline-bublanina-19d39f.netlify.app/videos/Mapskurz_klein_250.mp4';
+        const video = document.createElement('video');
+        video.src = videoURL;
+        video.load(); 
+        video.play();
+
+        const texture = new THREE.VideoTexture(video);
         video.addEventListener('canplay', function() {
             console.log('Video can play!');
         }, false);
