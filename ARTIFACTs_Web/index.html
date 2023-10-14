@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         video.removeEventListener('canplaythrough', onVideoReady);
         video.play();
         const texture = new THREE.VideoTexture(video);
+        texture.format = THREE.RGBFormat;
         texture.minFilter = THREE.LinearFilter;
         texture.magFilter = THREE.LinearFilter;
         texture.format = THREE.RGBFormat;
