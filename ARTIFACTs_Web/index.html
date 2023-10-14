@@ -30,108 +30,64 @@
 }
 </script>
         <script type="module">
-import * as THREE from 'three';
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { GlitchPass } from 'three/addons/postprocessing/GlitchPass.js';
-document.addEventListener("DOMContentLoaded", (event) => {
-    let scene, camera, renderer, composer, container, video;
-    function init() {
-        // Scene
-        scene = new THREE.Scene();
-        // Camera
-        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 5;
-        // Renderer
-        container = document.getElementById("myCanvas");
-        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(container.clientWidth, container.clientHeight);
-        container.appendChild(renderer.domElement);
-        // Composer
-        composer = new EffectComposer(renderer);
-        composer.addPass(new RenderPass(scene, camera));
-        const glitchPass = new GlitchPass();
-        composer.addPass(glitchPass);
-        // Video
-        video = document.createElement('video');
-        video.crossOrigin = "anonymous"; 
-        video.src = "videos/Mapskurz_klein_250-transcode.mp4";
-        video.muted = true;
-        video.loop = true;
-        video.addEventListener('canplaythrough', onVideoReady, false);
-        // Event listeners
-        window.addEventListener('resize', onWindowResize);
-    }
-    function onVideoReady() {
-        video.addEventListener('loadeddata', onVideoReady, false);
-        video.removeEventListener('canplaythrough', onVideoReady);
-        video.play();
-        const texture = new THREE.VideoTexture(video);
-        texture.format = THREE.RGBFormat;
-        texture.minFilter = THREE.LinearFilter;
-        texture.magFilter = THREE.LinearFilter;
-        texture.format = THREE.RGBFormat;
-        let mesh = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshBasicMaterial({ map: texture }));
-        scene.add(mesh);
-        animate();
-    }
-    function animate() {
-        requestAnimationFrame(animate);
-        composer.render();
-    }
-    function onWindowResize() {
-        camera.aspect = container.clientWidth / container.clientHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(container.clientWidth, container.clientHeight);
-        composer.setSize(container.clientWidth, container.clientHeight);
-    }
-    init();
-});
-</script>
-      </div>
-      <div id="w-node-_7c2dca0e-e019-a2b3-39a1-155ad8334ce1-79fb843c" class="wrap-content">
-        <div id="webgl_medusa" class="medusa original"></div>
-        <div class="w-embed"></div>
-        <div id="webgl_medusa_big" class="medusa copy"></div>
-      </div>
-      <div id="wrap_nav_menu" data-w-id="dc743121-6f73-e5dd-3c70-5d6e033edf8c" class="navmenuctivator">
-        <div data-w-id="dc743121-6f73-e5dd-3c70-5d6e033edf8d" class="navmenuwrap">
-          <div class="html-embed-3 w-embed w-script">
-            <script>
-  function getRandomNumber(min, max) {
-    return Math.random() * (max - min) + min;
-  }
-  function animateElement(element) {
-    const frequencyX = getRandomNumber(0.2, 0.3);
-    const amplitudeX = getRandomNumber(10, 15);
-    const frequencyY = getRandomNumber(0.1, 0.2);
-    const amplitudeY = getRandomNumber(8, 20);
-    const frequencyZ = getRandomNumber(0.5, 0.9);
-    const amplitudeZ = getRandomNumber(5, 20);
-    let startTime = null;
-    function step(timestamp) {
-      if (!startTime) startTime = timestamp;
-      const progress = (timestamp - startTime) / 1000;
-      const translateX = amplitudeX * Math.sin(2 * Math.PI * frequencyX * progress);
-      const translateY = amplitudeY * Math.sin(2 * Math.PI * frequencyY * progress);
-      const translateZ = amplitudeZ * Math.sin(2 * Math.PI * frequencyZ * progress);
-      element.style.transform = `translate3d(${translateX}px, ${translateY}px, ${translateZ}px)`;
-      requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-  window.addEventListener("load", function () {
-    // Lista dei div da animare
-    const medusaIds = ['medusa_nav_1', 'medusa_nav_2', 'medusa_nav_3', 'medusa_nav_4'];
-    // Ciclo attraverso gli id e applico l'animazione se l'elemento esiste
-    medusaIds.forEach((id) => {
-      const element = document.getElementById(id);
-      if (element) {
-        animateElement(element);
-      }
-    });
-  });
+import * as THREE from 'https://unpkg.com/three@0.156.1/build/three.module.js';
+import { EffectComposer } from 'https://unpkg.com/three@0.156.1/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'https://unpkg.com/three@0.156.1/examples/jsm/postprocessing/RenderPass.js';
+import { GlitchPass } from 'https://unpkg.com/three@0.156.1/examples/jsm/postprocessing/GlitchPass.js';
+
+let scene, camera, renderer, mesh, composer;
+
+init();
+animate();
+
+function init() {
+    // Scene, Camera, and Renderer Setup
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    renderer = new THREE.WebGLRenderer();
+    renderer.setSize(container.innerWidth, container.innerHeight);
+    container.appendChild(renderer.domElement);
+    
+    // Video Element Creation
+    const video = document.createElement('video');
+    video.src = 'videos/mapskurz_klein_250-transcode.mp4'; // Your video file path
+    video.load(); // Must call after setting/changing source
+    video.play();
+
+    // Video Texture
+    const texture = new THREE.VideoTexture(video);
+    const material = new THREE.MeshBasicMaterial({ map: texture });
+    
+    // Mesh Setup
+    mesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), material);
+    scene.add(mesh);
+
+    // Composer for post-processing effects
+    composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    composer.addPass(new GlitchPass());
+
+    // Camera Position
+    camera.position.z = 5;
+
+    // Handle Window Resize
+    window.addEventListener('resize', onWindowResize);
+}
+
+function animate() {
+    requestAnimationFrame(animate);
+    mesh.rotation.x += 0.01;
+    mesh.rotation.y += 0.01;
+    composer.render();
+}
+
+function onWindowResize() {
+    camera.aspect = container.innerWidth / container.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.innerWidth, container.innerHeight);
+    composer.setSize(container.innerWidth, container.innerHeight);
+}
+
 </script>
           </div>
           <div id="medusa_nav_0" class="medusa rossa"></div>
