@@ -14,7 +14,14 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { GlitchPass } from 'three/addons/postprocessing/GlitchPass.js';
 
 document.addEventListener("DOMContentLoaded", (event) => {
-    let scene, camera, renderer, composer, cube, container;
+    let scene, camera, renderer, composer, container, video;
+
+    video = document.createElement('video');
+    video.crossOrigin = "anonymous";
+    video.src = "https://main--tourmaline-bublanina-19d39f.netlify.app/videos/Mapskurz_klein_250.mp4";
+    video.muted = true;
+    video.loop = true;
+    video.addEventListener('canplaythrough', onVideoReady, false);
 
     function init() {
         scene = new THREE.Scene();
@@ -24,39 +31,30 @@ document.addEventListener("DOMContentLoaded", (event) => {
         renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(container.clientWidth, container.clientHeight);
-        container.appendChild(renderer.domElement); // Assicurati che il canvas sia appeso al container
+        container.appendChild(renderer.domElement);
 
         composer = new EffectComposer(renderer);
         composer.addPass(new RenderPass(scene, camera));
-
         const glitchPass = new GlitchPass();
         composer.addPass(glitchPass);
 
-        // Utilizzo dell'elemento video esistente
-        const videoURL = 'https://main--tourmaline-bublanina-19d39f.netlify.app/videos/Mapskurz_klein_250.mp4';
-        const video = document.createElement('video');
-        video.src = videoURL;
-        video.load(); 
-        video.play();
+        window.addEventListener('resize', onWindowResize);
+    }
 
-        const texture = new THREE.VideoTexture(video);
-        video.addEventListener('canplay', function() {
-            console.log('Video can play!');
-        }, false);
+    function onVideoReady() {
+        video.play();
         
-        video.addEventListener('error', function() {
-            console.error('Video error:', video.error);
-        }, false);
-        const videoTexture = new THREE.VideoTexture(video);
-        const videoMaterial = new THREE.MeshBasicMaterial({ map: videoTexture });
-    
-        let mesh = new THREE.Mesh(new THREE.BoxGeometry(), videoMaterial);
+        const texture = new THREE.VideoTexture(video);
+        texture.minFilter = THREE.LinearFilter;
+        texture.magFilter = THREE.LinearFilter;
+        texture.format = THREE.RGBFormat;
+        
+        let mesh = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshBasicMaterial({ map: texture }));
         scene.add(mesh);
-    
 
         camera.position.z = 5;
-
-        window.addEventListener('resize', onWindowResize);
+        
+        animate();
     }
 
     function animate() {
@@ -72,6 +70,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 
     init();
-    animate();
 });
+
 </script>
