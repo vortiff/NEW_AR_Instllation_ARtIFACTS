@@ -948,6 +948,10 @@
       <Project>{1a443d3f-4554-8585-04a7-88893700dc9e}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
+    <ProjectReference Include="FullscreenEditor.csproj">
+      <Project>{43b31d22-2eb4-56da-6bcf-aa51a92417e0}</Project>
+      <Name>FullscreenEditor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

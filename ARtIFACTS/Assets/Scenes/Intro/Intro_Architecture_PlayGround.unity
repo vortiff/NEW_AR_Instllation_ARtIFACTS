@@ -313,7 +313,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 30, y: 40, z: 24.31}
-  m_Center: {x: 15, y: 20, z: 0}
+  m_Center: {x: 0, y: 20, z: 0}
 --- !u!114 &104689296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,6 +515,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 176566724}
+  - component: {fileID: 176566726}
+  - component: {fileID: 176566725}
   m_Layer: 0
   m_Name: InteractionStart
   m_TagString: Untagged
@@ -534,10 +536,56 @@ Transform:
   m_LocalPosition: {x: -3.77, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 449848230}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &176566725
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176566723}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &176566726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176566723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48f838aa48ea245e9b494ffaf030d310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  metaballObject: {fileID: 449848225}
+  objectToClone: {fileID: 1041541005935074402, guid: 2299bb621eb4c48f7ba55de8e743fb84,
+    type: 3}
+  GameObjectToActivate: {fileID: 1177006582}
+  voiceOverSounds:
+  - {fileID: 8300000, guid: a3a31b8b39c7e41e78d1b4fb2ee5b192, type: 3}
+  - {fileID: 8300000, guid: fb7ab086c14a240bc8775b45b9d03bea, type: 3}
+  numberOfClones: 30
+  cloneSpreadRadius: 1
+  minCloneSpeed: 1
+  maxCloneSpeed: 5
+  gravitationalStrength: 10
+  wobbleStrength: 1
+  wobbleSpeed: 1
 --- !u!1 &190062783
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,12 +975,11 @@ GameObject:
   - component: {fileID: 449848227}
   - component: {fileID: 449848233}
   - component: {fileID: 449848234}
-  - component: {fileID: 449848236}
   - component: {fileID: 449848237}
   - component: {fileID: 449848238}
   m_Layer: 0
-  m_Name: StartActivator
-  m_TagString: Untagged
+  m_Name: Metaball
+  m_TagString: Metaball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -956,7 +1003,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 5
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &449848228
 MeshRenderer:
@@ -1017,11 +1064,11 @@ Transform:
   m_GameObject: {fileID: 449848225}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3.77, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 176566724}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &449848233
 MonoBehaviour:
@@ -1137,26 +1184,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &449848236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 449848225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48f838aa48ea245e9b494ffaf030d310, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToActivate: {fileID: 1177006582}
-  objectToClone: {fileID: 1041541005935074402, guid: 2299bb621eb4c48f7ba55de8e743fb84,
-    type: 3}
-  collisionSound: {fileID: 8300000, guid: a3a31b8b39c7e41e78d1b4fb2ee5b192, type: 3}
-  numberOfClones: 30
-  minCloneSpeed: 1
-  maxCloneSpeed: 5
-  cloneSpreadRadius: 1
 --- !u!54 &449848237
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1351,7 +1378,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 30, y: 40, z: 24.31}
-  m_Center: {x: 15, y: 20, z: 0}
+  m_Center: {x: 0, y: 20, z: 0}
 --- !u!114 &467436743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2319,13 +2346,13 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -2883,7 +2910,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 30, y: 40, z: 24.31}
-  m_Center: {x: 15, y: 20, z: 0}
+  m_Center: {x: 0, y: 20, z: 0}
 --- !u!114 &2020761808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2987,6 +3014,7 @@ SceneRoots:
   - {fileID: 2013168463}
   - {fileID: 593703148}
   - {fileID: 1490409626}
+  - {fileID: 449848230}
   - {fileID: 176566724}
   - {fileID: 1177006583}
   - {fileID: 403357399}

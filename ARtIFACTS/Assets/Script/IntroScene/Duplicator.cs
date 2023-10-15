@@ -6,7 +6,7 @@ public class Duplicator : MonoBehaviour
 {
     public GameObject objectToDuplicate; // Il GameObject da duplicare
     public float duplicationWidth = 1f; // Larghezza della zona di duplicazione
-    public float duplicationHeight = 1f; // Altezza della zona di duplicazione
+    public float duplicationHeight = 5f; // Altezza della zona di duplicazione
     public float duplicationDepth = 1f; // Profondità della zona di duplicazione
     public float minDuplicationInterval = 0.1f; // Intervallo minimo tra le duplicazioni
     public float maxDuplicationInterval = 2f; // Intervallo massimo tra le duplicazioni

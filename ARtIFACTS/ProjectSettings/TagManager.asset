@@ -8,6 +8,7 @@ TagManager:
   - ARCamera
   - Intro_statua
   - cloni
+  - Metaball
   layers:
   - Default
   - TransparentFX
