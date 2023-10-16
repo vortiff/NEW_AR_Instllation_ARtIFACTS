@@ -334,9 +334,15 @@ MonoBehaviour:
   minDuplicationInterval: 0.1
   maxDuplicationInterval: 1
   duplicationSounds:
-  - {fileID: 8300000, guid: 193f5c6ade8b2456186def54a4dd69cc, type: 3}
-  - {fileID: 8300000, guid: 0dd6f42e2d71b44aa8f764f34d51a62d, type: 3}
-  - {fileID: 8300000, guid: ca259777d468c4ea1908ee162d6cd368, type: 3}
+  - {fileID: 8300000, guid: de36dfe5ac65149e68022a0179edcbd5, type: 3}
+  - {fileID: 8300000, guid: 4895d982c3a104bfd92c9cd44c33e292, type: 3}
+  - {fileID: 8300000, guid: 91ffcc1c0c9f4410ea35eb1f029aa1db, type: 3}
+  - {fileID: 8300000, guid: 53820ea9d8f20447abe349628d11f0c4, type: 3}
+  - {fileID: 8300000, guid: 81551ca85d14a4155a343ca139f33ade, type: 3}
+  - {fileID: 8300000, guid: bfd9958f02fcf408f95118b9230051e3, type: 3}
+  - {fileID: 8300000, guid: 49e644227009b4e019f324fb7742c6db, type: 3}
+  - {fileID: 8300000, guid: 7f5ef1cca6eac46b98d03ced59d7721a, type: 3}
+  - {fileID: 8300000, guid: 6dbac235f5e644dada4014f7a3b9c7b9, type: 3}
   - {fileID: 8300000, guid: 9b8f2de6c17784009bab204b86416912, type: 3}
 --- !u!64 &104689297
 MeshCollider:
@@ -431,9 +437,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 20
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -466,7 +472,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -835,10 +841,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa408d03134f24e48bb758a7c61430f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  metaballObject: {fileID: 449848225}
   objectToActivate: {fileID: 490487292}
   objectToDeactivate: {fileID: 176566723}
   nextColiderToActivate: {fileID: 403357398}
-  collisionSound: {fileID: 8300000, guid: fb7ab086c14a240bc8775b45b9d03bea, type: 3}
+  audioClipIndex: 1
 --- !u!65 &315757348
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1286,9 +1293,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 20
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1321,7 +1328,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1402,9 +1409,15 @@ MonoBehaviour:
   minDuplicationInterval: 0.1
   maxDuplicationInterval: 1
   duplicationSounds:
-  - {fileID: 8300000, guid: 193f5c6ade8b2456186def54a4dd69cc, type: 3}
-  - {fileID: 8300000, guid: 0dd6f42e2d71b44aa8f764f34d51a62d, type: 3}
-  - {fileID: 8300000, guid: ca259777d468c4ea1908ee162d6cd368, type: 3}
+  - {fileID: 8300000, guid: de36dfe5ac65149e68022a0179edcbd5, type: 3}
+  - {fileID: 8300000, guid: 4895d982c3a104bfd92c9cd44c33e292, type: 3}
+  - {fileID: 8300000, guid: 91ffcc1c0c9f4410ea35eb1f029aa1db, type: 3}
+  - {fileID: 8300000, guid: 53820ea9d8f20447abe349628d11f0c4, type: 3}
+  - {fileID: 8300000, guid: 81551ca85d14a4155a343ca139f33ade, type: 3}
+  - {fileID: 8300000, guid: bfd9958f02fcf408f95118b9230051e3, type: 3}
+  - {fileID: 8300000, guid: 49e644227009b4e019f324fb7742c6db, type: 3}
+  - {fileID: 8300000, guid: 7f5ef1cca6eac46b98d03ced59d7721a, type: 3}
+  - {fileID: 8300000, guid: 6dbac235f5e644dada4014f7a3b9c7b9, type: 3}
   - {fileID: 8300000, guid: 9b8f2de6c17784009bab204b86416912, type: 3}
 --- !u!64 &467436744
 MeshCollider:
@@ -2313,10 +2326,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa408d03134f24e48bb758a7c61430f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToActivate: {fileID: 0}
-  objectToDeactivate: {fileID: 1177006582}
-  nextColiderToActivate: {fileID: 0}
-  collisionSound: {fileID: 0}
+  metaballObject: {fileID: 449848225}
+  objectToActivate: {fileID: 490487292}
+  objectToDeactivate: {fileID: 176566723}
+  nextColiderToActivate: {fileID: 403357398}
+  audioClipIndex: 1
 --- !u!1 &1718687621
 GameObject:
   m_ObjectHideFlags: 0
@@ -2947,9 +2961,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 20
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2982,7 +2996,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3063,9 +3077,15 @@ MonoBehaviour:
   minDuplicationInterval: 0.1
   maxDuplicationInterval: 1
   duplicationSounds:
-  - {fileID: 8300000, guid: 193f5c6ade8b2456186def54a4dd69cc, type: 3}
-  - {fileID: 8300000, guid: 0dd6f42e2d71b44aa8f764f34d51a62d, type: 3}
-  - {fileID: 8300000, guid: ca259777d468c4ea1908ee162d6cd368, type: 3}
+  - {fileID: 8300000, guid: de36dfe5ac65149e68022a0179edcbd5, type: 3}
+  - {fileID: 8300000, guid: 4895d982c3a104bfd92c9cd44c33e292, type: 3}
+  - {fileID: 8300000, guid: 91ffcc1c0c9f4410ea35eb1f029aa1db, type: 3}
+  - {fileID: 8300000, guid: 53820ea9d8f20447abe349628d11f0c4, type: 3}
+  - {fileID: 8300000, guid: 81551ca85d14a4155a343ca139f33ade, type: 3}
+  - {fileID: 8300000, guid: bfd9958f02fcf408f95118b9230051e3, type: 3}
+  - {fileID: 8300000, guid: 49e644227009b4e019f324fb7742c6db, type: 3}
+  - {fileID: 8300000, guid: 7f5ef1cca6eac46b98d03ced59d7721a, type: 3}
+  - {fileID: 8300000, guid: 6dbac235f5e644dada4014f7a3b9c7b9, type: 3}
   - {fileID: 8300000, guid: 9b8f2de6c17784009bab204b86416912, type: 3}
 --- !u!64 &2020761809
 MeshCollider:

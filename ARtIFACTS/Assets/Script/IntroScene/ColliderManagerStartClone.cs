@@ -17,7 +17,6 @@ public class ColliderManagerStartClone : MonoBehaviour
     public float gravitationalStrength = 10f; // Forza dell'attrazione gravitazionale
     public float wobbleStrength = 5f; // Intensità dell'ondulazione
     public float wobbleSpeed = 2f; // Velocità dell'ondulazione
-
     private int currentSoundIndex = 0; // Indice del suono corrente da riprodurre
     private bool hasCollided = false;
     private AudioSource audioSource;

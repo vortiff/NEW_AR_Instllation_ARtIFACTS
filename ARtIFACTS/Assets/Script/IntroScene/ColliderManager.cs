@@ -2,19 +2,24 @@ using UnityEngine;
 
 public class ColliderManager : MonoBehaviour
 {
+    
+    public GameObject metaballObject; // Il GameObject Metaball
     public GameObject objectToActivate; // Il GameObject da attivare
     public GameObject objectToDeactivate; // Il GameObject da disattivare
     public GameObject nextColiderToActivate; // Il prossimo collider dell'isztallazione da attivare
-
-    public AudioClip collisionSound; // Il suono da riprodurre quando c'è una collisione
-
-    private bool hasCollided = false;
+    public int audioClipIndex = 1; // L'indice dell'audio clip da riprodurre
+    private AudioClip[] metaballSounds; // Array di suoni da Metaball
     private AudioSource audioSource;
+    private bool hasCollided = false;
+
 
     private void Start()
     {
-        // Assicurati di avere un componente AudioSource su questo GameObject
-        audioSource = GetComponent<AudioSource>();
+        // Ottieni il componente AudioSource dal GameObject Metaball
+        audioSource = metaballObject.GetComponent<AudioSource>();
+
+        // Ottieni l'array di clip audio dal metaballObject
+        metaballSounds = metaballObject.GetComponent<Metaball>().voiceOverSounds;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,10 +27,11 @@ public class ColliderManager : MonoBehaviour
         // Controlla se il giocatore è entrato in collisione
         if (other.CompareTag("Player") && !hasCollided)
         {
-            // Riproduci il suono della collisione
-            if (audioSource != null && collisionSound != null)
+            // Riproduci il suono VoiceOver dalla lista del GameObject Metaball
+            if (audioSource != null && metaballSounds.Length > 0 && audioClipIndex < metaballSounds.Length)
             {
-                audioSource.PlayOneShot(collisionSound);
+                audioSource.clip = metaballSounds[audioClipIndex];
+                audioSource.Play();
             }
 
             // Attiva il GameObject specificato
@@ -34,8 +40,6 @@ public class ColliderManager : MonoBehaviour
                 objectToActivate.SetActive(true);
                 nextColiderToActivate.SetActive(true);
                 objectToDeactivate.SetActive(false);
-                
-
             }
 
             // Stampa un messaggio nella console di debug
