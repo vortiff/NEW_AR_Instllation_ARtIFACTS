@@ -175,6 +175,8 @@ MonoBehaviour:
   objectToActivate: {fileID: 1756653211}
   objectToDeactivate: {fileID: 176566723}
   nextColiderToActivate: {fileID: 293202359}
+  attractionTarget: {fileID: 0}
+  attractionDelay: 5
   audioClipIndex: 9
 --- !u!114 &72881750
 MonoBehaviour:
@@ -789,6 +791,8 @@ MonoBehaviour:
   objectToActivate: {fileID: 1756653211}
   objectToDeactivate: {fileID: 176566723}
   nextColiderToActivate: {fileID: 744283604}
+  attractionTarget: {fileID: 0}
+  attractionDelay: 5
   audioClipIndex: 11
 --- !u!114 &261920500
 MonoBehaviour:
@@ -962,6 +966,8 @@ MonoBehaviour:
   objectToActivate: {fileID: 1756653211}
   objectToDeactivate: {fileID: 176566723}
   nextColiderToActivate: {fileID: 1521640254}
+  attractionTarget: {fileID: 0}
+  attractionDelay: 5
   audioClipIndex: 7
 --- !u!114 &313575966
 MonoBehaviour:
@@ -1200,6 +1206,8 @@ MonoBehaviour:
   objectToActivate: {fileID: 490487292}
   objectToDeactivate: {fileID: 176566723}
   nextColiderToActivate: {fileID: 403357398}
+  attractionTarget: {fileID: 403357398}
+  attractionDelay: 40
   audioClipIndex: 1
 --- !u!65 &315757348
 BoxCollider:
@@ -1304,7 +1312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &403357399
 Transform:
   m_ObjectHideFlags: 0
@@ -1591,6 +1599,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a3a31b8b39c7e41e78d1b4fb2ee5b192, type: 3}
   - {fileID: 8300000, guid: fb7ab086c14a240bc8775b45b9d03bea, type: 3}
   - {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+  - {fileID: 8300000, guid: 2444507f0b4aa486a94ac1740340c908, type: 3}
 --- !u!1 &467436739
 GameObject:
   m_ObjectHideFlags: 0
@@ -2079,6 +2088,8 @@ MonoBehaviour:
   objectToActivate: {fileID: 1756653211}
   objectToDeactivate: {fileID: 176566723}
   nextColiderToActivate: {fileID: 744283604}
+  attractionTarget: {fileID: 0}
+  attractionDelay: 5
   audioClipIndex: 10
 --- !u!114 &635499869
 MonoBehaviour:
@@ -2252,6 +2263,8 @@ MonoBehaviour:
   objectToActivate: {fileID: 1756653211}
   objectToDeactivate: {fileID: 176566723}
   nextColiderToActivate: {fileID: 1342544584}
+  attractionTarget: {fileID: 0}
+  attractionDelay: 5
   audioClipIndex: 4
 --- !u!114 &980632009
 MonoBehaviour:
@@ -2393,6 +2406,8 @@ MonoBehaviour:
   objectToActivate: {fileID: 1756653211}
   objectToDeactivate: {fileID: 176566723}
   nextColiderToActivate: {fileID: 1540550880}
+  attractionTarget: {fileID: 0}
+  attractionDelay: 5
   audioClipIndex: 5
 --- !u!114 &1148281540
 MonoBehaviour:
@@ -3003,7 +3018,9 @@ MonoBehaviour:
   objectToActivate: {fileID: 1756653211}
   objectToDeactivate: {fileID: 176566723}
   nextColiderToActivate: {fileID: 141090655}
-  audioClipIndex: 3
+  attractionTarget: {fileID: 141090655}
+  attractionDelay: 40
+  audioClipIndex: 2
 --- !u!1 &1718687621
 GameObject:
   m_ObjectHideFlags: 0
@@ -3276,6 +3293,8 @@ MonoBehaviour:
   objectToActivate: {fileID: 1756653211}
   objectToDeactivate: {fileID: 176566723}
   nextColiderToActivate: {fileID: 1444848645}
+  attractionTarget: {fileID: 0}
+  attractionDelay: 5
   audioClipIndex: 6
 --- !u!114 &1939355189
 MonoBehaviour:
@@ -3664,6 +3683,8 @@ MonoBehaviour:
   objectToActivate: {fileID: 1756653211}
   objectToDeactivate: {fileID: 176566723}
   nextColiderToActivate: {fileID: 1872244303}
+  attractionTarget: {fileID: 0}
+  attractionDelay: 5
   audioClipIndex: 8
 --- !u!114 &2019165978
 MonoBehaviour:
