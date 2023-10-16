@@ -760,10 +760,10 @@ MonoBehaviour:
   cloneSpreadRadius: 1
   minCloneSpeed: 1
   maxCloneSpeed: 5
-  gravitationalStrength: 12.2
-  wobbleStrength: 5
-  wobbleSpeed: 2
-  attractionTarget: {fileID: 0}
+  gravitationalStrength: 1.5
+  wobbleStrength: 9.77
+  wobbleSpeed: 2.49
+  attractionTarget: {fileID: 1177006582}
 --- !u!1 &190062783
 GameObject:
   m_ObjectHideFlags: 0
