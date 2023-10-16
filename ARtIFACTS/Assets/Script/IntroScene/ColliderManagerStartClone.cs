@@ -105,8 +105,8 @@ void MoveTowardsTarget(GameObject clone, GameObject target)
         // Calcola un movimento ondulatorio
         Vector3 wobble = new Vector3(
             Mathf.Sin(Time.time * wobbleSpeed) * wobbleStrength,
-            Mathf.Sin(Time.time * wobbleSpeed + 1f) * wobbleStrength, // +1f per differenziare le ondulazioni tra gli assi
-            Mathf.Sin(Time.time * wobbleSpeed + 2f) * wobbleStrength  // +2f per differenziare ulteriormente
+            Mathf.Sin(Time.time * wobbleSpeed + 1f) * wobbleStrength,
+            Mathf.Sin(Time.time * wobbleSpeed + 2f) * wobbleStrength
         );
 
         // Calcola una forza randomica
@@ -116,10 +116,14 @@ void MoveTowardsTarget(GameObject clone, GameObject target)
             Random.Range(-1f, 1f)
         );
 
+        Vector3 forceToApply = directionToTarget * gravitationalStrength + wobble + randomForce;
+        Debug.Log("Force applied to clone: " + forceToApply); // <-- Ecco il tuo Debug.Log
+
         // Applica tutte le forze al clone
         Rigidbody rb = clone.GetComponent<Rigidbody>();
-        rb.AddForce(directionToTarget * gravitationalStrength + wobble + randomForce);
+        rb.AddForce(forceToApply);
     }
+
 
 
 }

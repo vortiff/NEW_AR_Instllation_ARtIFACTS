@@ -26,22 +26,24 @@ public class ObjectCloner : MonoBehaviour
         for (int i = 0; i < numberOfClones; i++)
         {
             Vector3 randomPosition = new Vector3(
-                transform.position.x + Random.Range(-cloneSpreadRadius, cloneSpreadRadius),
-                transform.position.y,
-                transform.position.z + Random.Range(-cloneSpreadRadius, cloneSpreadRadius)
+                parentObject.transform.position.x + Random.Range(-cloneSpreadRadius, cloneSpreadRadius),
+                parentObject.transform.position.y,
+                parentObject.transform.position.z + Random.Range(-cloneSpreadRadius, cloneSpreadRadius)
             );
 
             GameObject clone = Instantiate(objectToClone, randomPosition, Quaternion.identity);
-            clone.transform.SetParent(parentObject.transform);  // Imposta il padre al GameObject passato come argomento
+            clone.transform.SetParent(parentObject.transform); 
 
             Rigidbody rb = clone.GetComponent<Rigidbody>();
             if (rb == null)
             {
                 rb = clone.AddComponent<Rigidbody>();
             }
-            rb.velocity = (clone.transform.position - transform.position).normalized * Random.Range(minCloneSpeed, maxCloneSpeed);
+            rb.isKinematic = false;
+            rb.velocity = (clone.transform.position - parentObject.transform.position).normalized * Random.Range(minCloneSpeed, maxCloneSpeed);
         }
     }
+
 
     private void Update()
     {
