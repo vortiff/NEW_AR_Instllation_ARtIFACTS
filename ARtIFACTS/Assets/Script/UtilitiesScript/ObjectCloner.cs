@@ -31,7 +31,7 @@ public class ObjectCloner : MonoBehaviour
                 parentObject.transform.position.z + Random.Range(-cloneSpreadRadius, cloneSpreadRadius)
             );
 
-            GameObject clone = Instantiate(objectToClone, randomPosition, Random.rotation); // Qui si applica una rotazione casuale
+            GameObject clone = Instantiate(objectToClone, randomPosition, Quaternion.identity);
             clone.transform.SetParent(parentObject.transform); 
 
             Rigidbody rb = clone.GetComponent<Rigidbody>();
