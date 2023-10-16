@@ -4,6 +4,7 @@ public class ColliderManager : MonoBehaviour
 {
     public GameObject objectToActivate; // Il GameObject da attivare
     public GameObject objectToDeactivate; // Il GameObject da disattivare
+    public GameObject nextColiderToActivate; // Il prossimo collider dell'isztallazione da attivare
 
     public AudioClip collisionSound; // Il suono da riprodurre quando c'è una collisione
 
@@ -31,7 +32,10 @@ public class ColliderManager : MonoBehaviour
             if (objectToActivate != null)
             {
                 objectToActivate.SetActive(true);
+                nextColiderToActivate.SetActive(true);
                 objectToDeactivate.SetActive(false);
+                
+
             }
 
             // Stampa un messaggio nella console di debug
@@ -53,6 +57,7 @@ public class ColliderManager : MonoBehaviour
         foreach (GameObject clone in clones)
         {
             Destroy(clone);
+            Debug.Log("Cloni sono stati Distrutti!");
         }
     }
 }

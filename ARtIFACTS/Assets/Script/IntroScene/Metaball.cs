@@ -2,14 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowPlayer : MonoBehaviour
+public class Metaball : MonoBehaviour
 {
-    public Transform player; // Il riferimento al GameObject "Player"
+    public Transform player;
     public float followDistance = 2f; // La distanza a cui seguire il player
+    public AudioClip[] voiceOverSounds; // Array di suoni VoiceOver
+
+    void Start()
+    {
+        // Verifica se l'AudioSource esiste già
+        if (GetComponent<AudioSource>() == null)
+        {
+            // Se non esiste, aggiungilo al GameObject
+            gameObject.AddComponent<AudioSource>();
+        }
+    }
 
     void Update()
     {
-        // Assicurati che il riferimento al player sia valido
         if (player == null)
         {
             Debug.LogWarning("Il riferimento al player è nullo. Assegna il player nel componente FollowPlayer nell'Editor.");

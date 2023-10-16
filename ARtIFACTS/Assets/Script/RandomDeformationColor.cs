@@ -14,9 +14,12 @@ public class RandomDeformationColor : MonoBehaviour
     private Vector3[] originalVertices;
     private Material material;
     private float timeElapsed = 0f;
+    private Vector3 perlinNoiseOffset;
+
 
     void Start()
     {
+        perlinNoiseOffset = new Vector3(Random.Range(0f, 100f), Random.Range(0f, 100f), Random.Range(0f, 100f));
         // Memorizza la mesh originale della palla
         MeshFilter meshFilter = GetComponent<MeshFilter>();
         originalMesh = meshFilter.mesh;
@@ -54,9 +57,10 @@ public class RandomDeformationColor : MonoBehaviour
         for (int i = 0; i < vertices.Length; i++)
         {
             // Applica una deformazione casuale usando "perlin noise"
-            float randomValueX = Mathf.PerlinNoise(vertices[i].x * deformationIntensity, Time.time) * deformationIntensity;
-            float randomValueY = Mathf.PerlinNoise(vertices[i].y * deformationIntensity, Time.time) * deformationIntensity;
-            float randomValueZ = Mathf.PerlinNoise(vertices[i].z * deformationIntensity, Time.time) * deformationIntensity;
+            float randomValueX = Mathf.PerlinNoise(vertices[i].x * deformationIntensity + perlinNoiseOffset.x, Time.time + perlinNoiseOffset.x) * deformationIntensity;
+            float randomValueY = Mathf.PerlinNoise(vertices[i].y * deformationIntensity + perlinNoiseOffset.y, Time.time + perlinNoiseOffset.y) * deformationIntensity;
+            float randomValueZ = Mathf.PerlinNoise(vertices[i].z * deformationIntensity + perlinNoiseOffset.z, Time.time + perlinNoiseOffset.z) * deformationIntensity;
+
 
             vertices[i] = originalVertices[i] + new Vector3(randomValueX, randomValueY, randomValueZ);
         }

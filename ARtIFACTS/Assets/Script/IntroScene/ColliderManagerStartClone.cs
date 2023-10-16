@@ -1,33 +1,35 @@
 using UnityEngine;
-
 public class ColliderManagerStartClone : MonoBehaviour
 {
     public GameObject metaballObject; // Il GameObject Metaball
     public GameObject objectToClone; // Il GameObject da duplicare
     public GameObject GameObjectToActivate;
-    public AudioClip[] voiceOverSounds; // Array di suoni VoiceOver
+    public int audioClipIndex = 0; // L'indice dell'audio clip da riprodurre
+
     [SerializeField]
-    private int numberOfClones = 5; // Modifica il numero di cloni come preferisci
+    private int numberOfClones = 30; // Modifica il numero di cloni come preferisci
     [SerializeField]
     private float cloneSpreadRadius = 2f; // Modifica il raggio in cui i cloni vengono creati
     [SerializeField]
-    private float minCloneSpeed = 2f; // Modifica la velocità minima dei cloni
+    private float minCloneSpeed = 1f; // Modifica la velocità minima dei cloni
     [SerializeField]
-    private float maxCloneSpeed = 10f; // Modifica la velocità massima dei cloni
+    private float maxCloneSpeed = 5f; // Modifica la velocità massima dei cloni
     public float gravitationalStrength = 10f; // Forza dell'attrazione gravitazionale
-    public float wobbleStrength = 1f; // Intensità dell'ondulazione
-    public float wobbleSpeed = 1f; // Velocità dell'ondulazione
-
-
+    public float wobbleStrength = 5f; // Intensità dell'ondulazione
+    public float wobbleSpeed = 2f; // Velocità dell'ondulazione
 
     private int currentSoundIndex = 0; // Indice del suono corrente da riprodurre
     private bool hasCollided = false;
     private AudioSource audioSource;
+    private AudioClip[] metaballSounds; // Array di suoni da Metaball
 
     private void Start()
     {
         // Ottieni il componente AudioSource dal GameObject Metaball
         audioSource = metaballObject.GetComponent<AudioSource>();
+
+        // Ottieni l'array di clip audio dal metaballObject
+        metaballSounds = metaballObject.GetComponent<Metaball>().voiceOverSounds;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,16 +43,15 @@ public class ColliderManagerStartClone : MonoBehaviour
                 GameObjectToActivate.SetActive(true);
             }
 
-            // Riproduci il suono VoiceOver dalla lista
-            if (audioSource != null && voiceOverSounds.Length > 0 && currentSoundIndex < voiceOverSounds.Length)
+            // Riproduci il suono VoiceOver dalla lista del GameObject Metaball
+            if (audioSource != null && metaballSounds.Length > 0 && audioClipIndex < metaballSounds.Length)
             {
-                audioSource.clip = voiceOverSounds[currentSoundIndex];
+                audioSource.clip = metaballSounds[audioClipIndex];
                 audioSource.Play();
-                currentSoundIndex++;
             }
 
             // Attiva il componente FollowPlayer sul GameObject Metaball, se presente
-            FollowPlayer followPlayerComponent = metaballObject.GetComponent<FollowPlayer>();
+            Metaball followPlayerComponent = metaballObject.GetComponent<Metaball>();
             if (followPlayerComponent != null)
             {
                 followPlayerComponent.enabled = true;

@@ -67,7 +67,7 @@
      <Compile Include="Assets/ModularFirstPersonController/FirstPersonController/FirstPersonController.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/GoDirectionUnit.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/OffsetPursuitUnit.cs" />
-     <Compile Include="Assets/Script/IntroScene/FollowPlayer.cs" />
+     <Compile Include="Assets/Script/IntroScene/Metaball.cs" />
      <Compile Include="Assets/Script/FlokingTutorial/Floking.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/FollowPath.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/NearSensor.cs" />
