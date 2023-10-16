@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class ColliderManager : MonoBehaviour
 {
@@ -39,17 +41,41 @@ public class ColliderManager : MonoBehaviour
             {
                 objectToActivate.SetActive(true);
                 nextColiderToActivate.SetActive(true);
-                objectToDeactivate.SetActive(false);
             }
 
-            // Stampa un messaggio nella console di debug
-            Debug.Log("Collisione avvenuta");
+            // Attiva la gravità sui cloni
+            ActivateGravityOnClones();
 
+            // Avvia la coroutine per distruggere i cloni dopo 5 secondi e poi disattivare l'oggetto
+            StartCoroutine(DestroyAndDeactivate());
+            
             // Imposta hasCollided su true per evitare collisioni multiple
             hasCollided = true;
+        }
+    }   
 
-            // Avvia la funzione per distruggere i cloni dopo 2 secondi
-            Invoke("DestroyClones", 2f);
+
+    private void ActivateGravityOnClones()
+    {
+        GameObject[] clones = GameObject.FindGameObjectsWithTag("cloni");
+        foreach (GameObject clone in clones)
+        {
+            Rigidbody rb = clone.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.useGravity = true;
+            }
+       }
+    }
+
+    private IEnumerator DestroyAndDeactivate()
+    {
+        yield return new WaitForSeconds(20f);
+        DestroyClones();
+
+        if (objectToDeactivate != null)
+        {
+            objectToDeactivate.SetActive(false);
         }
     }
 
@@ -57,7 +83,6 @@ public class ColliderManager : MonoBehaviour
     private void DestroyClones()
     {
         GameObject[] clones = GameObject.FindGameObjectsWithTag("cloni");
-
         foreach (GameObject clone in clones)
         {
             Destroy(clone);

@@ -62,8 +62,6 @@ public class ColliderManagerStartClone : MonoBehaviour
 
             // Imposta hasCollided su true per evitare collisioni multiple
             hasCollided = true;
-
-
         }
     }
 
@@ -82,10 +80,6 @@ private void CloneObject()
         }
     }
 
-
-
-
-
     void Update()
     {
         // Se abbiamo un target di attrazione definito, attrai i cloni verso di esso
@@ -97,6 +91,7 @@ private void CloneObject()
             }
         }
     }
+
 void MoveTowardsTarget(GameObject clone, GameObject target)
     {
         // Calcola la direzione verso il target
@@ -117,13 +112,9 @@ void MoveTowardsTarget(GameObject clone, GameObject target)
         );
 
         Vector3 forceToApply = directionToTarget * gravitationalStrength + wobble + randomForce;
-        Debug.Log("Force applied to clone: " + forceToApply); // <-- Ecco il tuo Debug.Log
 
         // Applica tutte le forze al clone
         Rigidbody rb = clone.GetComponent<Rigidbody>();
         rb.AddForce(forceToApply);
     }
-
-
-
 }
