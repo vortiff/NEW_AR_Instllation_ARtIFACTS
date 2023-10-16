@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1310708834146406768}
   - component: {fileID: -1969286743870987835}
   - component: {fileID: -8915727897051535695}
+  - component: {fileID: 6460451315701003153}
   m_Layer: 0
   m_Name: CloneOfStart
   m_TagString: cloni
@@ -267,3 +268,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6460451315701003153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041541005935074402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 213970076528c402a9ced1d743a5ae1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attractionStrength: 10

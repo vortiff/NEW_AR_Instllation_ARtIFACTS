@@ -87,6 +87,7 @@
      <Compile Include="Assets/Samples/ARCore Extensions/1.39.0/Geospatial Sample/Scripts/GeospatialController.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Wander2.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Pursue.cs" />
+     <Compile Include="Assets/Script/UtilitiesScript/ObjectCloner.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/EvadeUnit.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/InterposeUnit.cs" />
      <Compile Include="Assets/Script/IntroScene/RandomTextureAssigner.cs" />

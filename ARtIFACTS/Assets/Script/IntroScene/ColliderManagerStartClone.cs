@@ -17,6 +17,7 @@ public class ColliderManagerStartClone : MonoBehaviour
     public float gravitationalStrength = 10f; // Forza dell'attrazione gravitazionale
     public float wobbleStrength = 5f; // Intensità dell'ondulazione
     public float wobbleSpeed = 2f; // Velocità dell'ondulazione
+    public GameObject attractionTarget; // Il GameObject verso cui i cloni saranno attratti
     private int currentSoundIndex = 0; // Indice del suono corrente da riprodurre
     private bool hasCollided = false;
     private AudioSource audioSource;
@@ -66,47 +67,40 @@ public class ColliderManagerStartClone : MonoBehaviour
         }
     }
 
-    private void CloneObject()
+private void CloneObject()
     {
-        // Crea i cloni attorno al GameObject originale
-        for (int i = 0; i < numberOfClones; i++)
+        // Cerca lo script ObjectCloner attaccato al GameObject specificato in objectToClone
+        ObjectCloner cloner = objectToClone.GetComponent<ObjectCloner>();
+        if (cloner != null)
         {
-            Vector3 randomPosition = new Vector3(
-                objectToClone.transform.position.x + Random.Range(-cloneSpreadRadius, cloneSpreadRadius),
-                objectToClone.transform.position.y,
-                objectToClone.transform.position.z + Random.Range(-cloneSpreadRadius, cloneSpreadRadius)
-            );
-
-            GameObject clone = Instantiate(objectToClone, randomPosition, Quaternion.identity);
-
-            // Imposta il clone come figlio dell'oggetto a cui lo script è applicato
-            clone.transform.SetParent(this.transform);
-
-            Rigidbody rb = clone.GetComponent<Rigidbody>();
-            if (rb == null)
-            {
-                rb = clone.AddComponent<Rigidbody>();
-            }
-            rb.velocity = (clone.transform.position - objectToClone.transform.position).normalized * Random.Range(minCloneSpeed, maxCloneSpeed);
+            cloner.SetupCloningParameters(objectToClone, numberOfClones, cloneSpreadRadius, minCloneSpeed, maxCloneSpeed, attractionTarget);
+            cloner.CloneObject(this.gameObject); // Passa questo GameObject come argomento
+        }
+        else
+        {
+            Debug.LogWarning("ObjectCloner script not found on the specified objectToClone.");
         }
     }
+
+
+
+
+
     void Update()
     {
-        // Muovi ogni clone verso l'Anchor1
-        foreach (Transform child in transform)
+        // Se abbiamo un target di attrazione definito, attrai i cloni verso di esso
+        if (attractionTarget != null)
         {
-            MoveTowardsAnchor(child.gameObject);
+            foreach (Transform child in transform)
+            {
+                MoveTowardsTarget(child.gameObject, attractionTarget);
+            }
         }
     }
-
-    void MoveTowardsAnchor(GameObject clone)
+void MoveTowardsTarget(GameObject clone, GameObject target)
     {
-        // Trova l'Anchor1
-        GameObject anchor = GameObject.Find("Anchor1");
-        if (anchor == null) return; // Se non c'è Anchor1, esci
-
-        // Calcola la direzione verso l'Anchor1
-        Vector3 directionToAnchor = (anchor.transform.position - clone.transform.position).normalized;
+        // Calcola la direzione verso il target
+        Vector3 directionToTarget = (target.transform.position - clone.transform.position).normalized;
 
         // Calcola un movimento ondulatorio
         Vector3 wobble = new Vector3(
@@ -124,7 +118,8 @@ public class ColliderManagerStartClone : MonoBehaviour
 
         // Applica tutte le forze al clone
         Rigidbody rb = clone.GetComponent<Rigidbody>();
-        rb.AddForce(directionToAnchor * gravitationalStrength + wobble + randomForce);
+        rb.AddForce(directionToTarget * gravitationalStrength + wobble + randomForce);
     }
+
 
 }
