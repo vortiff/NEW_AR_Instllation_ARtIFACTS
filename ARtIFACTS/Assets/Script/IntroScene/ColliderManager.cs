@@ -66,7 +66,7 @@ public class ColliderManager : MonoBehaviour
         Rigidbody metaballRb = metaballObject.GetComponent<Rigidbody>();
         metaballRb.velocity = metaballObject.transform.forward * 5; // 5 è la velocità con cui Metaball si muove verso l'attractionTarget
 
-        // Riproduci il suono con indice 4
+        // Riproduci il suono con indice 3
         if (audioSource != null && metaballSounds.Length > 3)
         {
             audioSource.clip = metaballSounds[3];

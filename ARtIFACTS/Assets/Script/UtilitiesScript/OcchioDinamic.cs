@@ -9,6 +9,7 @@ public class OcchioDinamic : MonoBehaviour
     public GameObject eyePrefab; // Il prefab dell'occhio da clonare
     public int numberOfClones;
     public float cloneSpreadRadius;
+    public BoxCollider boundary;  // Riferimento al Box Collider
     public AudioLibrary audioLibrary;  // Riferimento alla libreria audio
     public VideoLibrary videoLibrary;  // Riferimento alla libreria vide
     public float someThreshold = 5f;
@@ -64,6 +65,8 @@ public class OcchioDinamic : MonoBehaviour
                 eye.transform.LookAt(player.transform.position);
                 eye.transform.Rotate(new Vector3(0, -85, 0)); 
                 MoveTowardsPlayer(eye);
+                StayWithinBoundary(eye);
+
         }
 
         for (int i = 0; i < eyeSpheres.Length - 1; i++)
@@ -106,5 +109,18 @@ public class OcchioDinamic : MonoBehaviour
         if (rb == null) rb = eye.AddComponent<Rigidbody>();
         
         rb.AddForce(directionToPlayer * gravitationalStrength + wobble);
+    }
+
+    void StayWithinBoundary(GameObject eye)
+    {
+        if (!boundary.bounds.Contains(eye.transform.position))
+        {
+            // Sposta l'occhio al bordo più vicino del collider
+            eye.transform.position = boundary.ClosestPoint(eye.transform.position);
+
+            // Inverti la direzione dell'occhio per farlo rimbalzare all'interno
+            Rigidbody rb = eye.GetComponent<Rigidbody>();
+            rb.velocity = -rb.velocity;
+        }
     }
 }
