@@ -9,6 +9,7 @@ TagManager:
   - Intro_statua
   - cloni
   - Metaball
+  - Occhio
   layers:
   - Default
   - TransparentFX
