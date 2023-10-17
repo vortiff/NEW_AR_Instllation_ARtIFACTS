@@ -77,6 +77,7 @@
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Separation.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/ThirdPersonUnit.cs" />
      <Compile Include="Assets/Script/IntroScene/LineGenerator/LineController.cs" />
+     <Compile Include="Assets/Script/Occhi/EyeBehavior.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/SeekUnit.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Cohesion.cs" />
      <Compile Include="Assets/Script/IntroScene/ColliderManagerStartClone.cs" />
@@ -95,6 +96,7 @@
      <Compile Include="Assets/Script/IntroScene/RandomTextureAssigner.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/ArriveUnit.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Evade.cs" />
+     <Compile Include="Assets/Script/UtilitiesScript/AudioLibrary.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/ScreenBoundary2D.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Camera/InfiniteGrid.cs" />
      <Compile Include="Assets/Script/FlockingBehavior.cs" />
@@ -109,6 +111,7 @@
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/FollowPathUnit.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/FlockingUnit.cs" />
      <Compile Include="Assets/Script/MetaballController.cs" />
+     <Compile Include="Assets/Script/UtilitiesScript/VideoLibrary.cs" />
      <Compile Include="Assets/Script/IntroScene/Attractor.cs" />
      <Compile Include="Assets/Script/IntroScene/AudioAndObjectOnCollision.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Camera/ThirdPersonCamera.cs" />

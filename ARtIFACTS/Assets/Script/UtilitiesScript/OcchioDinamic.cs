@@ -2,111 +2,84 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+
 public class OcchioDinamic : MonoBehaviour
 {
-    public GameObject player; // Il GameObject del giocatore
-    public GameObject[] eyeSpheres; // Array delle sfere occhi
-    public AudioClip[] audioClips; // Array dei file audio
-    public VideoClip[] videoClips; // Array di VideoClip
+    public GameObject player;
+    public GameObject eyePrefab; // Il prefab dell'occhio da clonare
+    public int numberOfClones;
+    public float cloneSpreadRadius;
+    public AudioLibrary audioLibrary;  // Riferimento alla libreria audio
+    public VideoLibrary videoLibrary;  // Riferimento alla libreria vide
+    public float someThreshold = 5f;
+    public float someOtherThreshold = 2f;
+    public float gravitationalStrength = 10f;
+    public float minWobbleStrength = 1f;
+    public float maxWobbleStrength = 10f;
+    public float minWobbleSpeed = 1f;
+    public float maxWobbleSpeed = 5f;
+    public float wobbleStrength;
+    public float wobbleSpeed;
     private AudioSource audioSource;
-    public int numberOfClones; // Numero di cloni da creare
-    public float cloneSpreadRadius; // Distanza massima dalla posizione originale per posizionare un clone
-    public float minCloneSpeed; // Velocità minima iniziale di un clone
-    public float maxCloneSpeed; // Velocità massima iniziale di un clone
-    public float someThreshold = 5f; // Distanza alla quale l'occhio inizierà a guardare il giocatore e connettersi con un fascio luminoso
-    public float someOtherThreshold = 2f; // Distanza alla quale le sfere occhi collidono tra loro
-    public float gravitationalStrength = 10f; // Forza dell'attrazione gravitazionale
-    public float wobbleStrength = 5f; // Intensità dell'ondulazione
-    public float wobbleSpeed = 2f; // Velocità dell'ondulazione
     private VideoPlayer videoPlayer;
+    private GameObject[] eyeSpheres;
+    private Dictionary<GameObject, VideoPlayer> eyeVideoPlayers = new Dictionary<GameObject, VideoPlayer>();
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        
-        // Inizializza il VideoPlayer
-        videoPlayer = GetComponent<VideoPlayer>();
-        if (videoPlayer == null)
-        {
-            videoPlayer = gameObject.AddComponent<VideoPlayer>();
-        }
-        
-        // Assegna un video casuale dall'array
-        AssignRandomVideo();
-        
-        // Clonazione degli occhi
+
+        eyeSpheres = new GameObject[numberOfClones]; // Inizializza l'array
+            
         for (int i = 0; i < numberOfClones; i++)
         {
-            GameObject eye = eyeSpheres[Random.Range(0, eyeSpheres.Length)]; // Sceglie un occhio a caso da clonare
             Vector3 randomPosition = new Vector3(
                 transform.position.x + Random.Range(-cloneSpreadRadius, cloneSpreadRadius),
                 transform.position.y,
                 transform.position.z + Random.Range(-cloneSpreadRadius, cloneSpreadRadius)
             );
 
-            GameObject clone = Instantiate(eye, randomPosition, Quaternion.identity);
-            Rigidbody rb = clone.GetComponent<Rigidbody>();
-            if (rb == null)
-            {
-                rb = clone.AddComponent<Rigidbody>();
-            }
-            rb.velocity = new Vector3(Random.Range(minCloneSpeed, maxCloneSpeed), 0, Random.Range(minCloneSpeed, maxCloneSpeed));
-        }
-    }
+            // Clona il prefab e lo aggiunge all'array
+            eyeSpheres[i] = Instantiate(eyePrefab, randomPosition, Quaternion.identity, transform);
+            eyeSpheres[i].GetComponent<EyeBehavior>().wobbleStrength = Random.Range(minWobbleStrength, maxWobbleStrength);
+            eyeSpheres[i].GetComponent<EyeBehavior>().wobbleSpeed = Random.Range(minWobbleSpeed, maxWobbleSpeed);
 
-    // Assegna un video casuale dall'array videoClips
-    private void AssignRandomVideo()
-    {
-        if (videoClips.Length > 0)
-        {
-            VideoClip randomClip = videoClips[Random.Range(0, videoClips.Length)];
-            videoPlayer.clip = randomClip;
-            videoPlayer.isLooping = true; // Imposta la riproduzione in loop
-            videoPlayer.Play();
+
+
+            // Aggiungi il VideoPlayer al clone e imposta un video casuale
+            RenderTexture rt = new RenderTexture(400, 400, 24);
+            VideoPlayer vp = eyeSpheres[i].AddComponent<VideoPlayer>();
+            vp.targetTexture = rt;
+            vp.clip = videoLibrary.videoClips[Random.Range(0, videoLibrary.videoClips.Length)];
+            vp.isLooping = true;
+            vp.Play();
+            eyeSpheres[i].GetComponent<Renderer>().material.mainTexture = rt;
         }
     }
 
     private void Update()
     {
-        audioSource = GetComponent<AudioSource>();
-
         foreach (GameObject eye in eyeSpheres)
         {
-            MoveTowardsPlayer(eye); // Muove l'occhio verso il giocatore con forza di attrazione e repulsione
-
-            float distanceToPlayer = Vector3.Distance(eye.transform.position, player.transform.position);
-            
-            // Quando il giocatore è abbastanza vicino a un occhio
-            if (distanceToPlayer < someThreshold)
-            {
-                eye.transform.LookAt(player.transform.position); // L'occhio si orienta verso il giocatore
-                CreateLightBeam(eye.transform.position, player.transform.position); // Crea fascio luminoso
-
-                // Riproduci un file audio casuale tra 0-9
-                if (!audioSource.isPlaying)
-                {
-                    int clipIndex = Random.Range(0, 9);
-                    audioSource.clip = audioClips[clipIndex];
-                    audioSource.Play();
-                }
-            }
+                eye.transform.LookAt(player.transform.position);
+                eye.transform.Rotate(new Vector3(0, -85, 0)); 
+                MoveTowardsPlayer(eye);
         }
 
-        // Controlla la collisione tra le sfere
         for (int i = 0; i < eyeSpheres.Length - 1; i++)
         {
             for (int j = i + 1; j < eyeSpheres.Length; j++)
             {
                 if (Vector3.Distance(eyeSpheres[i].transform.position, eyeSpheres[j].transform.position) < someOtherThreshold)
                 {
-                    CreateLightBeam(eyeSpheres[i].transform.position, eyeSpheres[j].transform.position); // Crea fascio luminoso
+                    CreateLightBeam(eyeSpheres[i].transform.position, eyeSpheres[j].transform.position);
 
-                    // Riproduci un file audio casuale tra 10-15
-                    if (!audioSource.isPlaying)
+                    AudioSource eyeAudioSource = eyeSpheres[i].GetComponent<AudioSource>();
+                    if (!eyeAudioSource.isPlaying)
                     {
-                        int clipIndex = Random.Range(10, 15);
-                        audioSource.clip = audioClips[clipIndex];
-                        audioSource.Play();
+                        int clipIndex = Random.Range(10, audioLibrary.audioClips.Length);
+                        eyeAudioSource.clip = audioLibrary.audioClips[clipIndex];
+                        eyeAudioSource.Play();
                     }
                 }
             }
@@ -121,10 +94,12 @@ public class OcchioDinamic : MonoBehaviour
     void MoveTowardsPlayer(GameObject eye)
     {
         Vector3 directionToPlayer = (player.transform.position - eye.transform.position).normalized;
+
+        EyeBehavior eyeBehav = eye.GetComponent<EyeBehavior>();
         Vector3 wobble = new Vector3(
-            Mathf.Sin(Time.time * wobbleSpeed) * wobbleStrength,
-            Mathf.Sin(Time.time * wobbleSpeed + 1f) * wobbleStrength,
-            Mathf.Sin(Time.time * wobbleSpeed + 2f) * wobbleStrength
+            Mathf.Sin(Time.time * eyeBehav.wobbleSpeed) * eyeBehav.wobbleStrength,
+            Mathf.Sin(Time.time * eyeBehav.wobbleSpeed + 1f) * eyeBehav.wobbleStrength,
+            Mathf.Sin(Time.time * eyeBehav.wobbleSpeed + 2f) * eyeBehav.wobbleStrength
         );
 
         Rigidbody rb = eye.GetComponent<Rigidbody>();
