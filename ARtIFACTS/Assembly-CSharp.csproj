@@ -41,13 +41,13 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets/Script/UtilitiesScript/OcchioDinamic.cs" />
+     <Compile Include="Assets/Script/UtilitiesScript/DistortAndDissolveStatue.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/PursueUnit.cs" />
      <Compile Include="Assets/Script/ARPrefabPlacement.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/WallAvoidanceUnit.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/ScreenBoundary3D.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/LinePath.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/WallAvoidance.cs" />
-     <Compile Include="Assets/Script/UtilitiesScript/DistortAndDissolve.cs" />
      <Compile Include="Assets/Script/UtilitiesScript/RandomDeformation.cs" />
      <Compile Include="Assets/Script/IntroScene/LineGenerator/LineManager.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/SteeringBasics.cs" />
@@ -57,8 +57,8 @@
      <Compile Include="Assets/Script/FloatingObject.cs" />
      <Compile Include="Assets/Samples/ARCore Extensions/1.39.0/Geospatial Sample/Scripts/GeospatialAnchorHistory.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Spawner.cs" />
-     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Wander1Unit.cs" />
      <Compile Include="Assets/ShaderGraph_Dissolve/Utility/Scripts/Rotator.cs" />
+     <Compile Include="Assets/UnityMovementAI/Scripts/Units/Wander1Unit.cs" />
      <Compile Include="Assets/Script/UtilitiesScript/RandomDeformationColorCloni.cs" />
      <Compile Include="Assets/Bitgem/StylisedWater/URP/Scripts/Bitgem/VFX/StylisedWater/WaterVolumeBox.cs" />
      <Compile Include="Assets/Script/IntroScene/LineGenerator/LineDrawer.cs" />
