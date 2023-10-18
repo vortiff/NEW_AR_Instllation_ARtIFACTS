@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6192703820108981333}
   - component: {fileID: 115200506724756582}
   - component: {fileID: 8053689349329604364}
-  - component: {fileID: 1310708834146406768}
+  - component: {fileID: 918024935651600820}
   - component: {fileID: -1969286743870987835}
   - component: {fileID: -8915727897051535695}
   - component: {fileID: 6460451315701003153}
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41fcafc7cfc574071a53475de3d2ca41, type: 2}
+  - {fileID: 2100000, guid: 2ea1e03cce396544b8d3c3e965a3bf3d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -137,7 +137,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1310708834146406768
+--- !u!114 &918024935651600820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,15 +146,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1041541005935074402}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7b736b5d8a644b119ff7973437fc765, type: 3}
+  m_Script: {fileID: 11500000, guid: 475017485f79041c7b5af3a35e433b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   expansionSpeed: 38.6
   maxRadius: -1.21
   deformationIntensity: 1.45
   colorChangeSpeed: -1.54
-  minColor: {r: 0.018393517, g: 0, b: 1, a: 1}
-  maxColor: {r: 0, g: 1, b: 0.18730927, a: 1}
+  minColor: {r: 1, g: 0.62205034, b: 0, a: 1}
+  maxColor: {r: 0.27653754, g: 0.114142045, b: 0.8962264, a: 1}
 --- !u!114 &-1969286743870987835
 MonoBehaviour:
   m_ObjectHideFlags: 0

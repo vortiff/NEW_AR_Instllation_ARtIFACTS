@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/UI/InstallationMaps.unity
-    guid: e42b3e78557064b80977673b3b02692c
+    path: Assets/Bitgem/StylisedWater/URP/Examples/Example-Scene-01.unity
+    guid: fc967860e2508924e943ba0223c2ed3b
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 85446e93bd72c405aacc4e7a87255f13,
       type: 2}

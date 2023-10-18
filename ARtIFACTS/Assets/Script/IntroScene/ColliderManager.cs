@@ -79,7 +79,7 @@ public class ColliderManager : MonoBehaviour
 
     private IEnumerator DestroyAndDeactivate()
     {
-        yield return new WaitForSeconds(20f);
+        yield return StartCoroutine(DissolveClonesOverTime(2f)); // Dissolvi i cloni in millisecondi
         DestroyClones();
 
         if (objectToDeactivate != null)
@@ -87,6 +87,7 @@ public class ColliderManager : MonoBehaviour
             objectToDeactivate.SetActive(false);
         }
     }
+
 
     private void DestroyClones()
     {
@@ -97,4 +98,30 @@ public class ColliderManager : MonoBehaviour
             Debug.Log("Cloni sono stati Distrutti!");
         }
     }
+
+    private IEnumerator DissolveClonesOverTime(float duration)
+    {
+        GameObject[] clones = GameObject.FindGameObjectsWithTag("cloni");
+        float startTime = Time.time;
+        float endTime = startTime + duration;
+
+        while (Time.time < endTime)
+        {
+            float t = (Time.time - startTime) / duration;
+            foreach (GameObject clone in clones)
+            {
+                Renderer rend = clone.GetComponent<Renderer>();
+                if (rend != null)
+                {
+                    Material mat = rend.material;
+                    if (mat.HasProperty("_Dissolve"))
+                    {
+                        mat.SetFloat("_Dissolve", Mathf.Lerp(mat.GetFloat("_Dissolve"), 1f, t));
+                    }
+                }
+            }
+            yield return null;
+        }
+    }
+
 }
