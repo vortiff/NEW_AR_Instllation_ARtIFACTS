@@ -4,10 +4,12 @@ using UnityEngine;
 public class DistortAndDissolveStatue : MonoBehaviour
 {
     public float expansionSpeed = 0.1f;
-    public float maxRadius = 5f;
-    public float deformationIntensity = 0.1f;
-    public float glitchFrequencyOutsideCollider = 5.0f;
-    public float glitchFrequencyInsideCollider = 1.0f;
+    public float maxRadius = 1f;
+    public float glitchFrequencyOutsideCollider = 12f;
+    public float glitchFrequencyInsideCollider = 6f;
+    public float deformationIntensityOutsideCollider = 0.3f;
+    public float deformationIntensityInsideCollider = 0.8f;
+
    
     public AudioLibraryStatue audioLibrary;
     private AudioSource audioSource; // Attach the AudioSource component
@@ -72,34 +74,38 @@ public class DistortAndDissolveStatue : MonoBehaviour
     void DeformMesh()
     {
         Vector3[] vertices = originalMesh.vertices;
+        float currentIntensity = inContactWithPlayer ? deformationIntensityInsideCollider : deformationIntensityOutsideCollider;
 
         for (int i = 0; i < vertices.Length; i++)
         {
-            float intensity = inContactWithPlayer ? deformationIntensity * 2 : deformationIntensity;
-            float randomValueX = Mathf.PerlinNoise(vertices[i].x * intensity, Time.time) * intensity;
-            float randomValueY = Mathf.PerlinNoise(vertices[i].y * intensity, Time.time) * intensity;
-            float randomValueZ = Mathf.PerlinNoise(vertices[i].z * intensity, Time.time) * intensity;
+            float randomValueX = Mathf.PerlinNoise(vertices[i].x * currentIntensity, Time.time) * currentIntensity;
+            float randomValueY = Mathf.PerlinNoise(vertices[i].y * currentIntensity, Time.time) * currentIntensity;
+            float randomValueZ = Mathf.PerlinNoise(vertices[i].z * currentIntensity, Time.time) * currentIntensity;
 
             vertices[i] = originalVertices[i] + new Vector3(randomValueX, randomValueY, randomValueZ);
         }
 
         originalMesh.vertices = vertices;
         originalMesh.RecalculateNormals();
-
-        // Riproduci il suono solo se non è già in riproduzione
-        if(inContactWithPlayer && !audioSource.isPlaying)
-        {
-            PlayRandomAudio();
-        }
     }
 
+    void PlayRandomAudio()
+    {
+        if(audioSource != null && audioLibrary.audioClips.Length > 0 && !audioSource.isPlaying)
+        {
+            int randomIndex = Random.Range(0, audioLibrary.audioClips.Length);
+            audioSource.clip = audioLibrary.audioClips[randomIndex];
+            Debug.Log("Sto cercando di riprodurre un suono. AudioClip selezionato: " + audioSource.clip.name);
+            audioSource.Play();
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player")) // Assuming the player has a tag "Player"
         {
-            Debug.Log("Il giocatore è nella statua");
             inContactWithPlayer = true;
+            PlayRandomAudio();
         }
     }
 
@@ -108,18 +114,19 @@ public class DistortAndDissolveStatue : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             inContactWithPlayer = false;
+            if (audioSource != null && audioSource.isPlaying)
+            {
+                audioSource.Stop();  // Fermiamo il suono.
+            }
         }
+        
     }
-
-   void PlayRandomAudio()
+    private void OnTriggerStay(Collider other)
     {
-        if(audioSource != null && audioLibrary.audioClips.Length > 0)
+        if(other.CompareTag("Player") && inContactWithPlayer)
         {
-            int randomIndex = Random.Range(0, audioLibrary.audioClips.Length);
-            audioSource.clip = audioLibrary.audioClips[randomIndex];
-            Debug.Log("Sto cercando di riprodurre un suono. AudioClip selezionato: " + audioSource.clip.name);
-            audioSource.Play();
-            
+            PlayRandomAudio();
         }
-    }
+}
+
 }

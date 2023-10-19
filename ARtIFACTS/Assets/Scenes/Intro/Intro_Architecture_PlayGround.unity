@@ -3048,11 +3048,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b191ba1d1a286454c8692065e180fc5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expansionSpeed: 1
-  maxRadius: 5
-  deformationIntensity: 0.1
-  glitchFrequencyOutsideCollider: 5
-  glitchFrequencyInsideCollider: 1
+  expansionSpeed: 0.1
+  maxRadius: 1
+  glitchFrequencyOutsideCollider: 12
+  glitchFrequencyInsideCollider: 6
+  deformationIntensityOutsideCollider: 0.3
+  deformationIntensityInsideCollider: 0.8
   audioLibrary: {fileID: 11400000, guid: 1a93988b5f685453fb3d0ea16c7e9447, type: 2}
   minAudioDistance: 1
   maxAudioDistance: 25
@@ -3075,7 +3076,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5, y: 3.46, z: 5}
+  m_Size: {x: 7, y: 3.46, z: 7}
   m_Center: {x: 0, y: 1.02, z: 0}
 --- !u!82 &1175803321
 AudioSource:
