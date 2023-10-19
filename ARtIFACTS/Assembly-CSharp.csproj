@@ -119,6 +119,7 @@
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/VelocityMatch.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/CollisionAvoidance.cs" />
      <Compile Include="Assets/Script/IntroScene/GlitchEffect.cs" />
+     <Compile Include="Assets/Script/UtilitiesScript/AudioLibraryStatue.cs" />
      <Compile Include="Assets/Script/IntroScene/ColliderManagerStart.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/FollowPathUnit.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/FlockingUnit.cs" />

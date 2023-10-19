@@ -52,5 +52,6 @@
         "temp/":true,
         "Temp/":true
     },
-    "dotnet.defaultSolution": "ARtIFACTS.sln"
+    "dotnet.defaultSolution": "ARtIFACTS.sln",
+    "dotnet.preferCSharpExtension": true
 }

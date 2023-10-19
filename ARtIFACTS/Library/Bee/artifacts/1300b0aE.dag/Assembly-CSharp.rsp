@@ -433,6 +433,7 @@
 "Assets/Script/Occhi/EyeBehavior.cs"
 "Assets/Script/UtilitiesScript/ARPointerManager.cs"
 "Assets/Script/UtilitiesScript/AudioLibrary.cs"
+"Assets/Script/UtilitiesScript/AudioLibraryStatue.cs"
 "Assets/Script/UtilitiesScript/DistortAndDissolveStatue.cs"
 "Assets/Script/UtilitiesScript/ObjectCloner.cs"
 "Assets/Script/UtilitiesScript/OcchioDinamic.cs"
