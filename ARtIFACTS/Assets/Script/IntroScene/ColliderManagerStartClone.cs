@@ -8,6 +8,7 @@ public class ColliderManagerStartClone : MonoBehaviour
 
     [SerializeField]
     private int numberOfClones = 30; // Modifica il numero di cloni come preferisci
+    private Rigidbody[] cloneRigidbodies; // Array per memorizzare i riferimenti ai Rigidbody dei cloni
     [SerializeField]
     private float cloneSpreadRadius = 2f; // Modifica il raggio in cui i cloni vengono creati
     [SerializeField]
@@ -29,14 +30,28 @@ public class ColliderManagerStartClone : MonoBehaviour
     public float gravitationalStrength;
     public float wobbleStrength;
     public float wobbleSpeed;
+    Vector3[] randomForces; // Array per memorizzare le forze randomiche
+
 
     private void Start()
     {
+        cloneRigidbodies = new Rigidbody[numberOfClones];
+        randomForces = new Vector3[numberOfClones];
+
+        for (int i = 0; i < numberOfClones; i++)
+        {
+            randomForces[i] = new Vector3(
+            Random.Range(-1f, 1f),
+            Random.Range(-1f, 1f),
+            Random.Range(-1f, 1f)
+        );
+        }
         // Ottieni il componente AudioSource dal GameObject Metaball
         audioSource = metaballObject.GetComponent<AudioSource>();
 
         // Ottieni l'array di clip audio dal metaballObject
         metaballSounds = metaballObject.GetComponent<Metaball>().voiceOverSounds;
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -79,13 +94,18 @@ public class ColliderManagerStartClone : MonoBehaviour
             Vector3 randomPosition = GetRandomPositionWithinRadius();
             GameObject newClone = Instantiate(objectToClone, randomPosition, Quaternion.identity, transform);
             
+            // Ottieni il riferimento al Rigidbody del clone e lo salva nell'array
+            Rigidbody cloneRb = newClone.GetComponent<Rigidbody>();
+            cloneRigidbodies[i] = cloneRb;
+
             // Assegna i valori random ai cloni
-            newClone.GetComponent<Rigidbody>().velocity = Random.Range(minCloneSpeed, maxCloneSpeed) * Vector3.up;
+            cloneRb.velocity = Random.Range(minCloneSpeed, maxCloneSpeed) * Vector3.up;
             gravitationalStrength = Random.Range(minGravitationalStrength, maxGravitationalStrength);
             wobbleStrength = Random.Range(minWobbleStrength, maxWobbleStrength);
             wobbleSpeed = Random.Range(minWobbleSpeed, maxWobbleSpeed);
         }
     }
+
 
     void Update()
     {
@@ -112,17 +132,18 @@ public class ColliderManagerStartClone : MonoBehaviour
         );
 
         // Calcola una forza randomica
-        Vector3 randomForce = new Vector3(
-            Random.Range(-1f, 1f),
-            Random.Range(-1f, 1f),
-            Random.Range(-1f, 1f)
-        );
+        int cloneIndex = System.Array.IndexOf(cloneRigidbodies, clone.GetComponent<Rigidbody>());
+        Vector3 randomForce = randomForces[cloneIndex];
+
 
         Vector3 forceToApply = directionToTarget * gravitationalStrength + wobble + randomForce;
 
         // Applica tutte le forze al clone
-        Rigidbody rb = clone.GetComponent<Rigidbody>();
-        rb.AddForce(forceToApply);
+         Rigidbody rb = cloneRigidbodies[cloneIndex];
+        if(rb != null)
+        {
+            rb.AddForce(forceToApply);
+        }
     }
 
     private Vector3 GetRandomPositionWithinRadius()

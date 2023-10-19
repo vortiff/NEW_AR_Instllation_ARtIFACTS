@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 115200506724756582}
   - component: {fileID: 8053689349329604364}
   - component: {fileID: 918024935651600820}
-  - component: {fileID: -1969286743870987835}
+  - component: {fileID: 907585292717761976}
   - component: {fileID: -8915727897051535695}
   - component: {fileID: 6460451315701003153}
   m_Layer: 0
@@ -119,7 +119,7 @@ Rigidbody:
   m_GameObject: {fileID: 1041541005935074402}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 1.5
+  m_Drag: 1.8
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -152,10 +152,11 @@ MonoBehaviour:
   expansionSpeed: 38.6
   maxRadius: -1.21
   deformationIntensity: 1.45
-  colorChangeSpeed: -1.54
-  minColor: {r: 1, g: 0.62205034, b: 0, a: 1}
+  colorChangeSpeed: 0.5
+  deformationFrameRate: 60
+  minColor: {r: 0.8207547, g: 0.19744569, b: 0.69207615, a: 1}
   maxColor: {r: 0.27653754, g: 0.114142045, b: 0.8962264, a: 1}
---- !u!114 &-1969286743870987835
+--- !u!114 &907585292717761976
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,14 +165,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1041541005935074402}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83f9fe782ff96433db713d417810a39b, type: 3}
+  m_Script: {fileID: 11500000, guid: 090f528a953f745179b8c877b29a0989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionSounds:
-  - {fileID: 8300000, guid: 706f3040b5ed04bfd9f1a7f5ff53ad3b, type: 3}
-  - {fileID: 8300000, guid: 1fa61b9a4aaee45dab6bbf8682652219, type: 3}
-  - {fileID: 8300000, guid: a52c2b54b938f40a8aa47c5b857c20e3, type: 3}
-  - {fileID: 8300000, guid: f542da21f4d8f4ebbb8a7b6970ae196b, type: 3}
+  mediaLibrary: {fileID: 11400000, guid: 19ce844f113fd46debe0a125bf2ba606, type: 2}
+  minAudioDistance: 1
+  maxAudioDistance: 10
 --- !u!82 &-8915727897051535695
 AudioSource:
   m_ObjectHideFlags: 0

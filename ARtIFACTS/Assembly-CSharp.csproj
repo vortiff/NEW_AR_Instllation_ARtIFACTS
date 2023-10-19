@@ -55,6 +55,7 @@
      <Compile Include="Assets/Script/IntroScene/Duplicator.cs" />
      <Compile Include="Assets/ShaderGraph_Dissolve/Utility/Scripts/RotatorDissolveDir.cs" />
      <Compile Include="Assets/Script/FloatingObject.cs" />
+     <Compile Include="Assets/Script/GenerativeMusic/CollisionSoundPlayerOPT.cs" />
      <Compile Include="Assets/Samples/ARCore Extensions/1.39.0/Geospatial Sample/Scripts/GeospatialAnchorHistory.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Spawner.cs" />
      <Compile Include="Assets/ShaderGraph_Dissolve/Utility/Scripts/Rotator.cs" />
@@ -67,6 +68,7 @@
      <Compile Include="Assets/TutorialInfo/Scripts/Readme.cs" />
      <Compile Include="Assets/Script/GenerativeMusic/CollisionSoundPlayer.cs" />
      <Compile Include="Assets/Bitgem/StylisedWater/URP/Scripts/Bitgem/VFX/StylisedWater/WaterVolumeBase.cs" />
+     <Compile Include="Assets/Script/UtilitiesScript/MediaLibrary.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/FleeUnit.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/HideUnit.cs" />
      <Compile Include="Assets/Samples/ARCore Extensions/1.39.0/Geospatial Sample/Scripts/SafeAreaScaler.cs" />
@@ -103,10 +105,8 @@
      <Compile Include="Assets/Script/UtilitiesScript/RandomDeformationColor.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/EvadeUnit.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/InterposeUnit.cs" />
-     <Compile Include="Assets/Script/IntroScene/RandomTextureAssigner.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/ArriveUnit.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Evade.cs" />
-     <Compile Include="Assets/Script/UtilitiesScript/AudioLibrary.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/ScreenBoundary2D.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Camera/InfiniteGrid.cs" />
      <Compile Include="Assets/Script/FlockingBehavior.cs" />
@@ -118,13 +118,12 @@
      <Compile Include="Assets/Script/UtilitiesScript/ARPointerManager.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/VelocityMatch.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/CollisionAvoidance.cs" />
+     <Compile Include="Assets/Script/UtilitiesScript/RandomDeformationColorOPT.cs" />
      <Compile Include="Assets/Script/IntroScene/GlitchEffect.cs" />
-     <Compile Include="Assets/Script/UtilitiesScript/AudioLibraryStatue.cs" />
      <Compile Include="Assets/Script/IntroScene/ColliderManagerStart.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/FollowPathUnit.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/FlockingUnit.cs" />
      <Compile Include="Assets/Script/MetaballController.cs" />
-     <Compile Include="Assets/Script/UtilitiesScript/VideoLibrary.cs" />
      <Compile Include="Assets/Script/IntroScene/Attractor.cs" />
      <Compile Include="Assets/Script/IntroScene/AudioAndObjectOnCollision.cs" />
      <Compile Include="Assets/ShaderGraph_Dissolve/Utility/Scripts/DissolveChilds.cs" />

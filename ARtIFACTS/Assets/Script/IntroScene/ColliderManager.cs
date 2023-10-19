@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ColliderManager : MonoBehaviour
 {
+    public GameObject player; 
     public GameObject metaballObject;
     public GameObject objectToActivate;
     public GameObject objectToDeactivate;
@@ -13,6 +15,7 @@ public class ColliderManager : MonoBehaviour
     private AudioClip[] metaballSounds;
     private AudioSource audioSource;
     private bool hasCollided = false;
+    private List<GameObject> cloneList = new List<GameObject>();
 
     private void Start()
     {
@@ -22,7 +25,7 @@ public class ColliderManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !hasCollided)
+        if (other.gameObject == player && !hasCollided)
         {
             if (audioSource != null && metaballSounds.Length > 0 && audioClipIndex < metaballSounds.Length)
             {
@@ -37,7 +40,6 @@ public class ColliderManager : MonoBehaviour
             }
 
             ActivateGravityOnClones();
-
             StartCoroutine(AttractMetaballAfterDelay());
 
             hasCollided = true;
@@ -46,8 +48,7 @@ public class ColliderManager : MonoBehaviour
 
     private void ActivateGravityOnClones()
     {
-        GameObject[] clones = GameObject.FindGameObjectsWithTag("cloni");
-        foreach (GameObject clone in clones)
+        foreach (GameObject clone in cloneList)
         {
             Rigidbody rb = clone.GetComponent<Rigidbody>();
             if (rb != null)
@@ -79,7 +80,7 @@ public class ColliderManager : MonoBehaviour
 
     private IEnumerator DestroyAndDeactivate()
     {
-        yield return StartCoroutine(DissolveClonesOverTime(2f)); // Dissolvi i cloni in millisecondi
+        yield return StartCoroutine(FadeOutClonesOverTime(2f)); // Fade out dei cloni in 2 secondi
         DestroyClones();
 
         if (objectToDeactivate != null)
@@ -88,40 +89,35 @@ public class ColliderManager : MonoBehaviour
         }
     }
 
-
     private void DestroyClones()
     {
-        GameObject[] clones = GameObject.FindGameObjectsWithTag("cloni");
-        foreach (GameObject clone in clones)
+        foreach (GameObject clone in cloneList)
         {
             Destroy(clone);
-            Debug.Log("Cloni sono stati Distrutti!");
         }
+        cloneList.Clear();
+        Debug.Log("Cloni sono stati Distrutti!");
     }
 
-    private IEnumerator DissolveClonesOverTime(float duration)
+    private IEnumerator FadeOutClonesOverTime(float duration)
     {
-        GameObject[] clones = GameObject.FindGameObjectsWithTag("cloni");
         float startTime = Time.time;
         float endTime = startTime + duration;
 
         while (Time.time < endTime)
         {
             float t = (Time.time - startTime) / duration;
-            foreach (GameObject clone in clones)
+            foreach (GameObject clone in cloneList)
             {
                 Renderer rend = clone.GetComponent<Renderer>();
-                if (rend != null)
+                if (rend != null && rend.material.HasProperty("_Color"))
                 {
-                    Material mat = rend.material;
-                    if (mat.HasProperty("_Dissolve"))
-                    {
-                        mat.SetFloat("_Dissolve", Mathf.Lerp(mat.GetFloat("_Dissolve"), 1f, t));
-                    }
+                    Color originalColor = rend.material.GetColor("_Color");
+                    originalColor.a = Mathf.Lerp(1f, 0f, t); // Interpolazione dell'alpha
+                    rend.material.SetColor("_Color", originalColor);
                 }
             }
             yield return null;
         }
     }
-
 }

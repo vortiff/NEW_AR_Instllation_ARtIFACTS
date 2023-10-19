@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4065825183999512051}
   - component: {fileID: 7712056117899709882}
   - component: {fileID: 1489090865370776334}
-  - component: {fileID: -3639082912072216821}
   - component: {fileID: 5031247317229153436}
   m_Layer: 0
   m_Name: IMGColne
@@ -85,24 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-3639082912072216821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7055949736674409364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcd08a9f7d4b14d9cb226bd6efa85b28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textures:
-  - {fileID: 2800000, guid: 7707ba7be1e0041a9921b4e19f8859bc, type: 3}
-  - {fileID: 2800000, guid: c1e9649d12d324c8c8c90c8ae3574de0, type: 3}
-  - {fileID: 2800000, guid: 75649d2d6ac46462ab1b0e8c487f3d6b, type: 3}
-  - {fileID: 2800000, guid: 056bab1031016467e8a0c7dd0b00bd39, type: 3}
-  targetRenderer: {fileID: 1489090865370776334}
 --- !u!54 &5031247317229153436
 Rigidbody:
   m_ObjectHideFlags: 0

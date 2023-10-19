@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61d2e23ae29e94153861c3008435bc27, type: 3}
+  m_Name: LibraryCloniStart
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: c80446a4b6f544f1888295ea47c74f4f, type: 3}
+  - {fileID: 8300000, guid: eee54c5e6ce6c4052a1d800f45678d3e, type: 3}
+  - {fileID: 8300000, guid: 933b9540693c24bf4b800decc1fce5a5, type: 3}
+  - {fileID: 8300000, guid: 8f04447d7ec974899bf0f562208c407b, type: 3}
+  - {fileID: 8300000, guid: 56af9c319e11b475a853297243d096d8, type: 3}
+  - {fileID: 8300000, guid: 393ace62d35ba44638f3459dfcc55103, type: 3}
+  - {fileID: 8300000, guid: 64557ab8051d544e4884b354e8184832, type: 3}
+  - {fileID: 8300000, guid: b3ef598a972884ffb8f30ce0a1e2fdb4, type: 3}
+  - {fileID: 8300000, guid: c1af16db3b8a14262acb15fcc3c11262, type: 3}
+  - {fileID: 8300000, guid: 923335705962f4a999ad92302ff98026, type: 3}
+  - {fileID: 8300000, guid: 8512296b0381d4e6f8bd20144abeebc7, type: 3}
+  videoClips: []

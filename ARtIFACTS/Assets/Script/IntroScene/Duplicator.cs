@@ -4,29 +4,35 @@ using UnityEngine;
 
 public class Duplicator : MonoBehaviour
 {
-    public GameObject objectToDuplicate; // Il GameObject da duplicare
-    public float duplicationWidth = 1f; // Larghezza della zona di duplicazione
-    public float duplicationHeight = 5f; // Altezza della zona di duplicazione
-    public float duplicationDepth = 1f; // Profondità della zona di duplicazione
-    public float minDuplicationInterval = 0.1f; // Intervallo minimo tra le duplicazioni
-    public float maxDuplicationInterval = 2f; // Intervallo massimo tra le duplicazioni
-    public AudioClip[] duplicationSounds; // Array di suoni per le duplicazioni
+    public GameObject objectToDuplicate;
+    public List<Texture2D> textures = new List<Texture2D>(); // Lista delle texture
+    public float duplicationWidth = 1f;
+    public float duplicationHeight = 5f;
+    public float duplicationDepth = 1f;
+    public float minDuplicationInterval = 0.1f;
+    public float maxDuplicationInterval = 2f;
+    public MediaLibrary mediaLibrary;
+    public Transform player; // Variabile pubblica per player
+    public int poolSize = 10; // Dimensione iniziale dell'object pool
 
-    private Transform player; // Il trasform del giocatore
+    private AudioSource audioSource;
     private bool isPlayerInsideCollider = false;
     private float nextDuplicationTime;
-    private AudioSource audioSource;
+    private List<GameObject> objectPool = new List<GameObject>();
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform; // Trova il giocatore per tag "Player"
-        audioSource = GetComponent<AudioSource>(); // Ottieni il componente AudioSource se presente
-        SetNextDuplicationTime();
+        audioSource = GetComponent<AudioSource>();
+        for (int i = 0; i < poolSize; i++)
+        {
+            GameObject obj = Instantiate(objectToDuplicate);
+            obj.SetActive(false);
+            objectPool.Add(obj);
+        }
     }
 
     void Update()
     {
-        // Controlla se è il momento di duplicare
         if (Time.time >= nextDuplicationTime && isPlayerInsideCollider)
         {
             DuplicateObject();
@@ -36,54 +42,87 @@ public class Duplicator : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.transform == player) // Confronto con il riferimento player
         {
             isPlayerInsideCollider = true;
-            Debug.Log("Player è nel collider");
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.transform == player) // Confronto con il riferimento player
         {
             isPlayerInsideCollider = false;
-            Debug.Log("Player ha lasciato il collider");
         }
     }
 
     void DuplicateObject()
     {
-        // Genera una posizione casuale entro le dimensioni specificate
+        // Prendi un oggetto dal pool
+        GameObject newObject = GetFromPool();
+        if (newObject == null) return;
+        
+        // Assegna una texture casuale
+        AssignRandomTexture(newObject);
+
         Vector3 randomOffset = new Vector3(
             Random.Range(-duplicationWidth / 2, duplicationWidth / 2),
             Random.Range(-duplicationHeight / 2, duplicationHeight / 2),
             Random.Range(-duplicationDepth / 2, duplicationDepth / 2)
         );
 
-        // Calcola la posizione del nuovo oggetto
         Vector3 newPosition = transform.position + randomOffset;
+        newObject.transform.position = newPosition;
+        newObject.transform.rotation = Quaternion.Euler(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
+        newObject.SetActive(true);
 
-        // Duplica l'oggetto
-        GameObject newObject = Instantiate(objectToDuplicate, newPosition, Quaternion.identity);
+        PlayRandomAudio();
+    }
 
-        // Imposta il transform del nuovo oggetto come figlio del transform attuale
-        newObject.transform.SetParent(transform);
-
-        // Ruota il nuovo oggetto su tutti e tre gli assi in modo casuale
-        newObject.transform.localRotation = Quaternion.Euler(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
-
-        // Riproduci un suono casuale dalle duplicazioni se presente
-        if (audioSource != null && duplicationSounds.Length > 0)
+    GameObject GetFromPool()
+    {
+        for (int i = 0; i < objectPool.Count; i++)
         {
-            int randomSoundIndex = Random.Range(0, duplicationSounds.Length);
-            audioSource.PlayOneShot(duplicationSounds[randomSoundIndex]);
+            if (!objectPool[i].activeInHierarchy)
+            {
+                return objectPool[i];
+            }
         }
+        return null; // nessun oggetto disponibile nel pool
     }
 
     void SetNextDuplicationTime()
     {
-        // Imposta il prossimo momento in cui verrà duplicato l'oggetto in base agli intervalli minimi e massimi
         nextDuplicationTime = Time.time + Random.Range(minDuplicationInterval, maxDuplicationInterval);
+    }
+
+    void PlayRandomAudio()
+    {
+        if (audioSource != null && mediaLibrary.audioClips.Length > 0 && !audioSource.isPlaying)
+        {
+            int randomIndex = Random.Range(0, mediaLibrary.audioClips.Length);
+            audioSource.clip = mediaLibrary.audioClips[randomIndex];
+            audioSource.Play();
+        }
+    }
+    void AssignRandomTexture(GameObject obj)
+    {
+        if (textures.Count == 0)
+        {
+            Debug.LogError("Nessuna texture nell'array.");
+            return;
+        }
+
+        int randomIndex = Random.Range(0, textures.Count);
+        Renderer objRenderer = obj.GetComponent<Renderer>();
+
+        if (objRenderer != null)
+        {
+            objRenderer.material.mainTexture = textures[randomIndex];
+        }
+        else
+        {
+            Debug.LogError("Renderer non trovato nel GameObject duplicato.");
+        }
     }
 }

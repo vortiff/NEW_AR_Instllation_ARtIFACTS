@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class RandomDeformationColorCloni : MonoBehaviour
 {
-    public float expansionSpeed = 0.1f;
-    public float maxRadius = 5f;
-    public float deformationIntensity = 0.1f;
-    public float colorChangeSpeed = 0.5f; // Velocità di cambio colore, maggiore è il valore, più veloce sarà il cambio colore.
+    public float expansionSpeed = 38.6f;
+    public float maxRadius = -1.21f;
+    public float deformationIntensity = 1.45f;
+    public float colorChangeSpeed = 1f; // Velocità di cambio colore, maggiore è il valore, più veloce sarà il cambio colore.
+
+    public int deformationFrameRate = 30; // Deforma la mesh ogni 10 frame
+    private int currentFrame = 0;
 
     public Color minColor = Color.red; // Colore minimo del range
     public Color maxColor = Color.blue; // Colore massimo del range
@@ -32,6 +35,13 @@ public class RandomDeformationColorCloni : MonoBehaviour
 
     void Update()
     {
+        currentFrame++;
+
+        if(currentFrame >= deformationFrameRate)
+        {
+            DeformMesh();
+            currentFrame = 0;
+        }
         // Espansione della metaball
         if (transform.localScale.x < maxRadius)
         {
