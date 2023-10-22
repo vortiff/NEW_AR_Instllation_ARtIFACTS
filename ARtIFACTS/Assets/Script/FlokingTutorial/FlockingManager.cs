@@ -26,12 +26,6 @@ public class FlockingManager : MonoBehaviour
     public float minRotationSpeed = 5f;
     public float maxRotationSpeed = 10f;
 
-    
-
-  
-
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +37,6 @@ public class FlockingManager : MonoBehaviour
                                                                 Random.Range(-flyLimit.z, flyLimit.z));
             
             allElement[i] = Instantiate(elementPrefab, pos, Quaternion.identity);
-
         }
 
         FM = this;
@@ -69,10 +62,10 @@ public class FlockingManager : MonoBehaviour
         // Interpola linearmente tra minRotationSpeed e maxRotationSpeed in base alla distanza normalizzata
         float newRotationSpeed = Mathf.Lerp(minRotationSpeed, maxRotationSpeed, 1f - normalizedDistance);
 
-        // Aggiorna la variabile rotationSpeed in Floking per tutti gli oggetti dello stormo
+        // Aggiorna la variabile rotationSpeed in Flocking per tutti gli oggetti dello stormo
         foreach (GameObject flockMember in allElement)
         {
-            Floking flockingScript = flockMember.GetComponent<Floking>();
+            Flocking flockingScript = flockMember.GetComponent<Flocking>();
             if (flockingScript != null)
             {
                 flockingScript.Speed = newRotationSpeed;

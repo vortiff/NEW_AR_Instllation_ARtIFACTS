@@ -96,7 +96,6 @@ public class ColliderManager : MonoBehaviour
             Destroy(clone);
         }
         cloneList.Clear();
-        Debug.Log("Cloni sono stati Distrutti!");
     }
 
     private IEnumerator FadeOutClonesOverTime(float duration)
