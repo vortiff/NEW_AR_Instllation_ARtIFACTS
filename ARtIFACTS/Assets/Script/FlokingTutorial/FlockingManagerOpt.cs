@@ -101,7 +101,7 @@ public class FlockingManagerOpt : MonoBehaviour
             return;
         }
 
-        int randomIndex = Random.Range(9, 15); // Seleziona suoni dall'indice
+        int randomIndex = Random.Range(0, 1); // Seleziona suoni dall'indice
         if (audioSource != null && randomIndex < mediaLibrary.audioClips.Length)
         {
             audioSource.clip = mediaLibrary.audioClips[randomIndex];

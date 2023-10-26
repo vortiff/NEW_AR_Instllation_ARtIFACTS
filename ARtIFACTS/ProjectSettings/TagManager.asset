@@ -10,6 +10,8 @@ TagManager:
   - cloni
   - Metaball
   - Occhio
+  - FlockManager
+  - CloneLight
   layers:
   - Default
   - TransparentFX

@@ -428,6 +428,8 @@
 -analyzer:"/Applications/Unity/Hub/Editor/2022.3.5f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Bitgem/StylisedWater/URP/Scripts/Bitgem/Editor/FlagEnumAttributeDrawer.cs"
 "Assets/Samples/ARCore Extensions/1.39.0/Geospatial Sample/Scripts/Editor/GeospatialPreprocessBuild.cs"
+"Assets/TheGeneratorOnLine/Assets/Editor/LineGeneratorEditor.cs"
+"Assets/TheGeneratorOnLine/Assets/Editor/PointsEditor.cs"
 "Assets/TutorialInfo/Scripts/Editor/ReadmeEditor.cs"
 -langversion:9.0
 
