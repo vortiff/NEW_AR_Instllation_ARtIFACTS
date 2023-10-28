@@ -4,65 +4,122 @@ using UnityEngine;
 
 public class Duplicator : MonoBehaviour
 {
+    [Header("GameObject References")]
     public GameObject objectToDuplicate;
-    public List<Texture2D> textures = new List<Texture2D>(); // Lista delle texture
-    public float duplicationWidth = 1f;
-    public float duplicationHeight = 5f;
-    public float duplicationDepth = 1f;
-    public float minDuplicationInterval = 0.1f;
-    public float maxDuplicationInterval = 2f;
-    public MediaLibrary mediaLibrary;
+    [Tooltip("Questi sono i GameObjects di riferimento per il posizionamento.")]
+    public Transform[] referenceObjects; // Array per trascinare i GameObject di riferimento.
+    private int currentReferenceIndex = 0;
     public Transform player; // Variabile pubblica per player
-    public int poolSize = 10; // Dimensione iniziale dell'object pool
+    private int playerInsideColliderCount = 0;
+    private List<GameObject> inactiveObjects = new List<GameObject>(); // Nuova lista per gli oggetti inattivi
+    private List<int> activeReferenceIndices = new List<int>();
 
-    private AudioSource audioSource;
-    private bool isPlayerInsideCollider = false;
+
+    [Header("Duplicant References")]
+    public int poolSize = 30; // Dimensione iniziale dell'object pool
+    public List<TextureList> texturesForReferenceObjects = new List<TextureList>();
+    [System.Serializable]
+    public class TextureList
+    {
+        public List<Texture2D> textures = new List<Texture2D>();
+    }
+    private MaterialPropertyBlock propBlock;
+    private List<List<GameObject>> objectPools = new List<List<GameObject>>();
+    public float duplicationWidth = 5f;
+    public float duplicationHeight = 20f;
+    public float duplicationDepth = 5f;
+    public float minDuplicationInterval = 0.4f;
+    public float maxDuplicationInterval = 1f;
     private float nextDuplicationTime;
-    private List<GameObject> objectPool = new List<GameObject>();
+    private Queue<GameObject> activeObjectsQueue = new Queue<GameObject>();
+    private Dictionary<GameObject, int> objectToPoolIndex = new Dictionary<GameObject, int>();
+    
 
+    
+    [Header("Audio Settings")]
+    public MediaLibrary mediaLibrary;    
+    private AudioSource audioSource;
+    private AudioSource[] referenceAudioSources;
+
+
+    
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        for (int i = 0; i < poolSize; i++)
+       
+        referenceAudioSources = new AudioSource[referenceObjects.Length];
+        for (int i = 0; i < referenceObjects.Length; i++)
         {
-            GameObject obj = Instantiate(objectToDuplicate);
-            obj.SetActive(false);
-            objectPool.Add(obj);
+            referenceAudioSources[i] = referenceObjects[i].GetComponent<AudioSource>();
+        }
+
+        for (int i = 0; i < referenceObjects.Length; i++)
+        {
+            List<GameObject> subPool = new List<GameObject>();
+            for (int j = 0; j < poolSize; j++)
+            {
+                GameObject obj = Instantiate(objectToDuplicate);
+                obj.SetActive(false);
+                subPool.Add(obj);
+            }
+            objectPools.Add(subPool);
+        }
+
+        propBlock = new MaterialPropertyBlock();
+    }
+
+    // Questa funzione trova il GameObject di riferimento in cui il Player si trova.
+    Transform GetReferenceWithPlayerInside()
+    {
+        foreach (Transform refObj in referenceObjects)
+        {
+            Collider refCollider = refObj.GetComponent<Collider>();
+            if (refCollider && refCollider.bounds.Contains(player.position))
+            {
+                return refObj;
+            }
+        }
+        return null;
+    }
+
+   void Update()
+    {
+        if(IsPlayerInsideAnyCollider())
+        {
+            if (Time.time >= nextDuplicationTime)
+            {
+                DuplicateObject();
+                SetNextDuplicationTime();
+            }
         }
     }
 
-    void Update()
-    {
-        if (Time.time >= nextDuplicationTime && isPlayerInsideCollider)
-        {
-            DuplicateObject();
-            SetNextDuplicationTime();
-        }
-    }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.transform == player) // Confronto con il riferimento player
-        {
-            isPlayerInsideCollider = true;
-        }
-    }
 
-    void OnTriggerExit(Collider other)
+    bool IsPlayerInsideAnyCollider()
     {
-        if (other.transform == player) // Confronto con il riferimento player
-        {
-            isPlayerInsideCollider = false;
-        }
+        return playerInsideColliderCount > 0; // se il contatore è maggiore di 0, il giocatore è all'interno di almeno un collider
     }
 
     void DuplicateObject()
     {
-        // Prendi un oggetto dal pool
+         // Seleziona un indice di riferimento casuale tra quelli attivi
+        int randomIndex = Random.Range(0, activeReferenceIndices.Count);
+        currentReferenceIndex = activeReferenceIndices[randomIndex]; // Aggiorniamo l'indice corrente
+        Transform currentReference = referenceObjects[currentReferenceIndex];
+
         GameObject newObject = GetFromPool();
-        if (newObject == null) return;
-        
-        // Assegna una texture casuale
+        if (newObject == null)
+        {
+            Debug.LogError("Non è stato possibile ottenere un nuovo oggetto dalla pool.");
+            return;
+        }
+
+        if (activeObjectsQueue.Count >= objectPools[currentReferenceIndex].Count)
+        {
+            RemoveOldestObject();
+        }
+
         AssignRandomTexture(newObject);
 
         Vector3 randomOffset = new Vector3(
@@ -71,25 +128,33 @@ public class Duplicator : MonoBehaviour
             Random.Range(-duplicationDepth / 2, duplicationDepth / 2)
         );
 
-        Vector3 newPosition = transform.position + randomOffset;
+        Vector3 newPosition = currentReference.position + randomOffset;
         newObject.transform.position = newPosition;
         newObject.transform.rotation = Quaternion.Euler(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
+        newObject.transform.SetParent(this.transform);
         newObject.SetActive(true);
+        activeObjectsQueue.Enqueue(newObject);
+
+        Debug.Log("Oggetto duplicato e posizionato in: " + currentReference);
 
         PlayRandomAudio();
     }
 
+
     GameObject GetFromPool()
     {
-        for (int i = 0; i < objectPool.Count; i++)
+        List<GameObject> currentPool = objectPools[currentReferenceIndex];
+        if (currentPool.Count > 0)
         {
-            if (!objectPool[i].activeInHierarchy)
-            {
-                return objectPool[i];
-            }
+            GameObject obj = currentPool[0];
+            currentPool.RemoveAt(0);
+            inactiveObjects.Remove(obj);  // Assicurati di rimuoverlo dagli oggetti inattivi
+            objectToPoolIndex[obj] = currentReferenceIndex;
+            return obj;
         }
-        return null; // nessun oggetto disponibile nel pool
+        return null;
     }
+
 
     void SetNextDuplicationTime()
     {
@@ -98,31 +163,84 @@ public class Duplicator : MonoBehaviour
 
     void PlayRandomAudio()
     {
-        if (audioSource != null && mediaLibrary.audioClips.Length > 0 && !audioSource.isPlaying)
+        AudioSource currentReferenceAudio = referenceAudioSources[currentReferenceIndex];
+
+        if (currentReferenceAudio != null && mediaLibrary.audioClips.Length > 0)
         {
             int randomIndex = Random.Range(0, mediaLibrary.audioClips.Length);
-            audioSource.clip = mediaLibrary.audioClips[randomIndex];
-            audioSource.Play();
+            currentReferenceAudio.clip = mediaLibrary.audioClips[randomIndex];
+            if (!currentReferenceAudio.isPlaying)
+            {
+                currentReferenceAudio.Play();
+            }
         }
     }
+
+
     void AssignRandomTexture(GameObject obj)
     {
-        if (textures.Count == 0)
+        List<Texture2D> currentReferenceTextures = texturesForReferenceObjects[currentReferenceIndex].textures;
+        if (currentReferenceTextures.Count == 0)
         {
-            Debug.LogError("Nessuna texture nell'array.");
+            Debug.LogError("Nessuna texture nell'array per il reference object corrente.");
             return;
         }
 
-        int randomIndex = Random.Range(0, textures.Count);
+        int randomIndex = Random.Range(0, currentReferenceTextures.Count);
         Renderer objRenderer = obj.GetComponent<Renderer>();
 
         if (objRenderer != null)
         {
-            objRenderer.material.mainTexture = textures[randomIndex];
+            // Imposta la texture nel MaterialPropertyBlock
+            propBlock.SetTexture("BaseMap", currentReferenceTextures[randomIndex]);
+
+            // Applica il MaterialPropertyBlock al renderer
+            objRenderer.SetPropertyBlock(propBlock);
         }
         else
         {
             Debug.LogError("Renderer non trovato nel GameObject duplicato.");
+        }
+    }
+
+
+    void RemoveOldestObject()
+    {
+        if (activeObjectsQueue.Count > 0)
+        {
+            GameObject oldestObject = activeObjectsQueue.Dequeue();
+            oldestObject.SetActive(false);
+
+            // Usa il dizionario per determinare a quale pool l'oggetto appartiene
+            int poolIndex = objectToPoolIndex[oldestObject];
+            List<GameObject> correctPool = objectPools[poolIndex];
+            correctPool.Add(oldestObject); // Aggiungi l'oggetto alla pool corretta
+
+            inactiveObjects.Add(oldestObject); // Aggiungi l'oggetto alla lista degli inattivi
+            objectToPoolIndex.Remove(oldestObject); // Rimuovi l'oggetto dal dizionario
+
+            PlayRandomAudio();
+            Debug.Log("RemoveOldestObject PlayRandomAudio " + poolIndex);
+   
+        }
+    }
+
+
+    public void IncrementPlayerInsideColliderCount(int index)
+    {
+        playerInsideColliderCount++;
+        if (!activeReferenceIndices.Contains(index))
+        {
+            activeReferenceIndices.Add(index);
+        }
+    }
+
+    public void DecrementPlayerInsideColliderCount(int index)
+    {
+        playerInsideColliderCount--;
+        if (activeReferenceIndices.Contains(index))
+        {
+            activeReferenceIndices.Remove(index);
         }
     }
 }

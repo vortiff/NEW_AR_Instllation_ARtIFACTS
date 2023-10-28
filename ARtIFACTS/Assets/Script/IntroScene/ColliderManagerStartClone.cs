@@ -1,37 +1,43 @@
 using UnityEngine;
+using System.Collections;
+
 public class ColliderManagerStartClone : MonoBehaviour
 {
+    [Header("GameObject References")]
     public GameObject metaballObject; // Il GameObject Metaball
     public GameObject objectToClone; // Il GameObject da duplicare
     public GameObject GameObjectToActivate;
+    public GameObject attractionTarget; // Il GameObject verso cui i cloni saranno attratti
+   
+    [Header("Audio Settings")]
     public int audioClipIndex = 0; // L'indice dell'audio clip da riprodurre
+    private int currentSoundIndex = 0; // Indice del suono corrente da riprodurre
+    private AudioSource audioSource;
+    private AudioClip[] metaballSounds; // Array di suoni da Metaball
 
+    [Header("Clone Settings")]
     [SerializeField]
     private int numberOfClones = 30; // Modifica il numero di cloni come preferisci
-    private Rigidbody[] cloneRigidbodies; // Array per memorizzare i riferimenti ai Rigidbody dei cloni
     [SerializeField]
     private float cloneSpreadRadius = 2f; // Modifica il raggio in cui i cloni vengono creati
     [SerializeField]
     private float minCloneSpeed = 1f; // Modifica la velocità minima dei cloni
     [SerializeField]
     private float maxCloneSpeed = 5f; // Modifica la velocità massima dei cloni
+    private Rigidbody[] cloneRigidbodies; // Array per memorizzare i riferimenti ai Rigidbody dei cloni
+    Vector3[] randomForces; // Array per memorizzare le forze randomiche
+    public float gravitationalStrength;
     public float maxGravitationalStrength;
     public float minGravitationalStrength;
+    public float wobbleStrength;
+    public float wobbleSpeed;
     public float maxWobbleStrength;
     public float minWobbleStrength;
     public float maxWobbleSpeed;
     public float minWobbleSpeed;
-    public GameObject attractionTarget; // Il GameObject verso cui i cloni saranno attratti
-    private int currentSoundIndex = 0; // Indice del suono corrente da riprodurre
-    private bool hasCollided = false;
-    private AudioSource audioSource;
-    private AudioClip[] metaballSounds; // Array di suoni da Metaball
-    // Variabili per i cloni
-    public float gravitationalStrength;
-    public float wobbleStrength;
-    public float wobbleSpeed;
-    Vector3[] randomForces; // Array per memorizzare le forze randomiche
 
+    [Header("Other Settings")]
+    private bool hasCollided = false;
 
     private void Start()
     {
@@ -150,5 +156,4 @@ public class ColliderManagerStartClone : MonoBehaviour
     {
         return transform.position + Random.insideUnitSphere * cloneSpreadRadius;
     }
-
 }

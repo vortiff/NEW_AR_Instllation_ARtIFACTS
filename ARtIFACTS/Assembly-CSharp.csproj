@@ -61,6 +61,7 @@
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Wander1Unit.cs" />
      <Compile Include="Assets/Script/UtilitiesScript/RandomDeformationColorCloni.cs" />
      <Compile Include="Assets/Bitgem/StylisedWater/URP/Scripts/Bitgem/VFX/StylisedWater/WaterVolumeBox.cs" />
+     <Compile Include="Assets/Script/UtilitiesScript/GUI/RaycastObjectDetection.cs" />
      <Compile Include="Assets/Script/IntroScene/LineGenerator/LineDrawer.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/WanderAvoidUnit.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Flee.cs" />
@@ -73,6 +74,7 @@
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/FleeUnit.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/HideUnit.cs" />
      <Compile Include="Assets/Samples/ARCore Extensions/1.39.0/Geospatial Sample/Scripts/SafeAreaScaler.cs" />
+     <Compile Include="Assets/Script/IntroScene/Mostra Fotografica Metamorfosi/ReferenceObjectScript.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/OffsetPursuit.cs" />
      <Compile Include="Assets/ModularFirstPersonController/FirstPersonController/FirstPersonController.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/GoDirectionUnit.cs" />

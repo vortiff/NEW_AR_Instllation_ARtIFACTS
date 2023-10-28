@@ -4,18 +4,23 @@ using System.Collections.Generic;
 
 public class ColliderManager : MonoBehaviour
 {
+    [Header("GameObject References")]
     public GameObject player; 
     public GameObject metaballObject;
     public GameObject objectToActivate;
     public GameObject objectToDeactivate;
     public GameObject nextColiderToActivate;
+    private bool hasCollided = false;
+    private List<GameObject> cloneList = new List<GameObject>();
+
+    [Header("Attraction Function Settings")]
     public GameObject attractionTarget; // Aggiunto l'attractionTarget
-    public float attractionDelay = 5f; // Tempo di attesa prima che Metaball venga attratto
+    public float attractionDelay = 40f; // Tempo di attesa prima che Metaball venga attratto
+    
+    [Header("Audio Settings")]
     public int audioClipIndex = 1;
     private AudioClip[] metaballSounds;
     private AudioSource audioSource;
-    private bool hasCollided = false;
-    private List<GameObject> cloneList = new List<GameObject>();
 
     private void Start()
     {
