@@ -415,6 +415,7 @@
 "Assets/Script/FlokingTutorial/FlockElementBehaviour.cs"
 "Assets/Script/FlokingTutorial/Flocking.cs"
 "Assets/Script/FlokingTutorial/FlockingManager.cs"
+"Assets/Script/FlokingTutorial/FlockingManager2Opt.cs"
 "Assets/Script/FlokingTutorial/FlockingManagerOpt.cs"
 "Assets/Script/FlokingTutorial/MobileFlockManager.cs"
 "Assets/Script/GenerativeMusic/CollisionSoundPlayer.cs"

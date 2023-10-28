@@ -43,14 +43,14 @@ public class Flocking : MonoBehaviour
             cloneLight.intensity = originalLightIntensity;
         }
 
-        speed = Random.Range(FlockingManagerOpt.FM.minSpeed, FlockingManagerOpt.FM.maxSpeed);
+        speed = Random.Range(FlockingManagerOpt.FMOpt.minSpeed, FlockingManagerOpt.FMOpt.maxSpeed);
         playerCollider = GameObject.FindGameObjectWithTag("FlockManager").GetComponent<Collider>();
 
         if (totalClonesWithAudio < MAX_CLONES_WITH_AUDIO)
         {
-            int randomIndex = Random.Range(0, FlockingManagerOpt.FM.mediaLibrary.audioClips.Length);
+            int randomIndex = Random.Range(0, FlockingManagerOpt.FMOpt.mediaLibrary.audioClips.Length);
             
-            cloneAudioSource.clip = FlockingManagerOpt.FM.mediaLibrary.audioClips[randomIndex];
+            cloneAudioSource.clip = FlockingManagerOpt.FMOpt.mediaLibrary.audioClips[randomIndex];
             cloneAudioSource.Play();
             
             totalClonesWithAudio++;
@@ -72,7 +72,7 @@ public class Flocking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Bounds b = new Bounds(FlockingManagerOpt.FM.transform.position, FlockingManagerOpt.FM.flyLimit);
+        Bounds b = new Bounds(FlockingManagerOpt.FMOpt.transform.position, FlockingManagerOpt.FMOpt.flyLimit);
 
         if (!b.Contains(transform.position))
         {
@@ -83,15 +83,15 @@ public class Flocking : MonoBehaviour
 
         if (turnig)
         {
-            Vector3 direction = FlockingManagerOpt.FM.transform.position - transform.position;
+            Vector3 direction = FlockingManagerOpt.FMOpt.transform.position - transform.position;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction),
-                                                  FlockingManagerOpt.FM.rotationSpeed * Time.deltaTime);
+                                                  FlockingManagerOpt.FMOpt.rotationSpeed * Time.deltaTime);
         }
         else
         {
             if(Random.Range(0, 100) < 10)
             {
-                speed = Random.Range(FlockingManagerOpt.FM.minSpeed, FlockingManagerOpt.FM.maxSpeed);
+                speed = Random.Range(FlockingManagerOpt.FMOpt.minSpeed, FlockingManagerOpt.FMOpt.maxSpeed);
             }
             applayRules();
         }
@@ -102,7 +102,7 @@ public class Flocking : MonoBehaviour
     void applayRules()
     {
         GameObject[] gos;
-        gos = FlockingManagerOpt.FM.allElement.ToArray();
+        gos = FlockingManagerOpt.FMOpt.allElement.ToArray();
 
         Vector3 vcentre = Vector3.zero;
         Vector3 vavoid = Vector3.zero;
@@ -115,7 +115,7 @@ public class Flocking : MonoBehaviour
             if(go != this.gameObject)
             {
                 nDistance = Vector3.Distance(go.transform.position, this.transform.position);
-                if(nDistance <= FlockingManagerOpt.FM.neighbourDistance)
+                if(nDistance <= FlockingManagerOpt.FMOpt.neighbourDistance)
                 {
                     vcentre += go.transform.position;
                     groupSize++;
@@ -133,11 +133,11 @@ public class Flocking : MonoBehaviour
 
         if (groupSize > 0)
         {
-            vcentre = vcentre / groupSize + (FlockingManagerOpt.FM.goalPos - this.transform.position);
+            vcentre = vcentre / groupSize + (FlockingManagerOpt.FMOpt.goalPos - this.transform.position);
             speed = gSpeed / groupSize;
-            if(speed > FlockingManagerOpt.FM.maxSpeed)
+            if(speed > FlockingManagerOpt.FMOpt.maxSpeed)
             {
-                speed = FlockingManagerOpt.FM.maxSpeed;
+                speed = FlockingManagerOpt.FMOpt.maxSpeed;
             }
 
             Vector3 direction = (vcentre + vavoid) - transform.position;
@@ -145,7 +145,7 @@ public class Flocking : MonoBehaviour
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation,
                                                         Quaternion.LookRotation(direction),
-                                                        FlockingManagerOpt.FM.rotationSpeed * Time.deltaTime);
+                                                        FlockingManagerOpt.FMOpt.rotationSpeed * Time.deltaTime);
             }
         }
     }
@@ -158,7 +158,7 @@ public class Flocking : MonoBehaviour
         }
 
         // Controllo aggiuntivo per assicurarsi che solo i cloni con un AudioSource riproducano un suono
-        if (other == playerCollider && FlockingManagerOpt.FM.arCamera && cloneAudioSource && !cloneAudioSource.isPlaying)
+        if (other == playerCollider && FlockingManagerOpt.FMOpt.arCamera && cloneAudioSource && !cloneAudioSource.isPlaying)
         {
             PlayRandomSoundFromIndexRange(2, 6);
         }
@@ -170,9 +170,9 @@ public class Flocking : MonoBehaviour
         {
             currentIndex = Random.Range(startIndex, endIndex + 1);
 
-            if (currentIndex < FlockingManagerOpt.FM.mediaLibrary.audioClips.Length) // Verifica che l'indice sia valido
+            if (currentIndex < FlockingManagerOpt.FMOpt.mediaLibrary.audioClips.Length) // Verifica che l'indice sia valido
             {
-                cloneAudioSource.clip = FlockingManagerOpt.FM.mediaLibrary.audioClips[currentIndex];
+                cloneAudioSource.clip = FlockingManagerOpt.FMOpt.mediaLibrary.audioClips[currentIndex];
                 cloneAudioSource.Play();
             }
         }
@@ -193,8 +193,8 @@ public class Flocking : MonoBehaviour
 
     void AssignRandomClipToAudioSource(AudioSource source)
     {
-        int randomIndex = Random.Range(0, FlockingManagerOpt.FM.mediaLibrary.audioClips.Length);
-        source.clip = FlockingManagerOpt.FM.mediaLibrary.audioClips[randomIndex];
+        int randomIndex = Random.Range(0, FlockingManagerOpt.FMOpt.mediaLibrary.audioClips.Length);
+        source.clip = FlockingManagerOpt.FMOpt.mediaLibrary.audioClips[randomIndex];
     }
 
     IEnumerator HandleCollisionEffect()

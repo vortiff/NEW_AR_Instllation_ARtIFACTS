@@ -765,7 +765,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1625629797659321739}
   m_Layer: 0
-  m_Name: Anchor2Intro
+  m_Name: Anchor2IntroOcchi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

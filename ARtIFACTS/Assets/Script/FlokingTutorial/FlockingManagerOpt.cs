@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FlockingManagerOpt : MonoBehaviour
 {
-    public static FlockingManagerOpt FM;
+    public static FlockingManagerOpt FMOpt;
     public GameObject elementPrefab;
     public int numElement = 20;
     public List<GameObject> allElement = new List<GameObject>();
@@ -52,7 +52,7 @@ public class FlockingManagerOpt : MonoBehaviour
             allElement.Add(clone);
         }
 
-        FM = this;
+        FMOpt = this;
         goalPos = this.transform.position;
 
         // Cache the Flocking components {array per memorizzare tutti gli script FlockingOPT all'avvio per non chiamare GetComponent ad ogni frame}

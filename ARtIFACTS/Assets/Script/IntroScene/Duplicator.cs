@@ -188,7 +188,7 @@ public class Duplicator : MonoBehaviour
 
         int randomIndex = Random.Range(0, currentReferenceTextures.Count);
         Renderer objRenderer = obj.GetComponent<Renderer>();
-       Debug.Log("Renderer: " + objRenderer);
+        // Debug.Log("Renderer: " + objRenderer);
 
 
         if (objRenderer != null)
@@ -201,7 +201,7 @@ public class Duplicator : MonoBehaviour
 
             // Applica il MaterialPropertyBlock al renderer
             objRenderer.SetPropertyBlock(propBlock);
-            Debug.Log("Texture selezionata: " + currentReferenceTextures[randomIndex].name);
+            // Debug.Log("Texture selezionata: " + currentReferenceTextures[randomIndex].name);
 
         }
         else

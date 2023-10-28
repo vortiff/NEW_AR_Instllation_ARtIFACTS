@@ -102,7 +102,7 @@
 
         private IEnumerator RotateBack(GameObject circle)
         {
-            Debug.Log("Starting to rotate back.");
+            // Debug.Log("Starting to rotate back.");
             Quaternion startRotation = circle.transform.rotation;
             Quaternion endRotation = Quaternion.Euler(0, 0, 90); // Adjusted the end rotation to go back to the initial rotation
 
@@ -116,7 +116,7 @@
             }
 
             circle.transform.rotation = endRotation;
-            Debug.Log("Finished rotating back.");
+            // Debug.Log("Finished rotating back.");
             PlaySound(circle, 7); // Suono per la rotazione indietro
 
             // Start fade out Metallic value for all circles
@@ -168,7 +168,7 @@
                 }
                 else
                 {
-                    Debug.Log($"Circle at [{row},{col}] no longer being hit by the Player.");
+                   // Debug.Log($"Circle at [{row},{col}] no longer being hit by the Player.");
                 }
             }
         }
