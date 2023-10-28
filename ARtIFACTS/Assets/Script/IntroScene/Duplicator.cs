@@ -125,7 +125,7 @@ public class Duplicator : MonoBehaviour
         Vector3 randomOffset = new Vector3(
             Random.Range(-duplicationWidth / 2, duplicationWidth / 2),
             Random.Range(-duplicationHeight / 2, duplicationHeight / 2),
-            Random.Range(-duplicationDepth / 2, duplicationDepth / 2)
+            Random.Range(0, duplicationDepth)
         );
 
         Vector3 newPosition = currentReference.position + randomOffset;
@@ -135,7 +135,7 @@ public class Duplicator : MonoBehaviour
         newObject.SetActive(true);
         activeObjectsQueue.Enqueue(newObject);
 
-        Debug.Log("Oggetto duplicato e posizionato in: " + currentReference);
+        //Debug.Log("Oggetto duplicato e posizionato in: " + currentReference);
 
         PlayRandomAudio();
     }
@@ -188,14 +188,21 @@ public class Duplicator : MonoBehaviour
 
         int randomIndex = Random.Range(0, currentReferenceTextures.Count);
         Renderer objRenderer = obj.GetComponent<Renderer>();
+       Debug.Log("Renderer: " + objRenderer);
+
 
         if (objRenderer != null)
         {
+            
             // Imposta la texture nel MaterialPropertyBlock
-            propBlock.SetTexture("BaseMap", currentReferenceTextures[randomIndex]);
+            propBlock.SetTexture("_BaseMap", currentReferenceTextures[randomIndex]);
+            // Deprecable // objRenderer.material.mainTexture = currentReferenceTextures[randomIndex];
+
 
             // Applica il MaterialPropertyBlock al renderer
             objRenderer.SetPropertyBlock(propBlock);
+            Debug.Log("Texture selezionata: " + currentReferenceTextures[randomIndex].name);
+
         }
         else
         {
@@ -220,7 +227,7 @@ public class Duplicator : MonoBehaviour
             objectToPoolIndex.Remove(oldestObject); // Rimuovi l'oggetto dal dizionario
 
             PlayRandomAudio();
-            Debug.Log("RemoveOldestObject PlayRandomAudio " + poolIndex);
+           // Debug.Log("RemoveOldestObject PlayRandomAudio " + poolIndex);
    
         }
     }
