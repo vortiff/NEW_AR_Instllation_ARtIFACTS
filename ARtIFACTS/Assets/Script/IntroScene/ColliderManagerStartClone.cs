@@ -3,6 +3,9 @@ using System.Collections;
 
 public class ColliderManagerStartClone : MonoBehaviour
 {
+   [Header("Collider Activation")]
+    public float colliderActivationDelay = 1.0f; // Ritardo prima dell'attivazione del collider
+
     [Header("GameObject References")]
     public GameObject metaballObject; // Il GameObject Metaball
     public GameObject objectToClone; // Il GameObject da duplicare
@@ -41,6 +44,10 @@ public class ColliderManagerStartClone : MonoBehaviour
 
     private void Start()
     {
+        // Disattiva il Collider all'avvio
+        GetComponent<Collider>().enabled = false;
+        StartCoroutine(ActivateColliderAfterDelay());
+
         cloneRigidbodies = new Rigidbody[numberOfClones];
         randomForces = new Vector3[numberOfClones];
 
@@ -155,5 +162,11 @@ public class ColliderManagerStartClone : MonoBehaviour
     private Vector3 GetRandomPositionWithinRadius()
     {
         return transform.position + Random.insideUnitSphere * cloneSpreadRadius;
+    }
+
+    private IEnumerator ActivateColliderAfterDelay()
+    {
+        yield return new WaitForSeconds(colliderActivationDelay);
+        GetComponent<Collider>().enabled = true;
     }
 }

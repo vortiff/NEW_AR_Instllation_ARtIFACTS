@@ -3,8 +3,8 @@
     {
       "type": "il2cppData",
       "msg": {
-        "build_event_id": "74fcc10e4d0f5457bbd0bed164cb30d3",
-        "node_executed": false,
+        "build_event_id": "72651511cd1144fc9884df43986cab40",
+        "node_executed": true,
         "attribute_total_count_eager_static_constructor": 80,
         "attribute_total_count_set_option": 0,
         "attribute_total_count_generate_into_own_cpp_file": 0,
@@ -42,22 +42,35 @@
     {
       "type": "playerBuildTimingData",
       "msg": {
-        "build_event_id": "74fcc10e4d0f5457bbd0bed164cb30d3",
-        "build_player": 54110,
-        "preprocess_player": 970,
-        "produce_player_script_assemblies": 1229,
-        "build_scripts_dlls": 14,
-        "writing_asset_files": 771,
-        "postprocess_built_player": 29705,
-        "node_summary_table": []
+        "build_event_id": "72651511cd1144fc9884df43986cab40",
+        "build_player": 59209,
+        "preprocess_player": 591,
+        "produce_player_script_assemblies": 2399,
+        "build_scripts_dlls": 16,
+        "writing_asset_files": 1187,
+        "postprocess_built_player": 34432,
+        "node_summary_table": [
+          {
+            "name": "Csc",
+            "duration": 445
+          },
+          {
+            "name": "UnityLinker.exe",
+            "duration": 4199
+          },
+          {
+            "name": "il2cpp.exe",
+            "duration": 6030
+          }
+        ]
       },
       "version": 1
     },
     {
       "type": "unityLinkerData",
       "msg": {
-        "build_event_id": "74fcc10e4d0f5457bbd0bed164cb30d3",
-        "node_executed": false,
+        "build_event_id": "72651511cd1144fc9884df43986cab40",
+        "node_executed": true,
         "attribute_marked_count_always_link_assembly": 2,
         "attribute_swept_count_always_link_assembly": 0,
         "attribute_total_count_always_link_assembly": 2,
@@ -79,11 +92,11 @@
         "attribute_total_count_dynamic_dependency": 0,
         "attribute_marked_count_dynamic_dependency": 11,
         "attribute_swept_count_dynamic_dependency": -11,
-        "assembly_counts_total_in": 105,
+        "assembly_counts_total_in": 106,
         "assembly_counts_link": 36,
-        "assembly_counts_copy": 20,
+        "assembly_counts_copy": 21,
         "assembly_counts_delete": 49,
-        "assembly_counts_total_out": 56,
+        "assembly_counts_total_out": 57,
         "unresolved_stubbing_total_count": 0,
         "unresolved_stubbing_missing_interface_method_count": 0,
         "unresolved_stubbing_missing_abstract_class_method_count": 0,

@@ -7,7 +7,7 @@ public class RandomDeformationColorCloni : MonoBehaviour
     public float deformationIntensity = 1.45f;
     public float colorChangeSpeed = 1f; // Velocità di cambio colore, maggiore è il valore, più veloce sarà il cambio colore.
 
-    public int deformationFrameRate = 30; // Deforma la mesh ogni 10 frame
+    public int deformationFrameRate = 10; // Deforma la mesh ogni 10 frame
     private int currentFrame = 0;
 
     public Color minColor = Color.red; // Colore minimo del range
