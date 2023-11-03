@@ -1,127 +1,229 @@
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+    using UnityEngine;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System;
 
-public class ColliderManager : MonoBehaviour
-{
-    [Header("GameObject References")]
-    public GameObject player; 
-    public GameObject metaballObject;
-    public GameObject objectToActivate;
-    public GameObject objectToDeactivate;
-    public GameObject nextColiderToActivate;
-    private bool hasCollided = false;
-    private List<GameObject> cloneList = new List<GameObject>();
 
-    [Header("Attraction Function Settings")]
-    public GameObject attractionTarget; // Aggiunto l'attractionTarget
-    public float attractionDelay = 40f; // Tempo di attesa prima che Metaball venga attratto
-    
-    [Header("Audio Settings")]
-    public int audioClipIndex = 1;
-    private AudioClip[] metaballSounds;
-    private AudioSource audioSource;
-
-    private void Start()
+    public class ColliderManager : MonoBehaviour
     {
-        audioSource = metaballObject.GetComponent<AudioSource>();
-        metaballSounds = metaballObject.GetComponent<Metaball>().voiceOverSounds;
-    }
+        [Header("Weather Data Manager Reference")]
+        public WeatherDataManager weatherDataManager; 
+
+        [Header("GameObject References")]
+        public GameObject player; 
+        public GameObject metaballObject;
+        public GameObject objectToActivate;
+        public GameObject objectToDeactivate;
+        public GameObject nextColiderToActivate;
+        private bool hasCollided = false;
+        private List<GameObject> cloneList = new List<GameObject>();
+
+        [Header("Attraction Function Settings")]
+        public GameObject attractionTarget; // Aggiunto l'attractionTarget
+        public float attractionDelay = 40f; // Tempo di attesa prima che Metaball venga attratto
+        
+        [Header("Audio Settings")]
+        public int audioClipIndex = 1;
+        public bool playWeatherAudioAfterClip = true; // Riproduci l'audio del meteo dopo audioClipIndex
+        public int startClipIndex = 1; // inizio del range dell'index
+        public int endClipIndex = 10; // fine del range dell'index
+        private AudioClip[] metaballSounds;
+        private AudioSource audioSource;
+        private int audioClipWeather = -1;
+
+        // Inserisci le enumerazioni qui
+        public enum PartOfDay { Morning, Afternoon, Evening, Night }
+        public enum TemperatureRange { Cold, Mild, Hot }
+        
+        private void Start()
+        {
+            audioSource = metaballObject.GetComponent<AudioSource>();
+            metaballSounds = metaballObject.GetComponent<Metaball>().voiceOverSounds;
+
+        }
 
     private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject == player && !hasCollided)
         {
+            Debug.Log("OnTriggerEnter called with GameObject: " + other.gameObject.name);
+            if (other.gameObject == player && !hasCollided)
+            {
+                
+
+                StartCoroutine(PlaySoundsInOrder());
+                WeatherDataManager.WeatherInfo currentWeather = weatherDataManager.GetCurrentWeatherInfo();
+                float currentTemperature = currentWeather.main.temp - 273.15f; // Converti da Kelvin a Celsius
+
+                DetermineSoundToPlay(currentTemperature);
+
+                if (objectToActivate != null)
+                {
+                    objectToActivate.SetActive(true);
+                    nextColiderToActivate.SetActive(true);
+                }
+
+                ActivateGravityOnClones();
+                StartCoroutine(AttractMetaballAfterDelay());
+                PlaySoundsInOrder();
+                Debug.Log("Playing audio clip at index: " + audioClipIndex);
+
+
+                hasCollided = true;
+            }
+        }
+        private IEnumerator PlaySoundsInOrder()
+        {
+            // Riproduzione della clip audio indicata da audioClipIndex
             if (audioSource != null && metaballSounds.Length > 0 && audioClipIndex < metaballSounds.Length)
             {
                 audioSource.clip = metaballSounds[audioClipIndex];
                 audioSource.Play();
+                yield return new WaitForSeconds(audioSource.clip.length);  // Aspetta che il suono finisca
             }
 
-            if (objectToActivate != null)
+            // Riproduci l'audio del meteo dopo la clip, se playWeatherAudioAfterClip è true
+        if (playWeatherAudioAfterClip)
+        {
+            WeatherDataManager.WeatherInfo currentWeather = weatherDataManager.GetCurrentWeatherInfo();
+            float currentTemperature = currentWeather.main.temp - 273.15f; // Converti da Kelvin a Celsius
+            DetermineSoundToPlay(currentTemperature);
+
+            // Assicurati che l'indice della clip audio selezionato sia valido e dentro l'array di suoni.
+            if (audioClipWeather >= 0 && audioClipWeather < metaballSounds.Length)
             {
-                objectToActivate.SetActive(true);
-                nextColiderToActivate.SetActive(true);
+                audioSource.clip = metaballSounds[audioClipWeather];
+                audioSource.Play();
+                yield return new WaitForSeconds(audioSource.clip.length);
             }
-
-            ActivateGravityOnClones();
-            StartCoroutine(AttractMetaballAfterDelay());
-
-            hasCollided = true;
-        }
-    }
-
-    private void ActivateGravityOnClones()
-    {
-        foreach (GameObject clone in cloneList)
-        {
-            Rigidbody rb = clone.GetComponent<Rigidbody>();
-            if (rb != null)
+            else
             {
-                rb.useGravity = true;
+                Debug.LogError("Indice della clip audio non valido o fuori range.");
             }
         }
-    }
-
-    private IEnumerator AttractMetaballAfterDelay()
-    {
-        yield return new WaitForSeconds(attractionDelay);
-
-        // Fai in modo che Metaball segua l'attractionTarget
-        metaballObject.transform.LookAt(attractionTarget.transform);
-        Rigidbody metaballRb = metaballObject.GetComponent<Rigidbody>();
-        metaballRb.velocity = metaballObject.transform.forward * 5; // 5 è la velocità con cui Metaball si muove verso l'attractionTarget
-
-        // Riproduci il suono con indice 3
-        if (audioSource != null && metaballSounds.Length > 3)
-        {
-            audioSource.clip = metaballSounds[3];
-            audioSource.Play();
+            
         }
 
-        // Continua con la distruzione dei cloni e la disattivazione dell'oggetto
-        StartCoroutine(DestroyAndDeactivate());
+         private TemperatureRange GetTemperatureRange(float temperature)
+    {
+        if (temperature < 10) return TemperatureRange.Cold;
+        else if (temperature >= 10 && temperature < 20) return TemperatureRange.Mild;
+        else return TemperatureRange.Hot;
     }
 
-    private IEnumerator DestroyAndDeactivate()
+    private PartOfDay GetCurrentPartOfDay()
     {
-        yield return StartCoroutine(FadeOutClonesOverTime(2f)); // Fade out dei cloni in 2 secondi
-        DestroyClones();
+        DateTime currentTime = DateTime.Now;
+        int hour = currentTime.Hour;
 
-        if (objectToDeactivate != null)
+        if (hour >= 6 && hour < 12) return PartOfDay.Morning;
+        else if (hour >= 12 && hour < 18) return PartOfDay.Afternoon;
+        else if (hour >= 18 && hour < 22) return PartOfDay.Evening;
+        else return PartOfDay.Night;
+    }
+
+   private void DetermineSoundToPlay(float temperature)
+    {
+        // Assicurati che startClipIndex e endClipIndex siano impostati correttamente nell'Inspector
+        // per esempio startClipIndex = 10 e quindi endClipIndex = 21
+
+        TemperatureRange tempRange = GetTemperatureRange(temperature);
+        PartOfDay partOfDay = GetCurrentPartOfDay();
+
+        // Calcola l'offset basato sulla parte del giorno (0 per Morning, 3 per Afternoon, ecc.)
+        int dayPartOffset = (int)partOfDay * 3;
+
+        // Assegna l'audioClipWeather in base alla combinazione di PartOfDay e TemperatureRange
+        switch (tempRange)
         {
-            objectToDeactivate.SetActive(false);
+            case TemperatureRange.Cold:
+                audioClipWeather = startClipIndex + dayPartOffset;
+                break;
+            case TemperatureRange.Mild:
+                audioClipWeather = startClipIndex + dayPartOffset + 1;
+                break;
+            case TemperatureRange.Hot:
+                audioClipWeather = startClipIndex + dayPartOffset + 2;
+                break;
+        }
+
+        // Controlla che l'indice selezionato non superi il valore di endClipIndex
+        if (audioClipWeather > endClipIndex)
+        {
+            Debug.LogError("audioClipWeather ha superato endClipIndex, verifica i valori di startClipIndex e la dimensione dell'array.");
+            audioClipWeather = endClipIndex; // Imposta al valore massimo per evitare errori di indice fuori range
         }
     }
 
-    private void DestroyClones()
-    {
-        foreach (GameObject clone in cloneList)
+        private void ActivateGravityOnClones()
         {
-            Destroy(clone);
-        }
-        cloneList.Clear();
-    }
-
-    private IEnumerator FadeOutClonesOverTime(float duration)
-    {
-        float startTime = Time.time;
-        float endTime = startTime + duration;
-
-        while (Time.time < endTime)
-        {
-            float t = (Time.time - startTime) / duration;
             foreach (GameObject clone in cloneList)
             {
-                Renderer rend = clone.GetComponent<Renderer>();
-                if (rend != null && rend.material.HasProperty("_Color"))
+                Rigidbody rb = clone.GetComponent<Rigidbody>();
+                if (rb != null)
                 {
-                    Color originalColor = rend.material.GetColor("_Color");
-                    originalColor.a = Mathf.Lerp(1f, 0f, t); // Interpolazione dell'alpha
-                    rend.material.SetColor("_Color", originalColor);
+                    rb.useGravity = true;
                 }
             }
-            yield return null;
+        }
+
+        private IEnumerator AttractMetaballAfterDelay()
+        {
+            yield return new WaitForSeconds(attractionDelay);
+
+            // Fai in modo che Metaball segua l'attractionTarget
+            metaballObject.transform.LookAt(attractionTarget.transform);
+            Rigidbody metaballRb = metaballObject.GetComponent<Rigidbody>();
+            metaballRb.velocity = metaballObject.transform.forward * 5; // 5 è la velocità con cui Metaball si muove verso l'attractionTarget
+
+            // Riproduci il suono con indice 13
+            if (audioSource != null && metaballSounds.Length > 3)
+            {
+                audioSource.clip = metaballSounds[13];
+                audioSource.Play();
+            }
+
+            // Continua con la distruzione dei cloni e la disattivazione dell'oggetto
+            StartCoroutine(DestroyAndDeactivate());
+        }
+
+        private IEnumerator DestroyAndDeactivate()
+        {
+            yield return StartCoroutine(FadeOutClonesOverTime(2f)); // Fade out dei cloni in 2 secondi
+            DestroyClones();
+
+            if (objectToDeactivate != null)
+            {
+                objectToDeactivate.SetActive(false);
+            }
+        }
+
+        private void DestroyClones()
+        {
+            foreach (GameObject clone in cloneList)
+            {
+                Destroy(clone);
+            }
+            cloneList.Clear();
+        }
+
+        private IEnumerator FadeOutClonesOverTime(float duration)
+        {
+            float startTime = Time.time;
+            float endTime = startTime + duration;
+
+            while (Time.time < endTime)
+            {
+                float t = (Time.time - startTime) / duration;
+                foreach (GameObject clone in cloneList)
+                {
+                    Renderer rend = clone.GetComponent<Renderer>();
+                    if (rend != null && rend.material.HasProperty("_Color"))
+                    {
+                        Color originalColor = rend.material.GetColor("_Color");
+                        originalColor.a = Mathf.Lerp(1f, 0f, t); // Interpolazione dell'alpha
+                        rend.material.SetColor("_Color", originalColor);
+                    }
+                }
+                yield return null;
+            }
         }
     }
-}

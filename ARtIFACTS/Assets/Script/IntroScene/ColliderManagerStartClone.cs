@@ -1,22 +1,44 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
+using System;
 
 public class ColliderManagerStartClone : MonoBehaviour
 {
-   [Header("Collider Activation")]
+    public enum PartOfDay
+    {
+        Morning,
+        Afternoon,
+        Evening,
+        Night
+    }
+
+    public enum TemperatureRange
+    {
+        Cold,
+        Mild,
+        Hot
+    }
+
+    [Header("Weather Data Manager Reference")]
+    public WeatherDataManager weatherDataManager; // Reference to the WeatherDataManager script
+
+    [Header("Collider Activation")]
     public float colliderActivationDelay = 1.0f; // Ritardo prima dell'attivazione del collider
 
     [Header("GameObject References")]
-    public GameObject metaballObject; // Il GameObject Metaball
-    public GameObject objectToClone; // Il GameObject da duplicare
+    public GameObject metaballObject; 
+    public GameObject objectToClone; 
     public GameObject GameObjectToActivate;
-    public GameObject attractionTarget; // Il GameObject verso cui i cloni saranno attratti
+    public GameObject attractionTarget;
+    private bool hasCollided = false;
    
     [Header("Audio Settings")]
     public int audioClipIndex = 0; // L'indice dell'audio clip da riprodurre
-    private int currentSoundIndex = 0; // Indice del suono corrente da riprodurre
+    private int audioClipWeather; // Audio clip in base a Temperatura e Orario
+    private bool hasPlayedAudioClipIndex = false; // Flag per vedere se audioClipIndex è stata riprodotta
     private AudioSource audioSource;
-    private AudioClip[] metaballSounds; // Array di suoni da Metaball
+    private AudioClip[] metaballSounds; 
 
     [Header("Clone Settings")]
     [SerializeField]
@@ -39,9 +61,6 @@ public class ColliderManagerStartClone : MonoBehaviour
     public float maxWobbleSpeed;
     public float minWobbleSpeed;
 
-    [Header("Other Settings")]
-    private bool hasCollided = false;
-
     private void Start()
     {
         // Disattiva il Collider all'avvio
@@ -54,9 +73,9 @@ public class ColliderManagerStartClone : MonoBehaviour
         for (int i = 0; i < numberOfClones; i++)
         {
             randomForces[i] = new Vector3(
-            Random.Range(-1f, 1f),
-            Random.Range(-1f, 1f),
-            Random.Range(-1f, 1f)
+            UnityEngine.Random.Range(-1f, 1f),
+            UnityEngine.Random.Range(-1f, 1f),
+            UnityEngine.Random.Range(-1f, 1f)
         );
         }
         // Ottieni il componente AudioSource dal GameObject Metaball
@@ -79,11 +98,22 @@ public class ColliderManagerStartClone : MonoBehaviour
             }
 
             // Riproduci il suono VoiceOver dalla lista del GameObject Metaball
-            if (audioSource != null && metaballSounds.Length > 0 && audioClipIndex < metaballSounds.Length)
+            if (audioSource != null && metaballSounds.Length > 0 && !hasPlayedAudioClipIndex)
             {
-                audioSource.clip = metaballSounds[audioClipIndex];
-                audioSource.Play();
+                if (audioClipIndex < metaballSounds.Length)
+                {
+                    audioSource.clip = metaballSounds[audioClipIndex];
+                    audioSource.Play();
+                    hasPlayedAudioClipIndex = true;
+                    StartCoroutine(PlayWeatherAudioAfterDelay(audioSource.clip.length + 1));
+                }
             }
+           
+            WeatherDataManager.WeatherInfo currentWeather = weatherDataManager.GetCurrentWeatherInfo(); // Modifica qui
+            float currentTemperature = currentWeather.main.temp - 273.15f; // Converti da Kelvin a Celsius
+
+            DetermineSoundToPlay(currentTemperature);
+
 
             // Attiva il componente FollowPlayer sul GameObject Metaball, se presente
             Metaball followPlayerComponent = metaballObject.GetComponent<Metaball>();
@@ -112,10 +142,10 @@ public class ColliderManagerStartClone : MonoBehaviour
             cloneRigidbodies[i] = cloneRb;
 
             // Assegna i valori random ai cloni
-            cloneRb.velocity = Random.Range(minCloneSpeed, maxCloneSpeed) * Vector3.up;
-            gravitationalStrength = Random.Range(minGravitationalStrength, maxGravitationalStrength);
-            wobbleStrength = Random.Range(minWobbleStrength, maxWobbleStrength);
-            wobbleSpeed = Random.Range(minWobbleSpeed, maxWobbleSpeed);
+            cloneRb.velocity = UnityEngine.Random.Range(minCloneSpeed, maxCloneSpeed) * Vector3.up;
+            gravitationalStrength = UnityEngine.Random.Range(minGravitationalStrength, maxGravitationalStrength);
+            wobbleStrength = UnityEngine.Random.Range(minWobbleStrength, maxWobbleStrength);
+            wobbleSpeed = UnityEngine.Random.Range(minWobbleSpeed, maxWobbleSpeed);
         }
     }
 
@@ -161,7 +191,7 @@ public class ColliderManagerStartClone : MonoBehaviour
 
     private Vector3 GetRandomPositionWithinRadius()
     {
-        return transform.position + Random.insideUnitSphere * cloneSpreadRadius;
+        return transform.position + UnityEngine.Random.insideUnitSphere * cloneSpreadRadius;
     }
 
     private IEnumerator ActivateColliderAfterDelay()
@@ -169,4 +199,120 @@ public class ColliderManagerStartClone : MonoBehaviour
         yield return new WaitForSeconds(colliderActivationDelay);
         GetComponent<Collider>().enabled = true;
     }
+
+    private TemperatureRange GetTemperatureRange(float temperature)
+    {
+        if (temperature < 10) return TemperatureRange.Cold;
+        else if (temperature >= 10 && temperature < 20) return TemperatureRange.Mild;
+        else return TemperatureRange.Hot;
+    }
+
+    private PartOfDay GetCurrentPartOfDay()
+    {
+        DateTime currentTime = DateTime.Now;
+        int hour = currentTime.Hour;
+
+        if (hour >= 6 && hour < 12) return PartOfDay.Morning;
+        else if (hour >= 12 && hour < 18) return PartOfDay.Afternoon;
+        else if (hour >= 18 && hour < 22) return PartOfDay.Evening;
+        else return PartOfDay.Night;
+    }
+
+
+    private void DetermineSoundToPlay(float temperature)
+    {
+        TemperatureRange tempRange = GetTemperatureRange(temperature);
+        PartOfDay partOfDay = GetCurrentPartOfDay();
+
+        switch (partOfDay)
+        {
+            case PartOfDay.Morning:
+                switch (tempRange)
+                {
+                    case TemperatureRange.Cold:
+                        audioClipWeather = 1;
+                        break;
+                    case TemperatureRange.Mild:
+                        audioClipWeather = 2;
+                        break;
+                    case TemperatureRange.Hot:
+                        audioClipWeather = 3;
+                        break;
+                }
+                break;
+
+            case PartOfDay.Afternoon:
+                switch (tempRange)
+                {
+                    case TemperatureRange.Cold:
+                        audioClipWeather = 4;
+                        break;
+                    case TemperatureRange.Mild:
+                        audioClipWeather = 5;
+                        break;
+                    case TemperatureRange.Hot:
+                        audioClipWeather = 6;
+                        break;
+                }
+                break;
+
+            case PartOfDay.Evening:
+                switch (tempRange)
+                {
+                    case TemperatureRange.Cold:
+                        audioClipWeather = 7;
+                        break;
+                    case TemperatureRange.Mild:
+                        audioClipWeather = 8;
+                        break;
+                    case TemperatureRange.Hot:
+                        audioClipWeather = 9;
+                        break;
+                }
+                break;
+
+            case PartOfDay.Night:
+                switch (tempRange)
+                {
+                    case TemperatureRange.Cold:
+                        audioClipWeather = 10;
+                        break;
+                    case TemperatureRange.Mild:
+                        audioClipWeather = 11;
+                        break;
+                    case TemperatureRange.Hot:
+                        audioClipWeather = 12;
+                        break;
+                }
+                break;
+        }
+    }
+
+
+
+    [System.Serializable]
+    public class WeatherInfo
+    {
+        public MainInfo main;
+    }
+
+    [System.Serializable]
+    public class MainInfo
+    {
+        public float temp;
+    }
+
+    private IEnumerator PlayWeatherAudioAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (audioClipWeather < metaballSounds.Length)
+        {
+            audioSource.clip = metaballSounds[audioClipWeather];
+            audioSource.Play();
+        }
+        Debug.Log($"Riproduzione di AudioSource: {audioSource.clip.name}");
+    }
+
+
 }

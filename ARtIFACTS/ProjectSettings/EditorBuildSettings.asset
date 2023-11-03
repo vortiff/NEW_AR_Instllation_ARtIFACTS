@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Utilities/AR Environment Probe Manager.unity
     guid: 1531927253f404eb38fe2c0ac4483a32
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Intro/ARTestPlayGround.unity
     guid: b374239b2f5de4e7498508533b3e0f24
   m_configObjects:

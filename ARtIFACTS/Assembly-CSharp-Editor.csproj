@@ -47,7 +47,6 @@
      <Compile Include="Assets/TutorialInfo/Scripts/Editor/ReadmeEditor.cs" />
      <Compile Include="Assets/TheGeneratorOnLine/Assets/Editor/LineGeneratorEditor.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Editor/CurrentSRP.cs" />
-     <Compile Include="Assets/Bitgem/StylisedWater/URP/Scripts/Bitgem/Editor/FlagEnumAttributeDrawer.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Editor/Greetings.cs" />
      <Compile Include="Assets/Samples/ARCore Extensions/1.39.0/Geospatial Sample/Scripts/Editor/GeospatialPreprocessBuild.cs" />
     <Reference Include="UnityEngine">
@@ -953,9 +952,17 @@
       <Project>{1a443d3f-4554-8585-04a7-88893700dc9e}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
+    <ProjectReference Include="NativeCamera.Runtime.csproj">
+      <Project>{334f6a61-c5bc-fdff-9a44-aeee45c63e24}</Project>
+      <Name>NativeCamera.Runtime</Name>
+    </ProjectReference>
     <ProjectReference Include="FullscreenEditor.csproj">
       <Project>{43b31d22-2eb4-56da-6bcf-aa51a92417e0}</Project>
       <Name>FullscreenEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="NativeCamera.Editor.csproj">
+      <Project>{794a7706-e66e-2e9f-ba6c-021fed830ff7}</Project>
+      <Name>NativeCamera.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

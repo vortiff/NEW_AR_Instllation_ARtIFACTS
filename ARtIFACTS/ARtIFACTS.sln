@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{1a443d3f-4554-8585-04a7-88893700dc9e}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeCamera.Runtime", "NativeCamera.Runtime.csproj", "{334f6a61-c5bc-fdff-9a44-aeee45c63e24}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{87d66f04-5eff-77ae-d1d1-9da52e3a6e43}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FullscreenEditor", "FullscreenEditor.csproj", "{43b31d22-2eb4-56da-6bcf-aa51a92417e0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeCamera.Editor", "NativeCamera.Editor.csproj", "{794a7706-e66e-2e9f-ba6c-021fed830ff7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,10 +18,14 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1a443d3f-4554-8585-04a7-88893700dc9e}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1a443d3f-4554-8585-04a7-88893700dc9e}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{334f6a61-c5bc-fdff-9a44-aeee45c63e24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{334f6a61-c5bc-fdff-9a44-aeee45c63e24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87d66f04-5eff-77ae-d1d1-9da52e3a6e43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{87d66f04-5eff-77ae-d1d1-9da52e3a6e43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43b31d22-2eb4-56da-6bcf-aa51a92417e0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{43b31d22-2eb4-56da-6bcf-aa51a92417e0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{794a7706-e66e-2e9f-ba6c-021fed830ff7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{794a7706-e66e-2e9f-ba6c-021fed830ff7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

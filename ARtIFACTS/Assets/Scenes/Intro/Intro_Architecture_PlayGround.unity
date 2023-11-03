@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa408d03134f24e48bb758a7c61430f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weatherDataManager: {fileID: 0}
   player: {fileID: 1398994829}
   metaballObject: {fileID: 449848225}
   objectToActivate: {fileID: 0}
@@ -179,6 +180,9 @@ MonoBehaviour:
   attractionTarget: {fileID: 0}
   attractionDelay: 5
   audioClipIndex: 9
+  playWeatherAudioAfterClip: 1
+  startClipIndex: 1
+  endClipIndex: 10
 --- !u!114 &72881750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,6 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa408d03134f24e48bb758a7c61430f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weatherDataManager: {fileID: 0}
   player: {fileID: 1398994829}
   metaballObject: {fileID: 449848225}
   objectToActivate: {fileID: 0}
@@ -329,6 +334,9 @@ MonoBehaviour:
   attractionTarget: {fileID: 0}
   attractionDelay: 5
   audioClipIndex: 11
+  playWeatherAudioAfterClip: 1
+  startClipIndex: 1
+  endClipIndex: 10
 --- !u!114 &261920500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,6 +425,51 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 261920497}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &288107294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 288107296}
+  - component: {fileID: 288107295}
+  m_Layer: 0
+  m_Name: WeatherDataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &288107295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288107294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0640ac43aa51745faac8ff63478000a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKey: d386055f62ee2bc66f11955589acdcdf
+--- !u!4 &288107296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288107294}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.185483, y: -1.3184052, z: -12.188145}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &293202359
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,6 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa408d03134f24e48bb758a7c61430f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weatherDataManager: {fileID: 0}
   player: {fileID: 1398994829}
   metaballObject: {fileID: 449848225}
   objectToActivate: {fileID: 0}
@@ -505,6 +559,9 @@ MonoBehaviour:
   attractionTarget: {fileID: 0}
   attractionDelay: 5
   audioClipIndex: 7
+  playWeatherAudioAfterClip: 1
+  startClipIndex: 1
+  endClipIndex: 10
 --- !u!114 &313575966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,7 +678,7 @@ MonoBehaviour:
   maxRadius: 1.66
   deformationIntensity: 1.13
   colorChangeSpeed: 0.5
-  deformationFrameRate: 30
+  deformationFrameRate: 0
   minColor: {r: 1, g: 0, b: 0, a: 1}
   maxColor: {r: 0.011764707, g: 1, b: 0.19215688, a: 1}
 --- !u!4 &501553079 stripped
@@ -926,6 +983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa408d03134f24e48bb758a7c61430f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weatherDataManager: {fileID: 0}
   player: {fileID: 1398994829}
   metaballObject: {fileID: 449848225}
   objectToActivate: {fileID: 0}
@@ -934,6 +992,9 @@ MonoBehaviour:
   attractionTarget: {fileID: 0}
   attractionDelay: 5
   audioClipIndex: 10
+  playWeatherAudioAfterClip: 1
+  startClipIndex: 1
+  endClipIndex: 10
 --- !u!114 &635499869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1810,6 +1871,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa408d03134f24e48bb758a7c61430f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weatherDataManager: {fileID: 0}
   player: {fileID: 1398994829}
   metaballObject: {fileID: 449848225}
   objectToActivate: {fileID: 0}
@@ -1818,6 +1880,9 @@ MonoBehaviour:
   attractionTarget: {fileID: 0}
   attractionDelay: 5
   audioClipIndex: 8
+  playWeatherAudioAfterClip: 1
+  startClipIndex: 1
+  endClipIndex: 10
 --- !u!114 &2019165978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2291,7 +2356,7 @@ PrefabInstance:
     - target: {fileID: 2869819467646433326, guid: 66fedf15d1629414882c39885308fea5,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2920698296924199084, guid: 66fedf15d1629414882c39885308fea5,
         type: 3}
@@ -2308,6 +2373,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 501553079}
+    - target: {fileID: 3165583308704460552, guid: 66fedf15d1629414882c39885308fea5,
+        type: 3}
+      propertyPath: duplicationHeight
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3248724203151188008, guid: 66fedf15d1629414882c39885308fea5,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2320,9 +2390,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4903674486801141420, guid: 66fedf15d1629414882c39885308fea5,
         type: 3}
+      propertyPath: apiKey
+      value: d386055f62ee2bc66f11955589acdcdf
+      objectReference: {fileID: 0}
+    - target: {fileID: 4903674486801141420, guid: 66fedf15d1629414882c39885308fea5,
+        type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1398994829}
+    - target: {fileID: 4903674486801141420, guid: 66fedf15d1629414882c39885308fea5,
+        type: 3}
+      propertyPath: audioClipIndex
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 4903674486801141420, guid: 66fedf15d1629414882c39885308fea5,
         type: 3}
       propertyPath: metaballObject
@@ -2340,14 +2420,29 @@ PrefabInstance:
       objectReference: {fileID: 176566723}
     - target: {fileID: 4903674486801141420, guid: 66fedf15d1629414882c39885308fea5,
         type: 3}
+      propertyPath: weatherDataManager
+      value: 
+      objectReference: {fileID: 288107295}
+    - target: {fileID: 4903674486801141420, guid: 66fedf15d1629414882c39885308fea5,
+        type: 3}
       propertyPath: nextColiderToActivate
       value: 
       objectReference: {fileID: 403357398}
+    - target: {fileID: 4903674486801141420, guid: 66fedf15d1629414882c39885308fea5,
+        type: 3}
+      propertyPath: playWeatherAudioAfterClip
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6183385594476546464, guid: 66fedf15d1629414882c39885308fea5,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 501553079}
+    - target: {fileID: 8041666668123433368, guid: 66fedf15d1629414882c39885308fea5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8041666668123433368, guid: 66fedf15d1629414882c39885308fea5,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2484,7 +2579,7 @@ PrefabInstance:
     - target: {fileID: 7618719868531641060, guid: b967579da944b48aca6c68780954af73,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7975268692102494795, guid: b967579da944b48aca6c68780954af73,
         type: 3}
@@ -2498,14 +2593,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8216929227132947233, guid: b967579da944b48aca6c68780954af73,
         type: 3}
+      propertyPath: apiKey
+      value: d386055f62ee2bc66f11955589acdcdf
+      objectReference: {fileID: 0}
+    - target: {fileID: 8216929227132947233, guid: b967579da944b48aca6c68780954af73,
+        type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1398994829}
     - target: {fileID: 8216929227132947233, guid: b967579da944b48aca6c68780954af73,
         type: 3}
+      propertyPath: endClipIndex
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 8216929227132947233, guid: b967579da944b48aca6c68780954af73,
+        type: 3}
+      propertyPath: audioClipIndex
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8216929227132947233, guid: b967579da944b48aca6c68780954af73,
+        type: 3}
       propertyPath: metaballObject
       value: 
       objectReference: {fileID: 449848225}
+    - target: {fileID: 8216929227132947233, guid: b967579da944b48aca6c68780954af73,
+        type: 3}
+      propertyPath: startClipIndex
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 8216929227132947233, guid: b967579da944b48aca6c68780954af73,
         type: 3}
       propertyPath: attractionTarget
@@ -2516,6 +2631,11 @@ PrefabInstance:
       propertyPath: objectToDeactivate
       value: 
       objectReference: {fileID: 1177006582}
+    - target: {fileID: 8216929227132947233, guid: b967579da944b48aca6c68780954af73,
+        type: 3}
+      propertyPath: weatherDataManager
+      value: 
+      objectReference: {fileID: 288107295}
     - target: {fileID: 8216929227132947233, guid: b967579da944b48aca6c68780954af73,
         type: 3}
       propertyPath: nextColiderToActivate
@@ -2530,6 +2650,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Anchor2Intro
+      objectReference: {fileID: 0}
+    - target: {fileID: 8997450453255316788, guid: b967579da944b48aca6c68780954af73,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9003971906833066526, guid: b967579da944b48aca6c68780954af73,
         type: 3}
@@ -3063,6 +3188,161 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 501553079}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: checkFrequency
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.size
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 68019181a3c874e01a2c389700deb06f, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 04c3043e3ed464130ab44e796b2dc8f9, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3db658081dc1a498b8395f71fd58ac03, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8fa0382f2bc3f4fc587d9b8e7a38147b, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: e0be6540f5e594c98a2dfb1b80a89a5f, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: f5558e204bcaf4652a98b94b9c234739, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2f4d2767d60a64e49a8155cc4c7c1dfc, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: e9afc082d212444198526a7f85d558fd, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[8]
+      value: 
+      objectReference: {fileID: 8300000, guid: 65947ba0f8e2346dc9872564ce4094ed, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[9]
+      value: 
+      objectReference: {fileID: 8300000, guid: 40863434a73824116a8cf2622b09cc67, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[10]
+      value: 
+      objectReference: {fileID: 8300000, guid: 61dc56344e5de4c41a5fa89042ef2399, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[11]
+      value: 
+      objectReference: {fileID: 8300000, guid: 968971a4b8c4f434cac2ae06109def45, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[12]
+      value: 
+      objectReference: {fileID: 8300000, guid: b9e5a2a80c5604e98a9ce704e58698f5, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[13]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2444507f0b4aa486a94ac1740340c908, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[14]
+      value: 
+      objectReference: {fileID: 8300000, guid: f227f25e39ee34074a080848b556b4fb, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[15]
+      value: 
+      objectReference: {fileID: 8300000, guid: 16a1dd293896c43519283c1208a20444, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[16]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[17]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[18]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[19]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[20]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[21]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[22]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[23]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[24]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[25]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[26]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[27]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
     - target: {fileID: 2814377935709606713, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3323,6 +3603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa408d03134f24e48bb758a7c61430f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weatherDataManager: {fileID: 0}
   player: {fileID: 1398994829}
   metaballObject: {fileID: 449848225}
   objectToActivate: {fileID: 2510966195711229520}
@@ -3331,6 +3612,9 @@ MonoBehaviour:
   attractionTarget: {fileID: 1342544584}
   attractionDelay: 40
   audioClipIndex: 4
+  playWeatherAudioAfterClip: 1
+  startClipIndex: 1
+  endClipIndex: 10
 --- !u!1001 &5483634623549460845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3642,6 +3926,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3713653075634542677, guid: 1ced273f4f4794242aba4db4472cdee2,
         type: 3}
+      propertyPath: apiKey
+      value: d386055f62ee2bc66f11955589acdcdf
+      objectReference: {fileID: 0}
+    - target: {fileID: 3713653075634542677, guid: 1ced273f4f4794242aba4db4472cdee2,
+        type: 3}
       propertyPath: metaballObject
       value: 
       objectReference: {fileID: 449848225}
@@ -3650,6 +3939,11 @@ PrefabInstance:
       propertyPath: attractionTarget
       value: 
       objectReference: {fileID: 701677333}
+    - target: {fileID: 3713653075634542677, guid: 1ced273f4f4794242aba4db4472cdee2,
+        type: 3}
+      propertyPath: weatherDataManager
+      value: 
+      objectReference: {fileID: 288107295}
     - target: {fileID: 3713653075634542677, guid: 1ced273f4f4794242aba4db4472cdee2,
         type: 3}
       propertyPath: GameObjectToActivate
@@ -4022,3 +4316,4 @@ SceneRoots:
   - {fileID: 293202360}
   - {fileID: 744283605}
   - {fileID: 1504764150}
+  - {fileID: 288107296}

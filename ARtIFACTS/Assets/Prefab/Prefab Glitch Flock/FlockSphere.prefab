@@ -150,7 +150,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2669860347641303866}
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorChangeDuration: 2
-  cloneRenderer: {fileID: 3494451836455321691}
+  cloneMaterial: {fileID: 0}
   cloneAudioSource: {fileID: 3183585925694951881}
   cloneLight: {fileID: 1783404141987527322}
   desiredLightIntensity: 1

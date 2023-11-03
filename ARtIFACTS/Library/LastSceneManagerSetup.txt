@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Intro/ARTestPlayGround.unity
+- path: Assets/Scenes/Utilities/AR Environment Probe Manager.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

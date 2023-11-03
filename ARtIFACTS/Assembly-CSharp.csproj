@@ -54,12 +54,16 @@
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/WallAvoidance.cs" />
      <Compile Include="Assets/Script/UtilitiesScript/RandomDeformation.cs" />
      <Compile Include="Assets/Script/IntroScene/LineGenerator/LineManager.cs" />
+     <Compile Include="Assets/Realistic Glitches Lite/Assets/Scripts/ShaderEffect_CRT.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Scripts/UltimateLevelOfDetailMeshes.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Libraries/MTAssets Mesh Simplifier/MT_Exceptions/MT_ValidateSimplificationOptionsException.cs" />
+     <Compile Include="Assets/Script/UtilitiesScript/WeatherDataManager.cs" />
      <Compile Include="Assets/Script/OPT/RandomDeformationColorOPT.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/SteeringBasics.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/ColAvoidUnit.cs" />
      <Compile Include="Assets/Script/IntroScene/Duplicator.cs" />
+     <Compile Include="Assets/Realistic Glitches Lite/Assets/Scripts/ShaderEffect_Scanner.cs" />
+     <Compile Include="Assets/Realistic Glitches Lite/Assets/Scripts/ShaderToTexture.cs" />
      <Compile Include="Assets/Script/FloatingObject.cs" />
      <Compile Include="Assets/Script/GenerativeMusic/CollisionSoundPlayerOPT.cs" />
      <Compile Include="Assets/Samples/ARCore Extensions/1.39.0/Geospatial Sample/Scripts/GeospatialAnchorHistory.cs" />
@@ -68,7 +72,6 @@
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Wander1Unit.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Libraries/MTAssets Mesh Simplifier/MT_Internal/MT_UVChannels.cs" />
      <Compile Include="Assets/Script/UtilitiesScript/RandomDeformationColorCloni.cs" />
-     <Compile Include="Assets/Bitgem/StylisedWater/URP/Scripts/Bitgem/VFX/StylisedWater/WaterVolumeBox.cs" />
      <Compile Include="Assets/Script/UtilitiesScript/GUI/RaycastObjectDetection.cs" />
      <Compile Include="Assets/Script/IntroScene/LineGenerator/LineDrawer.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/WanderAvoidUnit.cs" />
@@ -76,10 +79,10 @@
      <Compile Include="Assets/Script/FlokingTutorial/Flocking.cs" />
      <Compile Include="Assets/TutorialInfo/Scripts/Readme.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Libraries/MTAssets Mesh Simplifier/MT_MeshCombiner.cs" />
+     <Compile Include="Assets/Realistic Glitches Lite/Assets/Scripts/BWEffect.cs" />
      <Compile Include="Assets/TheGeneratorOnLine/Assets/Scripts/Points.cs" />
      <Compile Include="Assets/Script/GenerativeMusic/CollisionSoundPlayer.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Scripts/UltimateLevelOfDetail.cs" />
-     <Compile Include="Assets/Bitgem/StylisedWater/URP/Scripts/Bitgem/VFX/StylisedWater/WaterVolumeBase.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Libraries/MTAssets Editor UI/MTAssetsEditorUi.cs" />
      <Compile Include="Assets/Script/UtilitiesScript/MediaLibrary.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/FleeUnit.cs" />
@@ -96,20 +99,21 @@
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/OffsetPursuitUnit.cs" />
      <Compile Include="Assets/Script/FlokingTutorial/FlockElementBehaviour.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Libraries/MTAssets Mesh Simplifier/MT_Internal/MT_BlendShapeFrameContainer.cs" />
-     <Compile Include="Assets/Bitgem/StylisedWater/URP/Scripts/Bitgem/VFX/StylisedWater/WaterVolumeTransforms.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Scripts/RuntimeInstancesDetector.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Libraries/MTAssets Mesh Simplifier/MT_MeshSimplifier.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Libraries/MTAssets Mesh Simplifier/MT_Utility/MT_ResizableArray.cs" />
      <Compile Include="Assets/Script/IntroScene/Metaball.cs" />
+     <Compile Include="Assets/Realistic Glitches Lite/Assets/Scripts/ShaderEffect_Unsync.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/FollowPath.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/NearSensor.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Camera/CameraMovement.cs" />
+     <Compile Include="Assets/Realistic Glitches Lite/Assets/Scripts/DiyEffect__FullOnly.cs" />
      <Compile Include="Assets/Script/FlokingTutorial/FlockingManager.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Libraries/MTAssets Mesh Simplifier/MT_Utility/MT_MeshUtils.cs" />
-     <Compile Include="Assets/Bitgem/StylisedWater/URP/Scripts/Bitgem/Core/FlagEnumAttribute.cs" />
      <Compile Include="Assets/TheGeneratorOnLine/Assets/Scripts/LineGenerator.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Scripts/RuntimeCameraDetector.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Separation.cs" />
+     <Compile Include="Assets/Script/UtilitiesScript/TakeSelfieButton.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/ThirdPersonUnit.cs" />
      <Compile Include="Assets/Script/IntroScene/LineGenerator/LineController.cs" />
      <Compile Include="Assets/Script/Occhi/EyeBehavior.cs" />
@@ -119,6 +123,7 @@
      <Compile Include="Assets/Script/IntroScene/ColliderManagerStartClone.cs" />
      <Compile Include="Assets/Script/Geospatial/GeospatialManager.cs" />
      <Compile Include="Assets/Script/IntroScene/ColliderManager.cs" />
+     <Compile Include="Assets/Script/IntroScene/DuplicatorInteractive.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Wander2Unit.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Libraries/MTAssets Mesh Simplifier/MT_Math/MT_MathHelper.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/MovementAIRigidbody.cs" />
@@ -141,15 +146,16 @@
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Libraries/MTAssets Mesh Simplifier/MT_Internal/MT_Vertex.cs" />
      <Compile Include="Assets/Script/FlockingBehavior.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Libraries/MTAssets Mesh Simplifier/MT_SimplificationOptions.cs" />
-     <Compile Include="Assets/Bitgem/StylisedWater/URP/Scripts/Bitgem/VFX/StylisedWater/WaterVolumeHelper.cs" />
-     <Compile Include="Assets/Bitgem/StylisedWater/URP/Scripts/Bitgem/VFX/StylisedWater/WateverVolumeFloater.cs" />
+     <Compile Include="Assets/Realistic Glitches Lite/Assets/Scripts/ShaderEffect_CorruptedVram.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Camera/FirstPersonCamera.cs" />
+     <Compile Include="Assets/Script/UtilitiesScript/FaceTextureAndSound.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Wander1.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Hide.cs" />
      <Compile Include="Assets/Script/UtilitiesScript/ARPointerManager.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/VelocityMatch.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/CollisionAvoidance.cs" />
      <Compile Include="Assets/Script/UtilitiesScript/InteractiveWall.cs" />
+     <Compile Include="Assets/Realistic Glitches Lite/Assets/Scripts/ShaderEffect_Tint.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Scripts/ProcessedByCurrentSRPInEditor/CurrentRenderPipeline.cs" />
      <Compile Include="Assets/Script/IntroScene/GlitchEffect.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Libraries/MTAssets Mesh Simplifier/MT_Math/MT_SymmetricMatrix.cs" />
@@ -157,6 +163,7 @@
      <Compile Include="Assets/Script/IntroScene/ColliderManagerStart.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Scripts/UltimateLevelOfDetailGlobal.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/FollowPathUnit.cs" />
+     <Compile Include="Assets/Realistic Glitches Lite/Assets/Scripts/ShaderEffect_BleedingColors.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/FlockingUnit.cs" />
      <Compile Include="Assets/Script/MetaballController.cs" />
      <Compile Include="Assets/Script/IntroScene/Attractor.cs" />
@@ -164,11 +171,15 @@
      <Compile Include="Assets/Script/IntroScene/AudioAndObjectOnCollision.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Libraries/MTAssets Mesh Simplifier/MT_Internal/MT_BorderVertex.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Camera/ThirdPersonCamera.cs" />
+     <None Include="Assets/Realistic Glitches Lite/Assets/Shaders/BleedingColors.shader" />
      <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" />
+     <None Include="Assets/Realistic Glitches Lite/Assets/Shaders/BWDiffuse.shader" />
      <None Include="Assets/MT Assets/Ultimate LOD System/Scripts/ProcessedByCurrentSRPInEditor/VariableTrue.txt" />
+     <None Include="Assets/Realistic Glitches Lite/Assets/Shaders/VUnsync.shader" />
      <None Include="Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc" />
+     <None Include="Assets/Realistic Glitches Lite/Documentation/Realistic Glitches.txt" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader" />
@@ -178,11 +189,16 @@
      <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF.shader" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader" />
      <None Include="Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt" />
+     <None Include="Assets/Realistic Glitches Lite/Assets/Shaders/Tint.shader" />
      <None Include="Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc" />
+     <None Include="Assets/Realistic Glitches Lite/Assets/Shaders/Distortion.shader" />
      <None Include="Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc" />
      <None Include="Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt" />
+     <None Include="Assets/Realistic Glitches Lite/Assets/Shaders/Shift.shader" />
+     <None Include="Assets/Realistic Glitches Lite/Assets/Shaders/Scanlines.shader" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets/Shader/SingleFaceLit.shader" />
+     <None Include="Assets/Realistic Glitches Lite/Assets/Shaders/Distortion2D__FullOnly.shader" />
      <None Include="Assets/MT Assets/Ultimate LOD System/Scripts/ProcessedByCurrentSRPInEditor/VariableFalse.txt" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader" />
@@ -1006,9 +1022,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="NativeCamera.Runtime.csproj">
+      <Project>{334f6a61-c5bc-fdff-9a44-aeee45c63e24}</Project>
+      <Name>NativeCamera.Runtime</Name>
+    </ProjectReference>
     <ProjectReference Include="FullscreenEditor.csproj">
       <Project>{43b31d22-2eb4-56da-6bcf-aa51a92417e0}</Project>
       <Name>FullscreenEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="NativeCamera.Editor.csproj">
+      <Project>{794a7706-e66e-2e9f-ba6c-021fed830ff7}</Project>
+      <Name>NativeCamera.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
