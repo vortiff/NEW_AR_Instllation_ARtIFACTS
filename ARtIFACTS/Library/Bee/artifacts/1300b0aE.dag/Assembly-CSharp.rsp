@@ -475,6 +475,7 @@
 "Assets/Script/OPT/RandomDeformationColorOPT.cs"
 "Assets/Script/OPT/RandomDeformationColorOPTLevel2.cs"
 "Assets/Script/UtilitiesScript/ARPointerManager.cs"
+"Assets/Script/UtilitiesScript/DebugUI.cs"
 "Assets/Script/UtilitiesScript/DistortAndDissolveStatue.cs"
 "Assets/Script/UtilitiesScript/FaceTextureAndSound.cs"
 "Assets/Script/UtilitiesScript/GUI/RaycastObjectDetection.cs"

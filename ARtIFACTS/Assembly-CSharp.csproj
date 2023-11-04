@@ -115,6 +115,7 @@
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/Separation.cs" />
      <Compile Include="Assets/Script/UtilitiesScript/TakeSelfieButton.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/ThirdPersonUnit.cs" />
+     <Compile Include="Assets/Script/UtilitiesScript/DebugUI.cs" />
      <Compile Include="Assets/Script/IntroScene/LineGenerator/LineController.cs" />
      <Compile Include="Assets/Script/Occhi/EyeBehavior.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/SeekUnit.cs" />
@@ -924,17 +925,17 @@
     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
         <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.XR.LegacyInputHelpers">
-        <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Burst">
         <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.PlasticSCM.Editor">
-        <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
+    <Reference Include="UnityEngine.XR.LegacyInputHelpers">
+        <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="Google.XR.ARCoreExtensions.GeospatialCreator">
         <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Google.XR.ARCoreExtensions.GeospatialCreator.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PlasticSCM.Editor">
+        <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
         <HintPath>/Users/icaro/Documents/GitHub/NEW_AR_Instllation_ARtIFACTS/ARtIFACTS/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
