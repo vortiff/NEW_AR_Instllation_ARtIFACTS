@@ -9,6 +9,11 @@
         [Header("Weather Data Manager Reference")]
         public WeatherDataManager weatherDataManager; 
 
+        [Header("Canvas Activation")]
+        public bool activateCanvas;
+        public Canvas canvasToToggle; // Assicurati di trascinare qui il riferimento del Canvas nell'Inspector
+        public GameObject[] objectsToActivate; // Array di GameObject da attivare
+
         [Header("GameObject References")]
         public GameObject player; 
         public GameObject metaballObject;
@@ -66,6 +71,20 @@
                 PlaySoundsInOrder();
                 Debug.Log("Playing audio clip at index: " + audioClipIndex);
 
+                // Attiva il Canvas se richiesto
+                if (activateCanvas && canvasToToggle != null)
+                {
+                    canvasToToggle.gameObject.SetActive(true);
+                }
+
+                // Attiva gli oggetti specificati nell'array
+                foreach (GameObject obj in objectsToActivate)
+                {
+                    if (obj != null)
+                    {
+                        obj.SetActive(true);
+                    }
+                }
 
                 hasCollided = true;
             }

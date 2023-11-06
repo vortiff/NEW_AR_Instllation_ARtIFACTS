@@ -7,23 +7,15 @@ public class Duplicator : MonoBehaviour
     [Header("GameObject References")]
     public GameObject objectToDuplicate;
     [Tooltip("Questi sono i GameObjects di riferimento per il posizionamento.")]
-    public Transform[] referenceObjects; // Array per trascinare i GameObject di riferimento.
+    public Transform[] referenceObjects;
     private int currentReferenceIndex = 0;
-    public Transform player; // Variabile pubblica per player
+    public Transform player;
     private int playerInsideColliderCount = 0;
-    private List<GameObject> inactiveObjects = new List<GameObject>(); // Nuova lista per gli oggetti inattivi
+    private List<GameObject> inactiveObjects = new List<GameObject>();
     private List<int> activeReferenceIndices = new List<int>();
 
-
     [Header("Duplicant References")]
-    public int poolSize = 30; // Dimensione iniziale dell'object pool
-    public List<TextureList> texturesForReferenceObjects = new List<TextureList>();
-    [System.Serializable]
-    public class TextureList
-    {
-        public List<Texture2D> textures = new List<Texture2D>();
-    }
-    private MaterialPropertyBlock propBlock;
+    public int poolSize = 30;
     private List<List<GameObject>> objectPools = new List<List<GameObject>>();
     public float duplicationWidth = 5f;
     public float duplicationHeight = 20f;
@@ -32,21 +24,15 @@ public class Duplicator : MonoBehaviour
     public float maxDuplicationInterval = 1f;
     private float nextDuplicationTime;
     private Queue<GameObject> activeObjectsQueue = new Queue<GameObject>();
-    private Dictionary<GameObject, int> objectToPoolIndex = new Dictionary<GameObject, int>();
-    
 
-    
     [Header("Audio Settings")]
-    public MediaLibrary mediaLibrary;    
+    public MediaLibrary mediaLibrary;
     private AudioSource audioSource;
     private AudioSource[] referenceAudioSources;
 
-
-    
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-       
         referenceAudioSources = new AudioSource[referenceObjects.Length];
         for (int i = 0; i < referenceObjects.Length; i++)
         {
@@ -65,10 +51,24 @@ public class Duplicator : MonoBehaviour
             objectPools.Add(subPool);
         }
 
-        propBlock = new MaterialPropertyBlock();
+        // Assegna le texture iniziali ai duplicati
+        for (int i = 0; i < referenceObjects.Length; i++)
+        {
+            Renderer refRenderer = referenceObjects[i].GetComponent<Renderer>();
+            Texture2D texture = refRenderer.material.mainTexture as Texture2D;
+            MaterialPropertyBlock mpb = new MaterialPropertyBlock();
+
+            foreach (GameObject obj in objectPools[i])
+            {
+                Renderer objRenderer = obj.GetComponent<Renderer>();
+                objRenderer.GetPropertyBlock(mpb);
+                mpb.SetTexture("_MainTex", texture);
+                RandomizeShaderParameters(mpb);
+                objRenderer.SetPropertyBlock(mpb);
+            }
+        }
     }
 
-    // Questa funzione trova il GameObject di riferimento in cui il Player si trova.
     Transform GetReferenceWithPlayerInside()
     {
         foreach (Transform refObj in referenceObjects)
@@ -82,45 +82,32 @@ public class Duplicator : MonoBehaviour
         return null;
     }
 
-   void Update()
+    void Update()
     {
-        if(IsPlayerInsideAnyCollider())
+        if (IsPlayerInsideAnyCollider() && Time.time >= nextDuplicationTime)
         {
-            if (Time.time >= nextDuplicationTime)
-            {
-                DuplicateObject();
-                SetNextDuplicationTime();
-            }
+            DuplicateObject();
+            SetNextDuplicationTime();
         }
     }
 
-
-
     bool IsPlayerInsideAnyCollider()
     {
-        return playerInsideColliderCount > 0; // se il contatore è maggiore di 0, il giocatore è all'interno di almeno un collider
+        return playerInsideColliderCount > 0;
     }
 
     void DuplicateObject()
     {
-         // Seleziona un indice di riferimento casuale tra quelli attivi
         int randomIndex = Random.Range(0, activeReferenceIndices.Count);
-        currentReferenceIndex = activeReferenceIndices[randomIndex]; // Aggiorniamo l'indice corrente
+        currentReferenceIndex = activeReferenceIndices[randomIndex];
         Transform currentReference = referenceObjects[currentReferenceIndex];
 
         GameObject newObject = GetFromPool();
         if (newObject == null)
         {
-            Debug.LogError("Non è stato possibile ottenere un nuovo oggetto dalla pool.");
+            Debug.LogError("Unable to get a new object from the pool.");
             return;
         }
-
-        if (activeObjectsQueue.Count >= objectPools[currentReferenceIndex].Count)
-        {
-            RemoveOldestObject();
-        }
-
-        AssignRandomTexture(newObject);
 
         Vector3 randomOffset = new Vector3(
             Random.Range(-duplicationWidth / 2, duplicationWidth / 2),
@@ -128,18 +115,15 @@ public class Duplicator : MonoBehaviour
             Random.Range(0, duplicationDepth)
         );
 
-        Vector3 newPosition = currentReference.position + randomOffset;
-        newObject.transform.position = newPosition;
+        newObject.transform.position = currentReference.position + randomOffset;
         newObject.transform.rotation = Quaternion.Euler(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
         newObject.transform.SetParent(this.transform);
         newObject.SetActive(true);
         activeObjectsQueue.Enqueue(newObject);
 
-        //Debug.Log("Oggetto duplicato e posizionato in: " + currentReference);
-
+        ApplyTextureAndRandomizeParameters(currentReferenceIndex);
         PlayRandomAudio();
     }
-
 
     GameObject GetFromPool()
     {
@@ -148,12 +132,38 @@ public class Duplicator : MonoBehaviour
         {
             GameObject obj = currentPool[0];
             currentPool.RemoveAt(0);
-            inactiveObjects.Remove(obj);  // Assicurati di rimuoverlo dagli oggetti inattivi
-            objectToPoolIndex[obj] = currentReferenceIndex;
+            inactiveObjects.Remove(obj);
+            PrepareObject(obj);
             return obj;
+        }
+        else
+        {
+            // Se non ci sono oggetti disponibili, riutilizza il più vecchio
+            if (activeObjectsQueue.Count > 0)
+            {
+                GameObject obj = activeObjectsQueue.Dequeue();
+                RemoveOldestObject();
+                PrepareObject(obj);
+                return obj;
+            }
         }
         return null;
     }
+
+    void PrepareObject(GameObject obj)
+    {
+        // Applica texture e parametri randomizzati al momento del prelievo dall'object pool
+        Renderer objRenderer = obj.GetComponent<Renderer>();
+        MaterialPropertyBlock mpb = new MaterialPropertyBlock();
+        Renderer refRenderer = referenceObjects[currentReferenceIndex].GetComponent<Renderer>();
+        Texture2D texture = refRenderer.material.mainTexture as Texture2D;
+
+        objRenderer.GetPropertyBlock(mpb);
+        mpb.SetTexture("_MainTex", texture);
+        RandomizeShaderParameters(mpb);
+        objRenderer.SetPropertyBlock(mpb);
+    }
+
 
 
     void SetNextDuplicationTime()
@@ -164,52 +174,13 @@ public class Duplicator : MonoBehaviour
     void PlayRandomAudio()
     {
         AudioSource currentReferenceAudio = referenceAudioSources[currentReferenceIndex];
-
         if (currentReferenceAudio != null && mediaLibrary.audioClips.Length > 0)
         {
             int randomIndex = Random.Range(0, mediaLibrary.audioClips.Length);
             currentReferenceAudio.clip = mediaLibrary.audioClips[randomIndex];
-            if (!currentReferenceAudio.isPlaying)
-            {
-                currentReferenceAudio.Play();
-            }
+            currentReferenceAudio.Play();
         }
     }
-
-
-    void AssignRandomTexture(GameObject obj)
-    {
-        List<Texture2D> currentReferenceTextures = texturesForReferenceObjects[currentReferenceIndex].textures;
-        if (currentReferenceTextures.Count == 0)
-        {
-            Debug.LogError("Nessuna texture nell'array per il reference object corrente.");
-            return;
-        }
-
-        int randomIndex = Random.Range(0, currentReferenceTextures.Count);
-        Renderer objRenderer = obj.GetComponent<Renderer>();
-        // Debug.Log("Renderer: " + objRenderer);
-
-
-        if (objRenderer != null)
-        {
-            
-            // Imposta la texture nel MaterialPropertyBlock
-            propBlock.SetTexture("_BaseMap", currentReferenceTextures[randomIndex]);
-            // Deprecable // objRenderer.material.mainTexture = currentReferenceTextures[randomIndex];
-
-
-            // Applica il MaterialPropertyBlock al renderer
-            objRenderer.SetPropertyBlock(propBlock);
-            // Debug.Log("Texture selezionata: " + currentReferenceTextures[randomIndex].name);
-
-        }
-        else
-        {
-            Debug.LogError("Renderer non trovato nel GameObject duplicato.");
-        }
-    }
-
 
     void RemoveOldestObject()
     {
@@ -217,21 +188,12 @@ public class Duplicator : MonoBehaviour
         {
             GameObject oldestObject = activeObjectsQueue.Dequeue();
             oldestObject.SetActive(false);
-
-            // Usa il dizionario per determinare a quale pool l'oggetto appartiene
-            int poolIndex = objectToPoolIndex[oldestObject];
-            List<GameObject> correctPool = objectPools[poolIndex];
-            correctPool.Add(oldestObject); // Aggiungi l'oggetto alla pool corretta
-
-            inactiveObjects.Add(oldestObject); // Aggiungi l'oggetto alla lista degli inattivi
-            objectToPoolIndex.Remove(oldestObject); // Rimuovi l'oggetto dal dizionario
-
-            PlayRandomAudio();
-           // Debug.Log("RemoveOldestObject PlayRandomAudio " + poolIndex);
-   
+            List<GameObject> correctPool = objectPools[currentReferenceIndex];
+            correctPool.Add(oldestObject);
+            inactiveObjects.Add(oldestObject);
+            // Non riproduciamo l'audio qui poiché questa funzione ora viene utilizzata in un contesto diverso
         }
     }
-
 
     public void IncrementPlayerInsideColliderCount(int index)
     {
@@ -250,4 +212,79 @@ public class Duplicator : MonoBehaviour
             activeReferenceIndices.Remove(index);
         }
     }
+
+    public void ApplyTextureAndRandomizeParameters(int referenceIndex)
+    {
+        if (referenceIndex < 0 || referenceIndex >= referenceObjects.Length)
+        {
+            Debug.LogError("Reference index is out of range.");
+            return;
+        }
+
+        Renderer refRenderer = referenceObjects[referenceIndex].GetComponent<Renderer>();
+        if (refRenderer == null)
+        {
+            Debug.LogError("Renderer not found on reference object.");
+            return;
+        }
+
+        Texture2D texture = refRenderer.material.mainTexture as Texture2D;
+        MaterialPropertyBlock mpb = new MaterialPropertyBlock();
+
+        foreach (GameObject obj in objectPools[referenceIndex])
+        {
+            if (obj.activeInHierarchy)
+            {
+                Renderer objRenderer = obj.GetComponent<Renderer>();
+                objRenderer.GetPropertyBlock(mpb);
+                mpb.SetTexture("_MainTex", texture);
+                RandomizeShaderParameters(mpb);
+                objRenderer.SetPropertyBlock(mpb);
+            }
+        }
+    }
+
+    public void RandomizeShaderParameters(MaterialPropertyBlock mpb)
+    {
+        mpb.SetFloat("_ChromAberrAmountX", Random.Range(0f, 0.9f));
+        mpb.SetFloat("_ChromAberrAmountY", Random.Range(0f, 0.9f));
+        mpb.SetFloat("_RightStripesAmount", Random.Range(0f, 4f));
+        mpb.SetFloat("_RightStripesFill", Random.Range(0f, 1f));
+        mpb.SetFloat("_LeftStripesAmount", Random.Range(0f, 4f));
+        mpb.SetFloat("_LeftStripesFill", Random.Range(0f, 1f));
+        mpb.SetVector("_DisplacementAmount", new Vector4(Random.Range(0f, 0.9f), Random.Range(0f, 0.9f), 0f, 0f));
+        mpb.SetFloat("_WavyDisplFreq", Random.Range(5f, 15f));
+    }
+
+    public void UpdateInactiveObjectsTextures(int referenceIndex)
+    {
+        if (referenceIndex < 0 || referenceIndex >= referenceObjects.Length)
+        {
+            Debug.LogError("Reference index is out of range.");
+            return;
+        }
+
+        Renderer refRenderer = referenceObjects[referenceIndex].GetComponent<Renderer>();
+        if (refRenderer == null)
+        {
+            Debug.LogError("Renderer not found on reference object.");
+            return;
+        }
+
+        Texture2D texture = refRenderer.material.mainTexture as Texture2D;
+        MaterialPropertyBlock mpb = new MaterialPropertyBlock();
+
+        foreach (GameObject obj in objectPools[referenceIndex])
+        {
+            if (!obj.activeInHierarchy) // Aggiorna solo gli oggetti inattivi
+            {
+                Renderer objRenderer = obj.GetComponent<Renderer>();
+                objRenderer.GetPropertyBlock(mpb);
+                mpb.SetTexture("_MainTex", texture);
+                RandomizeShaderParameters(mpb);
+                objRenderer.SetPropertyBlock(mpb);
+            }
+        }
+    }
+
 }

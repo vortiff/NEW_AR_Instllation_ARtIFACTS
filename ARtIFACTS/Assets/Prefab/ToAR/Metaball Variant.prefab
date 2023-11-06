@@ -1,0 +1,259 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2277835767024234426
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 658198705260751325, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: m_Name
+      value: Metaball Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: checkFrequency
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.size
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 68019181a3c874e01a2c389700deb06f, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 04c3043e3ed464130ab44e796b2dc8f9, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3db658081dc1a498b8395f71fd58ac03, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8fa0382f2bc3f4fc587d9b8e7a38147b, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: e0be6540f5e594c98a2dfb1b80a89a5f, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: f5558e204bcaf4652a98b94b9c234739, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2f4d2767d60a64e49a8155cc4c7c1dfc, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: e9afc082d212444198526a7f85d558fd, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[8]
+      value: 
+      objectReference: {fileID: 8300000, guid: 65947ba0f8e2346dc9872564ce4094ed, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[9]
+      value: 
+      objectReference: {fileID: 8300000, guid: 40863434a73824116a8cf2622b09cc67, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[10]
+      value: 
+      objectReference: {fileID: 8300000, guid: 61dc56344e5de4c41a5fa89042ef2399, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[11]
+      value: 
+      objectReference: {fileID: 8300000, guid: 968971a4b8c4f434cac2ae06109def45, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[12]
+      value: 
+      objectReference: {fileID: 8300000, guid: b9e5a2a80c5604e98a9ce704e58698f5, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[13]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2444507f0b4aa486a94ac1740340c908, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[14]
+      value: 
+      objectReference: {fileID: 8300000, guid: f227f25e39ee34074a080848b556b4fb, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[15]
+      value: 
+      objectReference: {fileID: 8300000, guid: 16a1dd293896c43519283c1208a20444, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[16]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[17]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[18]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[19]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[20]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[21]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[22]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[23]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[24]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[25]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[26]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 1677050098518235813, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: voiceOverSounds.Array.data[27]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2e712d157f84cf1890615336dcc1ca, type: 3}
+    - target: {fileID: 2814377935709606713, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -54.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814377935709606713, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814377935709606713, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814377935709606713, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814377935709606713, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814377935709606713, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814377935709606713, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814377935709606713, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814377935709606713, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814377935709606713, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356006504058907515, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 658198705260751325, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+        type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 5929457293701578838}
+  m_SourcePrefab: {fileID: 100100000, guid: 41289e8282fd6407c9ff0a29aa9dcb0b, type: 3}
+--- !u!1 &1638777774126188135 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 658198705260751325, guid: 41289e8282fd6407c9ff0a29aa9dcb0b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2277835767024234426}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5929457293701578838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638777774126188135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c205050ccf0c34be1bfdc36bfe32d7d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expansionSpeed: 38.6
+  maxRadius: 1.66
+  deformationIntensity: 1.13
+  colorChangeSpeed: 0.5
+  deformationFrameRate: 0
+  minColor: {r: 1, g: 0, b: 0, a: 1}
+  maxColor: {r: 0.011764707, g: 1, b: 0.19215688, a: 1}
