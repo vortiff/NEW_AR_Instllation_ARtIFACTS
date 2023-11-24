@@ -214,3 +214,43 @@ document.addEventListener("DOMContentLoaded", function () {
 function handleError(err) {
   console.error(err);
 }
+
+// Crea una funzione per aggiornare la larghezza della barra del loader
+function updateLoaderBar(percentage) {
+  const loaderBar = document.getElementById('LoaderBar');
+  if (loaderBar) {
+    loaderBar.style.width = `${percentage}%`;
+  }
+}
+
+// Crea una funzione per nascondere il loader una volta che il caricamento è completo
+function hideLoader() {
+  const loaderWrap = document.getElementById('LoaderWrap');
+  if (loaderWrap) {
+    loaderWrap.style.display = 'none';
+  }
+}
+
+// Utilizza LoadingManager per tenere traccia del progresso del download
+const manager = new THREE.LoadingManager();
+manager.onStart = function (url, itemsLoaded, itemsTotal) {
+  // Inizia mostrando il loader e impostando la barra di caricamento a 0%
+  updateLoaderBar(0);
+};
+
+manager.onLoad = function () {
+  // Nascondi il loader una volta che tutti gli asset sono stati caricati
+  hideLoader();
+};
+
+manager.onProgress = function (url, itemsLoaded, itemsTotal) {
+  // Aggiorna il loader bar in base al progresso
+  const progress = (itemsLoaded / itemsTotal) * 100;
+  updateLoaderBar(progress);
+};
+
+manager.onError = function (url) {
+  console.error('There was an error loading ' + url);
+};
+
+const loader = new GLTFLoader(manager);

@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Intro/Intro_Architecture_PlayGround.unity
+- path: Assets/Scenes/Intro/Intro_Architecture_PlayGroundWorld.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
