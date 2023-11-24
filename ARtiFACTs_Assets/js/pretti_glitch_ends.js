@@ -8,6 +8,27 @@ import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { GlitchPass } from "three/addons/postprocessing/GlitchPass.js";
 document.addEventListener("DOMContentLoaded", function () {
+  console.log('DOM fully loaded and parsed'); // Dovrebbe apparire per primo
+  // Crea una funzione per aggiornare la larghezza della barra del loader
+  function updateLoaderBar(percentage) {
+    console.log(`Updating loader bar to ${percentage}%`); // Log per il debugging
+    const loaderBar = document.getElementById('LoaderBar');
+    if (loaderBar) {
+      loaderBar.style.width = `${percentage}%`;
+    } else {
+    console.error('LoaderBar element not found'); // Log per il debugging
+    }
+  }
+  // Crea una funzione per nascondere il loader una volta che il caricamento è completo
+  function hideLoader() {
+    console.log('Hiding loader'); // Log per il debugging
+    const loaderWrap = document.getElementById('LoaderWrap');
+    if (loaderWrap) {
+      loaderWrap.style.display = 'none';
+    } else {
+      console.error('LoaderWrap element not found'); // Log per il debugging
+    }
+  }
   const container = document.getElementById("container");
   let mixer;
   const clock = new THREE.Clock();
@@ -215,27 +236,9 @@ function handleError(err) {
   console.error(err);
 }
 
-// Crea una funzione per aggiornare la larghezza della barra del loader
-function updateLoaderBar(percentage) {
-  console.log(`Updating loader bar to ${percentage}%`); // Log per il debugging
-  const loaderBar = document.getElementById('LoaderBar');
-  if (loaderBar) {
-    loaderBar.style.width = `${percentage}%`;
-  } else {
-  console.error('LoaderBar element not found'); // Log per il debugging
-  }
-}
 
-// Crea una funzione per nascondere il loader una volta che il caricamento è completo
-function hideLoader() {
-  console.log('Hiding loader'); // Log per il debugging
-  const loaderWrap = document.getElementById('LoaderWrap');
-  if (loaderWrap) {
-    loaderWrap.style.display = 'none';
-  } else {
-    console.error('LoaderWrap element not found'); // Log per il debugging
-  }
-}
+
+
 
 // Utilizza LoadingManager per tenere traccia del progresso del download
 const manager = new THREE.LoadingManager();
