@@ -22,11 +22,11 @@ document.addEventListener("DOMContentLoaded", function () {
   // Crea una funzione per nascondere il loader una volta che il caricamento è completo
   function hideLoader() {
     console.log('Hiding loader'); // Log per il debugging
-    const loaderWrap = document.getElementById('LoaderWrap');
+    const loaderWrap = document.getElementById('LoaderBarWrap');
     if (loaderWrap) {
       loaderWrap.style.display = 'none';
     } else {
-      console.error('LoaderWrap element not found'); // Log per il debugging
+      console.error('LoaderBarWrap element not found'); // Log per il debugging
     }
   }
   const container = document.getElementById("container");
