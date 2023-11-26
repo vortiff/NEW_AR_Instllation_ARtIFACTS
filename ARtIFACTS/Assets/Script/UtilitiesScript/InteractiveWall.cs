@@ -11,6 +11,10 @@
         
         [Header("Audio Settings")]
         [SerializeField] private MediaLibrary mediaLibrary;
+        
+        [Header("Specific Circle Settings")]
+        public GameObject targetCircle; // Variabile pubblica per il riferimento all'oggetto specifico
+        public float desiredYRotation; // Rotazione Y desiderata per l'oggetto specifico
 
         [Header("Color Settings")]
         public Color color1 = Color.white;
@@ -25,6 +29,12 @@
         private void Start()
         {
             CreateGrid();
+            // Applica la rotazione solo se targetCircle è stato impostato
+            if (targetCircle != null)
+            {
+                Vector3 currentRotation = targetCircle.transform.eulerAngles;
+                targetCircle.transform.eulerAngles = new Vector3(currentRotation.x, desiredYRotation, currentRotation.z);
+            }
         }
 
         private void CreateGrid()

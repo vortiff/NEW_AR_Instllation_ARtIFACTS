@@ -13,6 +13,7 @@ public class DistortAndDissolveStatue : MonoBehaviour
     private AudioSource audioSource;
     public float minAudioDistance = 1f;
     public float maxAudioDistance = 10f;
+    public float selfRotationSpeed = 50f; // Velocità di rotazione su se stesso,
 
     private Mesh originalMesh;
     private Vector3[] originalVertices;
@@ -130,19 +131,19 @@ public class DistortAndDissolveStatue : MonoBehaviour
     {
         if (playerTransform) // controlla se playerTransform è stato impostato
         {
-            Vector3 directionToPlayer = transform.position - playerTransform.position; // Qui invertiamo la direzione
-            
-            Quaternion rotationToPlayer = Quaternion.LookRotation(directionToPlayer);
-            
-            // Estrai le rotazioni sull'asse Y e X
-            float yRotation = rotationToPlayer.eulerAngles.y;
-            float xRotation = rotationToPlayer.eulerAngles.x;
-            
-            // Applica solo le rotazioni X e Y mantenendo la rotazione Z originale
-            transform.rotation = Quaternion.Euler(xRotation, yRotation, transform.rotation.eulerAngles.z);
+            // Calcola la direzione al giocatore a livello del suolo, ignorando l'altezza
+            Vector3 directionToPlayer = playerTransform.position - transform.position;
+            directionToPlayer.y = 0; // Ignora l'altezza per non influenzare la rotazione sull'asse Y
+
+            // Calcola l'angolo tra la direzione attuale del GameObject e la direzione verso il giocatore
+            float angleToPlayer = Vector3.SignedAngle(transform.forward, directionToPlayer, Vector3.up);
+
+            // Aggiusta la rotazione locale sull'asse Y per ruotare verso il giocatore
+            // Utilizza `localEulerAngles` per l'aggiustamento locale
+            Vector3 localEulerAngles = transform.localEulerAngles;
+            localEulerAngles.y += angleToPlayer * Time.deltaTime * selfRotationSpeed;
+            transform.localEulerAngles = localEulerAngles;
         }
     }
-
-
-
 }
+

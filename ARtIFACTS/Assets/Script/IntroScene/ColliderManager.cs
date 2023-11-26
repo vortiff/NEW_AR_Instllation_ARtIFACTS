@@ -26,7 +26,9 @@
         [Header("Attraction Function Settings")]
         public GameObject attractionTarget; // Aggiunto l'attractionTarget
         public float attractionDelay = 40f; // Tempo di attesa prima che Metaball venga attratto
-        
+        private Coroutine attractMetaballCoroutine;
+        private Coroutine destroyAndDeactivateCoroutine;
+
         [Header("Audio Settings")]
         public int audioClipIndex = 1;
         public bool playWeatherAudioAfterClip = true; // Riproduci l'audio del meteo dopo audioClipIndex
@@ -49,11 +51,10 @@
 
     private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("OnTriggerEnter called with GameObject: " + other.gameObject.name);
+            //Debug.Log("OnTriggerEnter called with GameObject: " + other.gameObject.name);
             if (other.gameObject == player && !hasCollided)
             {
                 
-
                 StartCoroutine(PlaySoundsInOrder());
                 WeatherDataManager.WeatherInfo currentWeather = weatherDataManager.GetCurrentWeatherInfo();
                 float currentTemperature = currentWeather.main.temp - 273.15f; // Converti da Kelvin a Celsius
@@ -67,9 +68,10 @@
                 }
 
                 ActivateGravityOnClones();
-                StartCoroutine(AttractMetaballAfterDelay());
+                // Avvia la coroutine e memorizza il riferimento
+                attractMetaballCoroutine = StartCoroutine(AttractMetaballAfterDelay());
                 PlaySoundsInOrder();
-                Debug.Log("Playing audio clip at index: " + audioClipIndex);
+               // Debug.Log("Playing audio clip at index: " + audioClipIndex);
 
                 // Attiva il Canvas se richiesto
                 if (activateCanvas && canvasToToggle != null)
@@ -199,9 +201,10 @@
                 audioSource.clip = metaballSounds[13];
                 audioSource.Play();
             }
-
             // Continua con la distruzione dei cloni e la disattivazione dell'oggetto
             StartCoroutine(DestroyAndDeactivate());
+            // Avvia la coroutine per la distruzione e disattivazione e memorizza il riferimento
+            destroyAndDeactivateCoroutine = StartCoroutine(DestroyAndDeactivate());
         }
 
         private IEnumerator DestroyAndDeactivate()
@@ -212,6 +215,32 @@
             if (objectToDeactivate != null)
             {
                 objectToDeactivate.SetActive(false);
+            }
+            destroyAndDeactivateCoroutine = null; // Annulla il riferimento quando la coroutine è completata
+
+        }
+
+        // Aggiunto il metodo OnTriggerExit per gestire l'uscita dal trigger
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject == player)
+            {
+                if (attractMetaballCoroutine != null)
+                {
+                    StopCoroutine(attractMetaballCoroutine);
+                    attractMetaballCoroutine = null;
+                }
+
+                if (destroyAndDeactivateCoroutine != null)
+                {
+                    StopCoroutine(destroyAndDeactivateCoroutine);
+                    destroyAndDeactivateCoroutine = null;
+                }
+
+                if (objectToDeactivate != null)
+                {
+                    objectToDeactivate.SetActive(false);
+                }
             }
         }
 
