@@ -22,11 +22,11 @@ document.addEventListener("DOMContentLoaded", function () {
   // Crea una funzione per nascondere il loader una volta che il caricamento è completo
   function hideLoader() {
     console.log('Hiding loader'); // Log per il debugging
-    const loaderWrap = document.getElementById('LoaderBarWrap');
+    const loaderWrap = document.getElementById('LoaderWrap');
     if (loaderWrap) {
       loaderWrap.style.display = 'none';
     } else {
-      console.error('LoaderBarWrap element not found'); // Log per il debugging
+      console.error('LoaderWrap element not found'); // Log per il debugging
     }
   }
   const container = document.getElementById("container");
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
   loader.setDRACOLoader(dracoLoader);
   loader.setKTX2Loader(ktx2Loader);
   loader.load(
-    "https://cdn.jsdelivr.net/gh/vortiff/NEW_AR_Instllation_ARtIFACTS@main/ARtiFACTs_Assets/glb/NewMapAnimationTest.glb",
+    "https://cdn.jsdelivr.net/gh/vortiff/NEW_AR_Instllation_ARtIFACTS@main/ARtiFACTs_Assets/glb/NewMapAnimationTest2.glb",
     function (gltf) {
       model = gltf.scene;
       model.position.set(1, 0, 1);
