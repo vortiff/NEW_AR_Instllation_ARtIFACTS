@@ -10,32 +10,7 @@ import { GlitchPass } from "three/addons/postprocessing/GlitchPass.js";
 document.addEventListener("DOMContentLoaded", function () {
   console.log('DOM fully loaded and parsed'); // Dovrebbe apparire per primo
   // Crea una funzione per aggiornare la larghezza della barra del loader
-  
-// Utilizza LoadingManager per tenere traccia del progresso del download
-const manager = new THREE.LoadingManager();
-manager.onStart = function (url, itemsLoaded, itemsTotal) {
-  // Inizia mostrando il loader e impostando la barra di caricamento a 0%
-  updateLoaderBar(0);
-};
-
-manager.onLoad = function () {
-  // Nascondi il loader una volta che tutti gli asset sono stati caricati
-  hideLoader();
-};
-
-manager.onProgress = function (url, itemsLoaded, itemsTotal) {
-  // Aggiorna il loader bar in base al progresso
-  const progress = (itemsLoaded / itemsTotal) * 100;
-  updateLoaderBar(progress);
-};
-
-manager.onError = function (url) {
-  console.error('There was an error loading ' + url);
-};
-
-const loader = new GLTFLoader(manager);
-
-function updateLoaderBar(percentage) {
+  function updateLoaderBar(percentage) {
     console.log(`Updating loader bar to ${percentage}%`); // Log per il debugging
     const loaderBar = document.getElementById('LoaderBar');
     if (loaderBar) {
@@ -111,7 +86,7 @@ function updateLoaderBar(percentage) {
   loader.setDRACOLoader(dracoLoader);
   loader.setKTX2Loader(ktx2Loader);
   loader.load(
-    "https://cdn.jsdelivr.net/gh/vortiff/NEW_AR_Instllation_ARtIFACTS@raw/main/ARtiFACTs_Assets/glb/NewMapAnimationTest2.glb",
+    "https://cdn.jsdelivr.net/gh/vortiff/NEW_AR_Instllation_ARtIFACTS@raw/main/ARtiFACTs_Assets/glb/NewMapAnimationTest.glb",
     function (gltf) {
       model = gltf.scene;
       model.position.set(1, 0, 1);
@@ -231,7 +206,7 @@ function updateLoaderBar(percentage) {
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
     // Aggiungi una tolleranza per dispositivi touch
-    const touchTolerance = 0.5; // Aumenta o diminuisci questo valore in base alla sensibilità desiderata
+    const touchTolerance = 0.05; // Aumenta o diminuisci questo valore in base alla sensibilità desiderata
     mouse.x += touchTolerance;
     mouse.y += touchTolerance;
 
@@ -277,3 +252,26 @@ function handleError(err) {
 }
 
 
+// Utilizza LoadingManager per tenere traccia del progresso del download
+const manager = new THREE.LoadingManager();
+manager.onStart = function (url, itemsLoaded, itemsTotal) {
+  // Inizia mostrando il loader e impostando la barra di caricamento a 0%
+  updateLoaderBar(0);
+};
+
+manager.onLoad = function () {
+  // Nascondi il loader una volta che tutti gli asset sono stati caricati
+  hideLoader();
+};
+
+manager.onProgress = function (url, itemsLoaded, itemsTotal) {
+  // Aggiorna il loader bar in base al progresso
+  const progress = (itemsLoaded / itemsTotal) * 100;
+  updateLoaderBar(progress);
+};
+
+manager.onError = function (url) {
+  console.error('There was an error loading ' + url);
+};
+
+const loader = new GLTFLoader(manager);
