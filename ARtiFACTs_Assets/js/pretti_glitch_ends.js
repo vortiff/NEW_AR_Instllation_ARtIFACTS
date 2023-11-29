@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
   loader.setDRACOLoader(dracoLoader);
   loader.setKTX2Loader(ktx2Loader);
   loader.load(
-    "https://cdn.jsdelivr.net/gh/vortiff/NEW_AR_Instllation_ARtIFACTS@main/ARtiFACTs_Assets/glb/NewMapAnimationTes3.glb",
+    "https://cdn.jsdelivr.net/gh/vortiff/NEW_AR_Instllation_ARtIFACTS@main/ARtiFACTs_Assets/js/pretti_glitch_ends.js",
     function (gltf) {
       model = gltf.scene;
       model.position.set(1, 0, 1);
