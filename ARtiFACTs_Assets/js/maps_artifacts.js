@@ -10,7 +10,32 @@ import { GlitchPass } from "three/addons/postprocessing/GlitchPass.js";
 document.addEventListener("DOMContentLoaded", function () {
   console.log('DOM fully loaded and parsed'); // Dovrebbe apparire per primo
   // Crea una funzione per aggiornare la larghezza della barra del loader
-  function updateLoaderBar(percentage) {
+  
+// Utilizza LoadingManager per tenere traccia del progresso del download
+const manager = new THREE.LoadingManager();
+manager.onStart = function (url, itemsLoaded, itemsTotal) {
+  // Inizia mostrando il loader e impostando la barra di caricamento a 0%
+  updateLoaderBar(0);
+};
+
+manager.onLoad = function () {
+  // Nascondi il loader una volta che tutti gli asset sono stati caricati
+  hideLoader();
+};
+
+manager.onProgress = function (url, itemsLoaded, itemsTotal) {
+  // Aggiorna il loader bar in base al progresso
+  const progress = (itemsLoaded / itemsTotal) * 100;
+  updateLoaderBar(progress);
+};
+
+manager.onError = function (url) {
+  console.error('There was an error loading ' + url);
+};
+
+const loader = new GLTFLoader(manager);
+
+function updateLoaderBar(percentage) {
     console.log(`Updating loader bar to ${percentage}%`); // Log per il debugging
     const loaderBar = document.getElementById('LoaderBar');
     if (loaderBar) {
@@ -252,26 +277,3 @@ function handleError(err) {
 }
 
 
-// Utilizza LoadingManager per tenere traccia del progresso del download
-const manager = new THREE.LoadingManager();
-manager.onStart = function (url, itemsLoaded, itemsTotal) {
-  // Inizia mostrando il loader e impostando la barra di caricamento a 0%
-  updateLoaderBar(0);
-};
-
-manager.onLoad = function () {
-  // Nascondi il loader una volta che tutti gli asset sono stati caricati
-  hideLoader();
-};
-
-manager.onProgress = function (url, itemsLoaded, itemsTotal) {
-  // Aggiorna il loader bar in base al progresso
-  const progress = (itemsLoaded / itemsTotal) * 100;
-  updateLoaderBar(progress);
-};
-
-manager.onError = function (url) {
-  console.error('There was an error loading ' + url);
-};
-
-const loader = new GLTFLoader(manager);
