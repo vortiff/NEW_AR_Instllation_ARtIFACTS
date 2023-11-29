@@ -26,7 +26,11 @@ public class FlockingManagerOpt : MonoBehaviour
     public float minRotationSpeed = 5f;
     public float maxRotationSpeed = 10f;
 
+    [Header("Audio Settings")]
     public MediaLibrary mediaLibrary;
+    public AudioSource audioSource3D; // Variabile pubblica per l'AudioSource 3D
+    private bool isPlayerInside = false; // Variabile per tracciare lo stato del player
+
     private AudioSource audioSource;
     private float fadeDuration = 1.0f; // Durata del fade in/out. Puoi modificarla come preferisci.
 
@@ -65,13 +69,18 @@ public class FlockingManagerOpt : MonoBehaviour
 
     private void Update()
     {
+        // Aggiornare la posizione dell'AudioSource per seguirlo
+        if (audioSource3D != null)
+        {
+            audioSource3D.transform.position = goalPos;
+        }
+
         if (Random.Range(0, 100) < 3)
         {
             SetRandomGoalPosition();
         }
 
         float distanceToARCamera = Vector3.Distance(transform.position, arCamera.transform.position);
-        ChooseSoundBasedFromLibrary(); 
         float normalizedDistance = Mathf.Clamp01(distanceToARCamera / maxDistanceForSpeedChange);
         float newRotationSpeed = Mathf.Lerp(minRotationSpeed, maxRotationSpeed, 1f - normalizedDistance);
 
@@ -82,50 +91,64 @@ public class FlockingManagerOpt : MonoBehaviour
                 flockingScripts[i].Speed = newRotationSpeed;
             }
         }
+        ChooseSoundBasedFromLibrary(isPlayerInside);
+
     }
 
     private void SetRandomGoalPosition()
     {
-        Vector3 randomPos = new Vector3(Random.Range(-flyLimit.x, flyLimit.x),
-                                        Random.Range(-flyLimit.y, flyLimit.y),
-                                        Random.Range(-flyLimit.z, flyLimit.z));
+        Vector3 randomPos = new Vector3(
+            Random.Range(-flyLimit.x / 2, flyLimit.x / 2),
+            Random.Range(-flyLimit.y / 2, flyLimit.y / 2),
+            Random.Range(-flyLimit.z / 2, flyLimit.z / 2)
+        );
         goalPos = this.transform.position + randomPos;
     }
 
-    /// Funzione per scegliere un suono in modo casuale dall'indice 
-    void ChooseSoundBasedFromLibrary()
+    // Funzione per scegliere un suono in modo casuale dall'indice 
+    void ChooseSoundBasedFromLibrary(bool isPlayerInside)
     {
         // Se l'audioSource sta già riproducendo un suono, esce dalla funzione
-        if (audioSource.isPlaying)
+        if (audioSource3D.isPlaying)
         {
             return;
         }
 
-        int randomIndex = Random.Range(0, 1); // Seleziona suoni dall'indice
-        if (audioSource != null && randomIndex < mediaLibrary.audioClips.Length)
+        int randomIndex;
+        if (isPlayerInside)
         {
-            audioSource.clip = mediaLibrary.audioClips[randomIndex];
-            audioSource.Play();
+            randomIndex = Random.Range(4, 6); // Suoni per quando il player è dentro il collider
+        }
+        else
+        {
+            randomIndex = Random.Range(0, 4); // Suoni per quando il player è fuori dal collider
+        }
+
+        if (randomIndex < mediaLibrary.audioClips.Length)
+        {
+            audioSource3D.clip = mediaLibrary.audioClips[randomIndex];
+            audioSource3D.Play();
         }
     }
 
 
-
     private void OnTriggerEnter(Collider other)
     {
-        // Se l'oggetto che entra nel collider è il player
-        if (other.CompareTag("Player"))
+        // Controlla se l'oggetto che entra nel collider è il player
+        if (other.gameObject == arCamera)
         {
-            StopSoundWithFadeOut();
+            isPlayerInside = true;
+            StopSoundWithFadeOut(); // Smette di riprodurre il suono quando il player entra nel collider
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        // Se l'oggetto che esce dal collider è il player
-        if (other.CompareTag("Player"))
+        // Controlla se l'oggetto che esce dal collider è il player
+        if (other.gameObject == arCamera)
         {
-            PlaySoundWithFadeIn();
+            isPlayerInside = false;
+            PlaySoundWithFadeIn(); // Inizia a riprodurre il suono quando il player esce dal collider
         }
     }
 
@@ -137,14 +160,21 @@ void ResetVolume()
 
    void PlaySoundWithFadeIn()
     {
-        ChooseSoundBasedFromLibrary();
+        ChooseSoundBasedFromLibrary(false); // Passa false poiché il player è fuori dal collider
         audioSource.volume = 0.0f; // Imposta il volume iniziale a 0
         audioSource.Play(); // Inizia la riproduzione
         StopAllCoroutines(); // Ferma tutte le coroutine
         StartCoroutine(FadeIn(audioSource, fadeDuration));
     }
 
-
+    void PlaySoundForPlayerInside()
+    {
+        ChooseSoundBasedFromLibrary(true); // Passa true poiché il player è dentro il collider
+        audioSource3D.volume = 0.0f; // Imposta il volume iniziale a 0
+        audioSource3D.Play(); // Inizia la riproduzione
+        StopAllCoroutines(); // Ferma tutte le coroutine
+        StartCoroutine(FadeIn(audioSource3D, fadeDuration));
+    }
 
     void StopSoundWithFadeOut()
     {

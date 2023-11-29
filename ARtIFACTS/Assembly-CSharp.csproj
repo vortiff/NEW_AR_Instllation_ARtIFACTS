@@ -62,6 +62,7 @@
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/Movement/SteeringBasics.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/ColAvoidUnit.cs" />
      <Compile Include="Assets/Script/IntroScene/Duplicator.cs" />
+     <Compile Include="Assets/Script/UtilitiesScript/GUI/UIManager.cs" />
      <Compile Include="Assets/Realistic Glitches Lite/Assets/Scripts/ShaderEffect_Scanner.cs" />
      <Compile Include="Assets/Realistic Glitches Lite/Assets/Scripts/ShaderToTexture.cs" />
      <Compile Include="Assets/Script/FloatingObject.cs" />

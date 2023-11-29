@@ -1,4 +1,4 @@
-    using UnityEngine;
+ using UnityEngine;
     using System.Collections;
 
     public class InteractiveWall : MonoBehaviour
@@ -11,10 +11,6 @@
         
         [Header("Audio Settings")]
         [SerializeField] private MediaLibrary mediaLibrary;
-        
-        [Header("Specific Circle Settings")]
-        public GameObject targetCircle; // Variabile pubblica per il riferimento all'oggetto specifico
-        public float desiredYRotation; // Rotazione Y desiderata per l'oggetto specifico
 
         [Header("Color Settings")]
         public Color color1 = Color.white;
@@ -29,12 +25,8 @@
         private void Start()
         {
             CreateGrid();
-            // Applica la rotazione solo se targetCircle è stato impostato
-            if (targetCircle != null)
-            {
-                Vector3 currentRotation = targetCircle.transform.eulerAngles;
-                targetCircle.transform.eulerAngles = new Vector3(currentRotation.x, desiredYRotation, currentRotation.z);
-            }
+            gameObject.transform.localEulerAngles = new Vector3(0.839663744f, 51.3509598f, 1.23382843f);
+
         }
 
         private void CreateGrid()
@@ -113,19 +105,19 @@
         private IEnumerator RotateBack(GameObject circle)
         {
             // Debug.Log("Starting to rotate back.");
-            Quaternion startRotation = circle.transform.rotation;
+            Quaternion startRotation = circle.transform.localRotation;
             Quaternion endRotation = Quaternion.Euler(0, 0, 90); // Adjusted the end rotation to go back to the initial rotation
 
             float elapsedTime = 0;
 
             while (elapsedTime < rotationTime)
             {
-                circle.transform.rotation = Quaternion.Lerp(startRotation, endRotation, elapsedTime / rotationTime);
+                circle.transform.localRotation = Quaternion.Lerp(startRotation, endRotation, elapsedTime / rotationTime);
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
 
-            circle.transform.rotation = endRotation;
+            circle.transform.localRotation = endRotation;
             // Debug.Log("Finished rotating back.");
             PlaySound(circle, 7); // Suono per la rotazione indietro
 
@@ -140,7 +132,7 @@
         {
             if (row >= 0 && row < circles.GetLength(0) && col >= 0 && col < circles.GetLength(1))
             {
-                circles[row, col].transform.Rotate(Vector3.up * 90);
+                circles[row, col].transform.Rotate(Vector3.up * 90, Space.Self);
                 circleRotated[row, col] = true; // Mark the neighbouring circle as rotated
                 circleHit[row, col] = true; // Also mark it as hit
             }
@@ -186,18 +178,18 @@
 
         private IEnumerator RotateWithTime(GameObject circle)
         {
-            Quaternion startRotation = circle.transform.rotation;
+            Quaternion startRotation = circle.transform.localRotation;
             Quaternion endRotation = Quaternion.Euler(0, 90, 0);
             float elapsedTime = 0;
 
             while (elapsedTime < rotationTime)
             {
-                circle.transform.rotation = Quaternion.Lerp(startRotation, endRotation, elapsedTime / rotationTime);
+                circle.transform.localRotation = Quaternion.Lerp(startRotation, endRotation, elapsedTime / rotationTime);
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
 
-            circle.transform.rotation = endRotation;
+            circle.transform.localRotation = endRotation;
 
             // Start fade in Metallic value for all circles
             foreach (var c in circles)

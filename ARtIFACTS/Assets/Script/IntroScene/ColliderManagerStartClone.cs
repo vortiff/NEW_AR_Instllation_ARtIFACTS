@@ -27,6 +27,7 @@ public class ColliderManagerStartClone : MonoBehaviour
     public float colliderActivationDelay = 1.0f; // Ritardo prima dell'attivazione del collider
 
     [Header("GameObject References")]
+    [SerializeField] private GameObject playerObject;
     public GameObject metaballObject; 
     public GameObject objectToClone; 
     public GameObject GameObjectToActivate;
@@ -39,6 +40,8 @@ public class ColliderManagerStartClone : MonoBehaviour
     private bool hasPlayedAudioClipIndex = false; // Flag per vedere se audioClipIndex è stata riprodotta
     private AudioSource audioSource;
     private AudioClip[] metaballSounds; 
+    [SerializeField] private AudioSource signifierAudioSource; // Riferimento all'AudioSource specifico da controllare
+
 
     [Header("Clone Settings")]
     [SerializeField]
@@ -89,14 +92,15 @@ public class ColliderManagerStartClone : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Controlla se il giocatore è entrato in collisione e se non ha già interagito
-        if (other.CompareTag("Player") && !hasCollided)
+        if (other.gameObject == playerObject && !hasCollided)
         {
-            // Attiva il GameObjectToActivate
-            if (GameObjectToActivate != null)
+            GameObjectToActivate.SetActive(true);
+            // Controlla se l'AudioSource specificato è in riproduzione e interrompilo
+            if (signifierAudioSource != null && signifierAudioSource.isPlaying)
             {
-                GameObjectToActivate.SetActive(true);
+                signifierAudioSource.Stop();
             }
-
+    
             // Riproduci il suono VoiceOver dalla lista del GameObject Metaball
             if (audioSource != null && metaballSounds.Length > 0 && !hasPlayedAudioClipIndex)
             {
@@ -311,7 +315,7 @@ public class ColliderManagerStartClone : MonoBehaviour
             audioSource.clip = metaballSounds[audioClipWeather];
             audioSource.Play();
         }
-        Debug.Log($"Riproduzione di AudioSource: {audioSource.clip.name}");
+        //Debug.Log($"Riproduzione di AudioSource: {audioSource.clip.name}");
     }
 
 

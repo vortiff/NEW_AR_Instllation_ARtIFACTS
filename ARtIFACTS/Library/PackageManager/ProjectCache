@@ -5003,6 +5003,7 @@ m_ResolvedPackages:
     - 5.1.0-pre.9
     - 5.1.0-pre.10
     - 5.1.0
+    - 5.1.1
     - 6.0.0-pre.3
     - 6.0.0-pre.4
     compatible:
@@ -5017,6 +5018,7 @@ m_ResolvedPackages:
     - 5.1.0-pre.9
     - 5.1.0-pre.10
     - 5.1.0
+    - 5.1.1
     recommended: 5.0.7
     deprecated: []
   dependencies:

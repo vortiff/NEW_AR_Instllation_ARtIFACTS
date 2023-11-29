@@ -22,9 +22,7 @@ public class Flocking : MonoBehaviour
     private Color originalColor;
     private float originalLightIntensity;
     [SerializeField] private Material cloneMaterial;
-    [SerializeField] private AudioSource cloneAudioSource;
-    [SerializeField] private Light cloneLight;
-    [SerializeField] private float desiredLightIntensity = 1.0f;
+
 
 
 
@@ -37,36 +35,10 @@ public class Flocking : MonoBehaviour
             originalColor = cloneMaterial.GetColor("_Color"); // Assumendo che stai usando _Color come nome del parametro
         }
 
-        if (cloneLight != null)
-        {
-            originalLightIntensity = desiredLightIntensity;
-            cloneLight.intensity = originalLightIntensity;
-        }
+       
 
         speed = Random.Range(FlockingManagerOpt.FMOpt.minSpeed, FlockingManagerOpt.FMOpt.maxSpeed);
         playerCollider = GameObject.FindGameObjectWithTag("FlockManager").GetComponent<Collider>();
-
-        if (totalClonesWithAudio < MAX_CLONES_WITH_AUDIO)
-        {
-            int randomIndex = Random.Range(0, FlockingManagerOpt.FMOpt.mediaLibrary.audioClips.Length);
-            
-            cloneAudioSource.clip = FlockingManagerOpt.FMOpt.mediaLibrary.audioClips[randomIndex];
-            cloneAudioSource.Play();
-            
-            totalClonesWithAudio++;
-        }
-        else
-        {
-            cloneAudioSource.enabled = false; // Disattiva l'AudioSource per tutti gli altri cloni
-        }
-
-
-
-         if (cloneAudioSource)
-        {
-            cloneAudioSource.loop = false;
-            StartCoroutine(CheckIfAudioIsPlaying(cloneAudioSource));
-        }
     }
 
     // Update is called once per frame
@@ -157,26 +129,9 @@ public class Flocking : MonoBehaviour
             StartCoroutine(HandleCollisionEffect());
         }
 
-        // Controllo aggiuntivo per assicurarsi che solo i cloni con un AudioSource riproducano un suono
-        if (other == playerCollider && FlockingManagerOpt.FMOpt.arCamera && cloneAudioSource && !cloneAudioSource.isPlaying)
-        {
-            PlayRandomSoundFromIndexRange(2, 6);
-        }
     }
 
-    void PlayRandomSoundFromIndexRange(int startIndex, int endIndex)
-    {
-        if (cloneAudioSource && !cloneAudioSource.isPlaying) // Verifica se cloneAudioSource esiste e non sta già riproducendo un suono
-        {
-            currentIndex = Random.Range(startIndex, endIndex + 1);
-
-            if (currentIndex < FlockingManagerOpt.FMOpt.mediaLibrary.audioClips.Length) // Verifica che l'indice sia valido
-            {
-                cloneAudioSource.clip = FlockingManagerOpt.FMOpt.mediaLibrary.audioClips[currentIndex];
-                cloneAudioSource.Play();
-            }
-        }
-    }
+   
 
     IEnumerator CheckIfAudioIsPlaying(AudioSource source)
     {
@@ -204,36 +159,13 @@ public class Flocking : MonoBehaviour
         float fadeDuration = 1f; // Durata del fade-in
         float startTime = Time.time;
 
-        // Fade-in
-        while (Time.time - startTime < fadeDuration)
-        {
-            float t = (Time.time - startTime) / fadeDuration;
-            if (cloneLight != null)
-            {
-                cloneLight.intensity = Mathf.Lerp(desiredLightIntensity, desiredLightIntensity + 0.3f, t);
-            }
-            yield return null;
-        }
+        
 
         yield return new WaitForSeconds(colorChangeDuration - (2 * fadeDuration)); // Attendi per la durata specificata meno la durata totale dei fade
 
         startTime = Time.time;
 
-        // Fade-out
-        while (Time.time - startTime < fadeDuration)
-        {
-            float t = (Time.time - startTime) / fadeDuration;
-            if (cloneLight != null)
-            {
-                cloneLight.intensity = Mathf.Lerp(desiredLightIntensity + 0.3f, desiredLightIntensity, t);
-            }
-            yield return null;
-        }
-
-        if (cloneLight != null)
-        {
-            cloneLight.intensity = desiredLightIntensity;
-        }
+        
     }
 
 }

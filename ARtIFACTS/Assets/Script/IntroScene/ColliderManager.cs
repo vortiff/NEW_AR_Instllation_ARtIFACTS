@@ -54,7 +54,12 @@
             //Debug.Log("OnTriggerEnter called with GameObject: " + other.gameObject.name);
             if (other.gameObject == player && !hasCollided)
             {
-                
+                // Attiva il comportamento di inseguimento per Metaball prima di tutto
+                Metaball metaballScript = metaballObject.GetComponent<Metaball>();
+                if (metaballScript != null)
+                {
+                    metaballScript.canFollow = true;
+                }
                 StartCoroutine(PlaySoundsInOrder());
                 WeatherDataManager.WeatherInfo currentWeather = weatherDataManager.GetCurrentWeatherInfo();
                 float currentTemperature = currentWeather.main.temp - 273.15f; // Converti da Kelvin a Celsius
@@ -86,6 +91,11 @@
                     {
                         obj.SetActive(true);
                     }
+                }
+                
+                if (objectToDeactivate != null)
+                {
+                    objectToDeactivate.SetActive(false);
                 }
 
                 hasCollided = true;
@@ -190,17 +200,35 @@
         {
             yield return new WaitForSeconds(attractionDelay);
 
+            // Riproduci il suono con indice 13 e attendi la fine della riproduzione
+            if (audioSource != null && metaballSounds.Length > 3)
+            {
+                audioSource.clip = metaballSounds[13];
+                audioSource.Play();
+                yield return new WaitForSeconds(audioSource.clip.length);
+            }
+            
+            Metaball metaballScript = metaballObject.GetComponent<Metaball>();
+            if (metaballScript != null)
+            {
+                metaballScript.canFollow = false;
+            }
+            
             // Fai in modo che Metaball segua l'attractionTarget
             metaballObject.transform.LookAt(attractionTarget.transform);
             Rigidbody metaballRb = metaballObject.GetComponent<Rigidbody>();
             metaballRb.velocity = metaballObject.transform.forward * 5; // 5 è la velocità con cui Metaball si muove verso l'attractionTarget
 
-            // Riproduci il suono con indice 13
-            if (audioSource != null && metaballSounds.Length > 3)
+            // Aspetta fino a quando Metaball non raggiunge l'attractionTarget o una distanza molto vicina
+            while (Vector3.Distance(metaballObject.transform.position, attractionTarget.transform.position) > 0.1f)
             {
-                audioSource.clip = metaballSounds[13];
-                audioSource.Play();
+                yield return null; // Aspetta un frame e poi controlla di nuovo
             }
+
+            // Quando Metaball è vicina al target, arresta il suo movimento
+            metaballRb.velocity = Vector3.zero;
+            metaballRb.angularVelocity = Vector3.zero;
+
             // Continua con la distruzione dei cloni e la disattivazione dell'oggetto
             StartCoroutine(DestroyAndDeactivate());
             // Avvia la coroutine per la distruzione e disattivazione e memorizza il riferimento
@@ -235,11 +263,6 @@
                 {
                     StopCoroutine(destroyAndDeactivateCoroutine);
                     destroyAndDeactivateCoroutine = null;
-                }
-
-                if (objectToDeactivate != null)
-                {
-                    objectToDeactivate.SetActive(false);
                 }
             }
         }

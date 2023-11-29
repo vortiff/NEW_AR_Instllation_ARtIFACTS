@@ -136,13 +136,11 @@ public class DistortAndDissolveStatue : MonoBehaviour
             directionToPlayer.y = 0; // Ignora l'altezza per non influenzare la rotazione sull'asse Y
 
             // Calcola l'angolo tra la direzione attuale del GameObject e la direzione verso il giocatore
-            float angleToPlayer = Vector3.SignedAngle(transform.forward, directionToPlayer, Vector3.up);
+            float angleToPlayer = Vector3.SignedAngle(-transform.forward, directionToPlayer, Vector3.up);
 
             // Aggiusta la rotazione locale sull'asse Y per ruotare verso il giocatore
-            // Utilizza `localEulerAngles` per l'aggiustamento locale
-            Vector3 localEulerAngles = transform.localEulerAngles;
-            localEulerAngles.y += angleToPlayer * Time.deltaTime * selfRotationSpeed;
-            transform.localEulerAngles = localEulerAngles;
+            transform.Rotate(Vector3.up, angleToPlayer * Time.deltaTime * selfRotationSpeed);
+
         }
     }
 }

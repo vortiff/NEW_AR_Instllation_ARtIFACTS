@@ -58,6 +58,12 @@ public class Duplicator : MonoBehaviour
             Texture2D texture = refRenderer.material.mainTexture as Texture2D;
             MaterialPropertyBlock mpb = new MaterialPropertyBlock();
 
+             // Applica la stessa texture e randomizza i parametri per l'oggetto di riferimento
+            refRenderer.GetPropertyBlock(mpb);
+            mpb.SetTexture("_MainTex", texture);
+            RandomizeShaderParameters(mpb);
+            refRenderer.SetPropertyBlock(mpb);
+
             foreach (GameObject obj in objectPools[i])
             {
                 Renderer objRenderer = obj.GetComponent<Renderer>();
@@ -246,13 +252,13 @@ public class Duplicator : MonoBehaviour
 
     public void RandomizeShaderParameters(MaterialPropertyBlock mpb)
     {
-        mpb.SetFloat("_ChromAberrAmountX", Random.Range(0f, 0.9f));
-        mpb.SetFloat("_ChromAberrAmountY", Random.Range(0f, 0.9f));
+        mpb.SetFloat("_ChromAberrAmountX", Random.Range(0f, 0.2f));
+        mpb.SetFloat("_ChromAberrAmountY", Random.Range(0f, 0.2f));
         mpb.SetFloat("_RightStripesAmount", Random.Range(0f, 4f));
         mpb.SetFloat("_RightStripesFill", Random.Range(0f, 1f));
         mpb.SetFloat("_LeftStripesAmount", Random.Range(0f, 4f));
         mpb.SetFloat("_LeftStripesFill", Random.Range(0f, 1f));
-        mpb.SetVector("_DisplacementAmount", new Vector4(Random.Range(0f, 0.9f), Random.Range(0f, 0.9f), 0f, 0f));
+        mpb.SetVector("_DisplacementAmount", new Vector4(Random.Range(0f, 0.5f), Random.Range(0f, 0.5f), 0f, 0f));
         mpb.SetFloat("_WavyDisplFreq", Random.Range(5f, 15f));
     }
 

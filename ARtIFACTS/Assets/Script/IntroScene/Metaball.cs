@@ -10,6 +10,7 @@ public class Metaball : MonoBehaviour
     public float moveSpeed = 3f; 
     private Vector3 desiredPosition;
     private bool isMoving = false;
+    public bool canFollow = true;
 
     public AudioClip[] voiceOverSounds; // Array di suoni VoiceOver
 
@@ -27,25 +28,28 @@ public class Metaball : MonoBehaviour
     }
 
     private IEnumerator PositionCheckRoutine()
-    {
-        while(true)
-        {
-            if (player != null)
-            {
-                // Calcola la direzione dal Metaball al player
-                Vector3 directionToPlayer = (player.position - transform.position).normalized;
+    { 
+       
+            while(true)
+                    {
+                        if (canFollow){
+                            if (player != null)
+                            {
+                                // Calcola la direzione dal Metaball al player
+                                Vector3 directionToPlayer = (player.position - transform.position).normalized;
 
-                // Calcola la posizione desiderata per il Metaball
-                desiredPosition = player.position - directionToPlayer * followDistance;
+                                // Calcola la posizione desiderata per il Metaball
+                                desiredPosition = player.position - directionToPlayer * followDistance;
 
-                if(!isMoving && Vector3.Distance(transform.position, desiredPosition) > 0.1f) 
-                {
-                    StartCoroutine(MoveTowardsDesiredPosition());
-                }
-            }
-
-            yield return new WaitForSeconds(checkFrequency);
-        }
+                                if(!isMoving && Vector3.Distance(transform.position, desiredPosition) > 0.1f) 
+                                {
+                                    StartCoroutine(MoveTowardsDesiredPosition());
+                                }
+                            }
+                        }
+                        yield return new WaitForSeconds(checkFrequency);
+                    }
+       
     }
 
     private IEnumerator MoveTowardsDesiredPosition()
