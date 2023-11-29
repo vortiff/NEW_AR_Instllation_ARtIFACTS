@@ -67,6 +67,10 @@ document.addEventListener("DOMContentLoaded", function () {
   composer.addPass(renderPass);
   // Aggiungi GlitchPass
   const glitchPass = new GlitchPass();
+  glitchPass.goWild = false; // Disabilita le transizioni più intense
+  glitchPass.curF = 0; // Modifica la frequenza delle transizioni
+  composer.addPass(glitchPass);
+
   composer.addPass(glitchPass);
   // Loader DRACO,KTX2 e GLTF
   const dracoLoader = new DRACOLoader();
@@ -82,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
   loader.setDRACOLoader(dracoLoader);
   loader.setKTX2Loader(ktx2Loader);
   loader.load(
-    "https://cdn.jsdelivr.net/gh/vortiff/NEW_AR_Instllation_ARtIFACTS@main/ARtiFACTs_Assets/js/pretti_glitch_ends.js",
+    "ARtIFACTS@main/ARtiFACTs_Assets/js/pretti_glitch_ends.js://cdn.jsdelivr.net/gh/vortiff/NEW_AR_Instllation_ARtIFACTS@main/ARtiFACTs_Assets/js/pretti_glitch_ends.jscdn.jsdelivr.net/gh/vortiff/NEW_AR_Instllation_ARtIFACTS@main/ARtiFACTs_Assets/glb/NewMapAnimationTes3.glb",
     function (gltf) {
       model = gltf.scene;
       model.position.set(1, 0, 1);
@@ -104,6 +108,13 @@ document.addEventListener("DOMContentLoaded", function () {
     undefined,
     handleError
   );
+  const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  if (isMobile) {
+    container.addEventListener("touchstart", onDocumentMouseDown, false);
+  } else {
+    container.addEventListener("click", onDocumentMouseDown, false);
+  }
+
   const raycaster = new THREE.Raycaster(); // Definisci raycaster
   let originalVertices = {};
   // Creare una nuova istanza di SimplexNoise
@@ -191,8 +202,14 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault(); // Previene comportamenti di default
     // Normalizza le coordinate del mouse
     let mouse = new THREE.Vector2();
+    // Calcola la posizione del tocco/mouse e aggiungi una tolleranza
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    // Aggiungi una tolleranza per dispositivi touch
+    const touchTolerance = 0.5; // Aumenta o diminuisci questo valore in base alla sensibilità desiderata
+    mouse.x += touchTolerance;
+    mouse.y += touchTolerance;
+
     let raycaster = new THREE.Raycaster();
     raycaster.setFromCamera(mouse, camera);
     // Trova oggetti intersecati
@@ -233,9 +250,6 @@ document.addEventListener("DOMContentLoaded", function () {
 function handleError(err) {
   console.error(err);
 }
-
-
-
 
 
 // Utilizza LoadingManager per tenere traccia del progresso del download
