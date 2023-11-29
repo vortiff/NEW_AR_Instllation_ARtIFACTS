@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
   loader.setDRACOLoader(dracoLoader);
   loader.setKTX2Loader(ktx2Loader);
   loader.load(
-    "https://cdn.jsdelivr.net/gh/vortiff/NEW_AR_Instllation_ARtIFACTS@main/ARtiFACTs_Assets/glb/NewMapAnimationTest2.glb",
+    "https://cdn.jsdelivr.net/gh/vortiff/NEW_AR_Instllation_ARtIFACTS@main/ARtiFACTs_Assets/glb/NewMapAnimationTes3.glb",
     function (gltf) {
       model = gltf.scene;
       model.position.set(1, 0, 1);
@@ -158,13 +158,12 @@ document.addEventListener("DOMContentLoaded", function () {
     requestAnimationFrame(animate);
     model.rotation.y += 0.001;
     animateMeshes([
-      "Icosphere",
-      "Icosphere001",
-      "Icosphere002",
-      "Icosphere003",
-      "Icosphere004",
-      "Icosphere005",
-      "Icosphere006",
+      "Empty_interaction_1",
+      "Empty_interaction_2",
+      "Empty_interaction_3",
+      "Empty_interaction_4",
+      "Empty_interaction_5",
+      "Empty_interaction_6",
     ]);
     composer.render();
   }
@@ -201,13 +200,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // Verifica quante intersezioni hai
     if (intersects.length > 0) {
       const objectMap = {
-        Icosphere: "aaf856a2-deeb-f0de-0eec-bcaced7c4287",
-        Icosphere001: "8afb3a77-2f0c-81f5-ebd8-8c2ca1c16322",
-        Icosphere002: "8afb3a77-2f0c-81f5-ebd8-8c2ca1c16322",
-        Icosphere003: "4f58e33c-832c-f7c1-da2e-b956c92470a7",
-        Icosphere004: "958b6c40-8773-8641-d41c-e57a68a953eb",
-        Icosphere005: "d6695961-18ae-fda6-a1d9-73b0c881d01a",
-        Icosphere006: "9849d426-0a64-ebe0-000c-1e91fcf2e482",
+        Empty_interaction_1: "aaf856a2-deeb-f0de-0eec-bcaced7c4287",
+        Empty_interaction_2: "8afb3a77-2f0c-81f5-ebd8-8c2ca1c16322",
+        Empty_interaction_3: "8afb3a77-2f0c-81f5-ebd8-8c2ca1c16322",
+        Empty_interaction_4: "4f58e33c-832c-f7c1-da2e-b956c92470a7",
+        Empty_interaction_5: "958b6c40-8773-8641-d41c-e57a68a953eb",
+        Empty_interaction_6: "d6695961-18ae-fda6-a1d9-73b0c881d01a",
       };
       if (intersects.length > 0) {
         /// Se c'è almeno un oggetto intersecato
