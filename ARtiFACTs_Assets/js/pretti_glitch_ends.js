@@ -6,7 +6,7 @@ import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
 import { KTX2Loader } from "three/addons/loaders/KTX2Loader.js";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
-import { GlitchPass } from "three/addons/postprocessing/GlitchPass.js";
+//import { GlitchPass } from "three/addons/postprocessing/GlitchPass.js";
 document.addEventListener("DOMContentLoaded", function () {
   console.log('DOM fully loaded and parsed'); // Dovrebbe apparire per primo
   // Crea una funzione per aggiornare la larghezza della barra del loader
@@ -65,13 +65,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const composer = new EffectComposer(renderer);
   const renderPass = new RenderPass(scene, camera);
   composer.addPass(renderPass);
-  // Aggiungi GlitchPass
+  /* Aggiungi GlitchPass
   const glitchPass = new GlitchPass();
   glitchPass.goWild = false; // Disabilita le transizioni più intense
   glitchPass.curF = 0; // Modifica la frequenza delle transizioni
   composer.addPass(glitchPass);
 
   composer.addPass(glitchPass);
+  */
   // Loader DRACO,KTX2 e GLTF
   const dracoLoader = new DRACOLoader();
   dracoLoader.setDecoderPath(
