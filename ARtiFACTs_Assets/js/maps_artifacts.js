@@ -1,3 +1,5 @@
+<script type="module" src="https://cdn.jsdelivr.net/gh/vortiff/NEW_AR_Instllation_ARtIFACTS@main/ARtiFACTs_Assets/js/pretti_glitch_ends.js"></script>
+
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { RoomEnvironment } from "https://cdn.jsdelivr.net/gh/mrdoob/three.js@80be9a58b20db73cba4ba9f70f8eee9b646a661a/examples/jsm/environments/RoomEnvironment.js";

@@ -138,6 +138,7 @@
      <Compile Include="Assets/Script/UtilitiesScript/RandomDeformationColor.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/EvadeUnit.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/DemoScene/Scripts/RuntimeScanDemo.cs" />
+     <Compile Include="Assets/Script/UtilitiesScript/NoMouse.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/InterposeUnit.cs" />
      <Compile Include="Assets/MT Assets/Ultimate LOD System/Libraries/MTAssets Mesh Simplifier/MT_BlendShape.cs" />
      <Compile Include="Assets/UnityMovementAI/Scripts/Units/ArriveUnit.cs" />

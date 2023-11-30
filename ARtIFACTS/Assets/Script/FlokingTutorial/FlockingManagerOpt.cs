@@ -96,14 +96,14 @@ public class FlockingManagerOpt : MonoBehaviour
     }
 
     private void SetRandomGoalPosition()
-    {
-        Vector3 randomPos = new Vector3(
-            Random.Range(-flyLimit.x / 2, flyLimit.x / 2),
-            Random.Range(-flyLimit.y / 2, flyLimit.y / 2),
-            Random.Range(-flyLimit.z / 2, flyLimit.z / 2)
-        );
-        goalPos = this.transform.position + randomPos;
-    }
+{
+    Vector3 randomPos = new Vector3(
+        Random.Range(-flyLimit.x / 2, flyLimit.x / 2),
+        Random.Range(-flyLimit.y / 2, flyLimit.y / 2),
+        Random.Range(-flyLimit.z / 2, flyLimit.z / 2)
+    );
+    goalPos = this.transform.position + randomPos;
+}
 
     // Funzione per scegliere un suono in modo casuale dall'indice 
     void ChooseSoundBasedFromLibrary(bool isPlayerInside)

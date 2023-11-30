@@ -29,26 +29,23 @@ public class Metaball : MonoBehaviour
 
     private IEnumerator PositionCheckRoutine()
     { 
-       
-            while(true)
+        while(true)
+        {
+            if (canFollow){
+                if (player != null)
+                {
+                    // Calcola la direzione dal Metaball al player
+                    Vector3 directionToPlayer = (player.position - transform.position).normalized;
+                    // Calcola la posizione desiderata per il Metaball
+                    desiredPosition = player.position - directionToPlayer * followDistance;
+                    if(!isMoving && Vector3.Distance(transform.position, desiredPosition) > 0.1f) 
                     {
-                        if (canFollow){
-                            if (player != null)
-                            {
-                                // Calcola la direzione dal Metaball al player
-                                Vector3 directionToPlayer = (player.position - transform.position).normalized;
-
-                                // Calcola la posizione desiderata per il Metaball
-                                desiredPosition = player.position - directionToPlayer * followDistance;
-
-                                if(!isMoving && Vector3.Distance(transform.position, desiredPosition) > 0.1f) 
-                                {
-                                    StartCoroutine(MoveTowardsDesiredPosition());
-                                }
-                            }
-                        }
-                        yield return new WaitForSeconds(checkFrequency);
+                        StartCoroutine(MoveTowardsDesiredPosition());
                     }
+                }
+            }
+            yield return new WaitForSeconds(checkFrequency);
+        }
        
     }
 
