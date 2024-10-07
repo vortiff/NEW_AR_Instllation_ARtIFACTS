@@ -5855,8 +5855,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   expansionSpeed: 5
   maxRadius: 0.1
-  glitchFrequencyOutsideCollider: 7
-  glitchFrequencyInsideCollider: 4
+  glitchFrequencyOutsideCollider: 5
+  glitchFrequencyInsideCollider: 2
   deformationIntensityOutsideCollider: 0.7
   deformationIntensityInsideCollider: 1.7
   mediaLibrary: {fileID: 11400000, guid: 1a93988b5f685453fb3d0ea16c7e9447, type: 2}
@@ -6219,8 +6219,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   expansionSpeed: 5
   maxRadius: 0.1
-  glitchFrequencyOutsideCollider: 7
-  glitchFrequencyInsideCollider: 4
+  glitchFrequencyOutsideCollider: 5
+  glitchFrequencyInsideCollider: 2
   deformationIntensityOutsideCollider: 0.7
   deformationIntensityInsideCollider: 1.7
   mediaLibrary: {fileID: 11400000, guid: 1a93988b5f685453fb3d0ea16c7e9447, type: 2}
@@ -6284,14 +6284,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   expansionSpeed: 5
   maxRadius: 0.1
-  glitchFrequencyOutsideCollider: 7
-  glitchFrequencyInsideCollider: 4
+  glitchFrequencyOutsideCollider: 5
+  glitchFrequencyInsideCollider: 2
   deformationIntensityOutsideCollider: 1.15
   deformationIntensityInsideCollider: 2.22
   mediaLibrary: {fileID: 11400000, guid: 1a93988b5f685453fb3d0ea16c7e9447, type: 2}
   minAudioDistance: 1
   maxAudioDistance: 25
-  selfRotationSpeed: 50
+  selfRotationSpeed: 0
   playerTransform: {fileID: 788447236}
 --- !u!4 &6106013275771883720
 Transform:
@@ -6515,8 +6515,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   expansionSpeed: 5
   maxRadius: 0.1
-  glitchFrequencyOutsideCollider: 7
-  glitchFrequencyInsideCollider: 4
+  glitchFrequencyOutsideCollider: 5
+  glitchFrequencyInsideCollider: 2
   deformationIntensityOutsideCollider: 0.7
   deformationIntensityInsideCollider: 1.7
   mediaLibrary: {fileID: 11400000, guid: 1a93988b5f685453fb3d0ea16c7e9447, type: 2}
